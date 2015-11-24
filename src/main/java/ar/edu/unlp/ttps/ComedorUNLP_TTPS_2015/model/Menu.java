@@ -3,7 +3,24 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="menu")
 public class Menu {
+	
+	@Id @GeneratedValue
+	@Column(name="idMenu")
+	protected Long idMenu;
+	
 	private String nombre;
 	private boolean vegetariano;
 	private boolean celiaco;
@@ -12,6 +29,8 @@ public class Menu {
 	private boolean intoLactosa;
 	private boolean visible;
 	private Date fechaAlta;
+	
+	@ManyToMany
 	private List<Componente> componentes;
 	
 	

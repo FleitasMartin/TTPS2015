@@ -9,9 +9,9 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
 
 public interface ComponenteDAO {
 	
-	public void save(Componente componente);
+	public Componente save(Componente componente);
 		
-	public void edit(Componente componente);
+	public Componente edit(Componente componente);
 		
 	public Componente get(Long idComponente) throws EntityNotFoundException;
 		
