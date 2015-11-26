@@ -4,20 +4,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.GenericDAO;
 
 public class GenericDAOImpl<T> implements GenericDAO<T> {
 
-	protected T persistentClass;
+	protected T persistentClass; //Esto está sacado del ejemplo de la catedra
+								// No lo entiendo y posiblemente sea eliminado.
 
-	/*
-	 * protected SessionFactory sessionFactory;
-	 * 
-	 * public SessionFactory getSessionFactory() { return sessionFactory; }
-	 * 
-	 * public void setSessionFactory(SessionFactory sessionFactory) {
-	 * this.sessionFactory = sessionFactory; }
-	 */
 
 	protected T save(T entity) {
 		EntityManager em = EMF.getEMF().createEntityManager();
@@ -36,7 +31,6 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 			em.close();
 		}
 		return entity;
-		// getSessionFactory().getCurrentSession().save(entity);
 	}
 
 	protected T edit(T entity) {
@@ -47,6 +41,13 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		etx.commit();
 		em.close();
 		return entity;
+	}
+
+	protected List<T> getAll(Class<?> clas){
+		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " +clas.getSimpleName()+" e");
+				@SuppressWarnings("unchecked")
+				List<T> resultado = (List<T>)consulta.getResultList();
+				return resultado;
 	}
 
 	/*
@@ -60,5 +61,13 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	 * getSessionFactory().getCurrentSession
 	 * ().createCriteria(entityClass).list(); }
 	 */
+
+	public T getPersistentClass() {
+		return persistentClass;
+	}
+
+	public void setPersistentClass(T persistentClass) {
+		this.persistentClass = persistentClass;
+	}
 
 }

@@ -88,4 +88,10 @@ public class Menu {
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
+	public Long getIdMenu() {
+		return idMenu;
+	}
+	public void setIdMenu(Long idMenu) {
+		this.idMenu = idMenu;
+	}
 }

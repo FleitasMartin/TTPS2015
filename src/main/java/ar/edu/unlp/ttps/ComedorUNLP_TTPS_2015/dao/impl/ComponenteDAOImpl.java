@@ -23,6 +23,10 @@ public class ComponenteDAOImpl extends GenericDAOImpl<Componente> implements Com
 		return super.edit(componente);
 		
 	}
+	
+	public List<Componente> getAll(){
+		return super.getAll(Componente.class);
+	}
 
 	@Override
 	public Componente get(Long idComponente) throws EntityNotFoundException {

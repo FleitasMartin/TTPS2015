@@ -14,7 +14,11 @@ public class Main {
 	public static void main(String[] args) {
 		EMF.getEMF();
 		System.out.print("Se obtuvo conexion");
-		Componente entrada = new Componente();
+		ComponenteDAOImpl componenteDAO = new ComponenteDAOImpl();
+		ArrayList<Componente> listaComponentes = (ArrayList<Componente>) componenteDAO.getAll();
+		System.out.println("Tamaño de la coleccion de componentes: "+listaComponentes.size());
+		
+	/*	Componente entrada = new Componente();
 		entrada.setNombre("Fiambres");
 		entrada.setTipo("Entrada");
 		Componente plato = new Componente();
@@ -49,6 +53,10 @@ public class Main {
 		menu.setFechaAlta(dia);
 		MenuDAOImpl menuDAO = new MenuDAOImpl();
 		menuDAO.save(menu);
+		System.out.println(menu.getIdMenu()+" "+menu.getNombre());
+		menu.setNombre("menuEditado");
+		menuDAO.edit(menu);
+		System.out.println(menu.getIdMenu()+" "+menu.getNombre());*/
 	}
 
 }

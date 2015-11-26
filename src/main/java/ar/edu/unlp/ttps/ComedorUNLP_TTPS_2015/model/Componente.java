@@ -17,6 +17,8 @@ public class Componente {
 	protected String nombre;
 
 	protected String tipo;
+	
+	protected Boolean activo;
 
 	public String getNombre() {
 		return nombre;
