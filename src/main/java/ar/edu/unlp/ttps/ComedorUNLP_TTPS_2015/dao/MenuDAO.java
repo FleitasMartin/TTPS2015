@@ -17,6 +17,6 @@ public interface MenuDAO {
 		
 	public Menu get(String menuNombre) throws EntityNotFoundException;
 		
-	public List<Menu> listAll();
+	public List<Menu> getAll();
 	
 }

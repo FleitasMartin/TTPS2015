@@ -18,8 +18,8 @@ import javax.persistence.Table;
 public class Menu {
 	
 	@Id @GeneratedValue
-	@Column(name="idMenu")
-	protected Long idMenu;
+	@Column(name="id")
+	protected Long id;
 	
 	private String nombre;
 	private boolean vegetariano;
@@ -88,10 +88,10 @@ public class Menu {
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
-	public Long getIdMenu() {
-		return idMenu;
+	public Long getId() {
+		return id;
 	}
-	public void setIdMenu(Long idMenu) {
-		this.idMenu = idMenu;
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

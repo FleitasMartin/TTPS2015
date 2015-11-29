@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.MenuDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Menu;
 
 public class MenuDAOImpl extends GenericDAOImpl<Menu> implements MenuDAO {
@@ -35,8 +36,7 @@ public class MenuDAOImpl extends GenericDAOImpl<Menu> implements MenuDAO {
 	}
 
 	@Override
-	public List<Menu> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Menu> getAll() {
+		return super.getAll(Menu.class);
 	}
 }

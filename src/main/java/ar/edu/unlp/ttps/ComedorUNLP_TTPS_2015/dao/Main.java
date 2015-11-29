@@ -15,10 +15,9 @@ public class Main {
 		EMF.getEMF();
 		System.out.print("Se obtuvo conexion");
 		ComponenteDAOImpl componenteDAO = new ComponenteDAOImpl();
-		ArrayList<Componente> listaComponentes = (ArrayList<Componente>) componenteDAO.getAll();
-		System.out.println("Tamaño de la coleccion de componentes: "+listaComponentes.size());
 		
-	/*	Componente entrada = new Componente();
+		
+		Componente entrada = new Componente();
 		entrada.setNombre("Fiambres");
 		entrada.setTipo("Entrada");
 		Componente plato = new Componente();
@@ -30,12 +29,20 @@ public class Main {
 		Componente bebida = new Componente();
 		bebida.setNombre("agua");
 		bebida.setTipo("Bebida");
-		ComponenteDAOImpl componenteDAO = new ComponenteDAOImpl();
 		componenteDAO.save(bebida);
 		componenteDAO.save(entrada);
 		componenteDAO.save(plato);
 		componenteDAO.save(postre);
-		Menu menu = new Menu();
+		ArrayList<Componente> listaComponentes = (ArrayList<Componente>) componenteDAO.getAll();
+		System.out.println("Tamaño de la coleccion de componentes: "+listaComponentes.size());
+		Componente componenteRecuperadoI = (Componente) componenteDAO.get(postre.getId());
+		System.out.println("Id del componente recuperado de la base de datos: "+componenteRecuperadoI.getId());
+		ArrayList<Componente> componenteRecuperadoN = (ArrayList<Componente>) componenteDAO.get(postre.getNombre());
+		for (int i=0; i<componenteRecuperadoN.size();i++) {
+			System.out.println("Nombre del componente recuperado de la base de datos: "+componenteRecuperadoN.get(i).getNombre());
+		}
+		componenteDAO.delete(postre.getId());
+		/*Menu menu = new Menu();
 		menu.setNombre("menu1");
 		ArrayList<Componente> componentes = new ArrayList<Componente>();
 		componentes.add(entrada);

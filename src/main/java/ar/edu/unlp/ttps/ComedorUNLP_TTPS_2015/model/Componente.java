@@ -6,19 +6,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 @Table(name="componente")
 public class Componente {
 
 	@Id @GeneratedValue
-	@Column(name="idComponente")
-	protected Long idComponente;
+	@Column(name="id")
+	protected Long id;
 	
 	protected String nombre;
 
 	protected String tipo;
 	
-	protected Boolean activo;
+	protected Boolean activo=true;
 
 	public String getNombre() {
 		return nombre;
@@ -28,12 +30,12 @@ public class Componente {
 		this.nombre = nombre;
 	}
 
-	public Long getIdComponente() {
-		return idComponente;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdComponente(Long idComponente) {
-		this.idComponente = idComponente;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTipo() {
@@ -42,5 +44,13 @@ public class Componente {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 }

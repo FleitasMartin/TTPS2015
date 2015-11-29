@@ -46,21 +46,32 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	protected List<T> getAll(Class<?> clas){
 		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " +clas.getSimpleName()+" e");
 				@SuppressWarnings("unchecked")
-				List<T> resultado = (List<T>)consulta.getResultList();
-				return resultado;
+		List<T> resultado = (List<T>)consulta.getResultList();
+		return resultado;
+	}
+	
+	protected T getById(Class<?> clas, Long id){
+		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " 
+					+clas.getSimpleName()+" e where e.id = "+ id);
+		@SuppressWarnings("unchecked")
+		T resultado = (T)consulta.getSingleResult();
+		return resultado;
 	}
 
-	/*
-	 * protected Object get(Class<?> clas, Long idEntity){ return
-	 * getSessionFactory().getCurrentSession().get(clas, idEntity); }
-	 * 
-	 * protected void edit(Object entity){
-	 * getSessionFactory().getCurrentSession().update(entity); }
-	 * 
-	 * protected List<?> list(Class<?> entityClass){ return
-	 * getSessionFactory().getCurrentSession
-	 * ().createCriteria(entityClass).list(); }
-	 */
+	protected List<T> getByName(Class<?> clas, String nombre){
+		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " 
+					+clas.getSimpleName()+" e where e.nombre = :nombre");
+		consulta.setParameter("nombre", nombre);
+		@SuppressWarnings("unchecked")
+		List<T> resultado = (List<T>)consulta.getResultList();
+		return resultado;
+	}
+	
+	/*protected void delete(Class<?> clas, Long id){
+		Query consulta= EMF.getEMF().createEntityManager().createQuery("update "+clas.getSimpleName()+" e "+
+				"set activo=false where e.id = "+ id);
+		consulta.executeUpdate();
+	}*/
 
 	public T getPersistentClass() {
 		return persistentClass;

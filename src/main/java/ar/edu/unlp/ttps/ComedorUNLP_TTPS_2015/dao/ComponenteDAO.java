@@ -15,9 +15,11 @@ public interface ComponenteDAO {
 		
 	public Componente get(Long idComponente) throws EntityNotFoundException;
 		
-	public Componente get(String componenteNombre) throws EntityNotFoundException;
+	public List<Componente> get(String componenteNombre) throws EntityNotFoundException;
 		
-	public List<Componente> listAll();
+	public List<Componente> getAll();
+	
+	public void delete(Long id);
 	
 
 }

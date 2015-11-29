@@ -30,46 +30,19 @@ public class ComponenteDAOImpl extends GenericDAOImpl<Componente> implements Com
 
 	@Override
 	public Componente get(Long idComponente) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getById(Componente.class, idComponente);
 	}
 
 	@Override
-	public Componente get(String componenteNombre)
-			throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Componente> get(String componenteNombre)	throws EntityNotFoundException {
+		return super.getByName(Componente.class, componenteNombre);
 	}
-
+	
 	@Override
-	public List<Componente> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(Long id){
+		Componente componente = this.get(id);
+		componente.setActivo(false);
+		this.edit(componente);
 	}
 
-	/*@Override
-	public Componente get(Long idComponente) throws EntityNotFoundException {
-		Componente componente = (Componente)super.get(Componente.class, idComponente);  
-		if (componente == null) {
-			throw new EntityNotFoundException("Componente con id " + idComponente + " no existe");
-		}
-		return componente;
-	}
-
-	@Override
-	public Componente get(String componenteNombre)
-			throws EntityNotFoundException {
-		Componente componente = (Componente)getSessionFactory().getCurrentSession().createCriteria(Componente.class).add(Restrictions.eq("nombre", componenteNombre)).uniqueResult();  
-		if (componente == null) {
-			throw new EntityNotFoundException("Componente " + componenteNombre + " no existe");
-		}
-		return componente;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Componente> listAll() {
-		return (List<Componente>)super.list(Componente.class);
-	}
-*/
 }
