@@ -36,8 +36,12 @@ public class DiaMenu {
 		this.nombre = nombre;
 	}
 
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 }

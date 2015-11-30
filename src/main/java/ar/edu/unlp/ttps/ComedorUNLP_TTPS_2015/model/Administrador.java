@@ -6,10 +6,13 @@ import javax.persistence.Table;
 @Entity 
 @Table(name="administrador")
 public class Administrador extends Persona {
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
 
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 }
