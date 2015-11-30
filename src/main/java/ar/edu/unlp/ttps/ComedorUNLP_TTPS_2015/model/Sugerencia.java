@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 
 @Entity
+@Table(name="sugerencia")
 public class Sugerencia implements Serializable{
 	@Id @GeneratedValue
 	

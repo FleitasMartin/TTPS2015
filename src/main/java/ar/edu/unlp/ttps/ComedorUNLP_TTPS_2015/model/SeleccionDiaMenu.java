@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="seleccionDiaMenu")
 public class SeleccionDiaMenu {
 	@Id @GeneratedValue
 	@Column(name="id")

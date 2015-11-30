@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
+import javax.persistence.Table;
 
 
 @Entity 
+@Table(name="usuario")
 public class Usuario extends Persona {
 
 	private String apellido;
@@ -24,15 +26,15 @@ public class Usuario extends Persona {
 	private boolean intoLactosa;
 	
 	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-	private Collection<Compra> compras;
+	private List<Compra> compras;
 	
 	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-	private Collection<Pago> pagos;
+	private List<Pago> pagos;
 	
 	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-	private Collection<Sugerencia> sugerencias;
+	private List<Sugerencia> sugerencias;
 	
-	public Collection<Compra> getCompras() {
+	public List<Compra> getCompras() {
 		return compras;
 	}
 	public void setCompras(List<Compra> compras) {
@@ -41,13 +43,13 @@ public class Usuario extends Persona {
 	public Collection<Pago> getPagos() {
 		return pagos;
 	}
-	public void setPagos(Collection<Pago> pagos) {
+	public void setPagos(List<Pago> pagos) {
 		this.pagos = pagos;
 	}
-	public Collection<Sugerencia> getSugerencias() {
+	public List<Sugerencia> getSugerencias() {
 		return sugerencias;
 	}
-	public void setSugerencias(Collection<Sugerencia> sugerencias) {
+	public void setSugerencias(List<Sugerencia> sugerencias) {
 		this.sugerencias = sugerencias;
 	}
 	public String getApellido() {

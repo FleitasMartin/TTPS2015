@@ -12,14 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="compra")
 public class Compra {
 	@Id @GeneratedValue
 	@Column(name="id")
 	private Double monto;
 	@OneToMany
-	private Collection<SeleccionDiaMenu> selecciones;
+	private List<SeleccionDiaMenu> selecciones;
 	private Date fechaEfectuada;
 	
 	@ManyToOne(optional = false)
@@ -31,10 +33,10 @@ public class Compra {
 	public void setMonto(Double monto) {
 		this.monto = monto;
 	}
-	public Collection<SeleccionDiaMenu> getSelecciones() {
+	public List<SeleccionDiaMenu> getSelecciones() {
 		return selecciones;
 	}
-	public void setSelecciones(Collection<SeleccionDiaMenu> selecciones) {
+	public void setSelecciones(List<SeleccionDiaMenu> selecciones) {
 		this.selecciones = selecciones;
 	}
 	public Date getFechaEfectuada() {

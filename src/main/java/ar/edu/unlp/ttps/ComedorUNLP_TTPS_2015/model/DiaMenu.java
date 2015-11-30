@@ -8,18 +8,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 @Entity
+@Table(name="diaMenu")
 public class DiaMenu {
 	@Id @GeneratedValue
 	private String nombre;
+	@OneToMany(mappedBy="diaMenu", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Menu> menues;
 
-	@OneToMany(mappedBy="diaMenu", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	
 	public List<Menu> getMenues() {
 		return menues;
 	}
 	@ManyToOne(optional = false)
 	private Cartilla cartilla;
+	
 	public void setMenues(List<Menu> menues) {
 		this.menues = menues;
 	}
