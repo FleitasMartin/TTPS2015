@@ -43,4 +43,5 @@
 		</tr>
 	</tbody>
 </table>
-<a href="#"	class="btn btn-primary" role="button">Modificar preferencias</a>
+<a href="#" class="btn btn-primary" role="button">Modificar
+	preferencias</a>

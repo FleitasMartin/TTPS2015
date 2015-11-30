@@ -1,4 +1,4 @@
-<%@ tag %>
+<%@ tag%>
 
 <table class="table">
 	<thead>
@@ -60,10 +60,10 @@
 	</tbody>
 </table>
 <a href="${pageContext.request.contextPath}/admin/altaSede"
-		class="btn btn-primary" role="button">Alta Sede</a>
+	class="btn btn-primary" role="button">Alta Sede</a>
 <div id="map"></div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
 var map;
 function initMap() {
@@ -99,6 +99,6 @@ function initMap() {
 }
 
     </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALdnqGLwYolrMF5GK9cLQVPBu8iBDV4Ck&callback=initMap">
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALdnqGLwYolrMF5GK9cLQVPBu8iBDV4Ck&callback=initMap">
     </script>

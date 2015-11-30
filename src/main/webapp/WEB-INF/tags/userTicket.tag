@@ -80,7 +80,7 @@
 	<div class="col-xs-6 col-md-2">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<label><h4>Miercoles</h4></label> 
+				<label><h4>Miercoles</h4></label>
 			</div>
 			<div class="panel-body">
 				<div class="radio">
@@ -118,7 +118,7 @@
 	<div class="col-xs-6 col-md-2 ">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<label><h4>Jueves</h4></label> 
+				<label><h4>Jueves</h4></label>
 			</div>
 			<div class="panel-body">
 				<div class="radio">
@@ -156,7 +156,7 @@
 	<div class="col-xs-6 col-md-2 ">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<label><h4>Viernes</h4></label> 
+				<label><h4>Viernes</h4></label>
 			</div>
 			<div class="panel-body">
 				<div class="radio">

@@ -10,6 +10,7 @@ public class EMF {
 					.createEntityManagerFactory("ComedorUNLP_TTPS_2015");
 
 	public static EntityManagerFactory getEMF() {
+		System.out.println(em);
 		return em;
 	}
 }

@@ -1,7 +1,14 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
-public class Sede {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Sede {
+	@Id @GeneratedValue
+	@Column(name="id")
 	private String nombre;
 	private String ubicacion;
 	private Double latitud;

@@ -11,29 +11,25 @@
 			<option>Diab&eacute;tico</option>
 			<option>Hipertenso</option>
 			<option>Intolerante a la Lactosa</option>
-		</select> 
-		<label>Bebidas</label> <select multiple name="duallistbox"
+		</select> <label>Bebidas</label> <select multiple name="duallistbox"
 			class="form-control">
 			<option>Bebida 1</option>
 			<option>Bebida 1</option>
 			<option>Bebida 1</option>
 			<option>Bebida 1</option>
-		</select> 
-		<label>Entradas</label> <select multiple name="duallistbox"
+		</select> <label>Entradas</label> <select multiple name="duallistbox"
 			class="form-control">
 			<option>Entrada 1</option>
 			<option>Entrada 1</option>
 			<option>Entrada 1</option>
 			<option>Entrada 1</option>
-		</select>
-		 <label>Platos</label> <select multiple name="duallistbox"
+		</select> <label>Platos</label> <select multiple name="duallistbox"
 			class="form-control">
 			<option>Plato 1</option>
 			<option>Plato 2</option>
 			<option>Plato 3</option>
 			<option>Plato 4</option>
-		</select> 
-		<label>Postres</label> <select multiple name="duallistbox"
+		</select> <label>Postres</label> <select multiple name="duallistbox"
 			class="form-control">
 			<option>Postre 1</option>
 			<option>Postre 2</option>

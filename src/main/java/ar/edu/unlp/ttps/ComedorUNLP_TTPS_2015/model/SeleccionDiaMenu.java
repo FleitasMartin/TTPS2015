@@ -1,11 +1,21 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
-public class SeleccionDiaMenu {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
+public class SeleccionDiaMenu {
+	@Id @GeneratedValue
+	@Column(name="id")
 	private String nombre;
 	private boolean vianda;
 	private boolean consumido;
+	@OneToOne(optional = false) 
 	private Menu menu;
+	@OneToOne(optional = false) 
 	private Sede sede;
 	
 	public String getNombre() {

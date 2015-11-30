@@ -22,31 +22,31 @@
 		<div class="row">
 		<div class="col-md-3 col-xs-6">
 		<c:if test="${!(contentPage == 'userLogin')}">
-			<tags:menuUser/>
+			<tags:menuUser />
 		</c:if>
 		</div>
 		<div class="col-md-9 col-xs-12">
         	<c:choose>
-        	<c:when test="${contentPage == 'adminUsers'}" >
+        	<c:when test="${contentPage == 'adminUsers'}">
 				<tags:adminUsers />
         	</c:when>
-        	<c:when test="${contentPage == 'userTicket'}" >
+        	<c:when test="${contentPage == 'userTicket'}">
 				<tags:userTicket />
         	</c:when>
-        	<c:when test="${contentPage == 'userPerfil'}" >
-				<tags:userPerfil/>
+        	<c:when test="${contentPage == 'userPerfil'}">
+				<tags:userPerfil />
         	</c:when>
-        	<c:when test="${contentPage == 'userLogin'}" >
-				<tags:userLogin/>
+        	<c:when test="${contentPage == 'userLogin'}">
+				<tags:userLogin />
         	</c:when>        	
-        	<c:when test="${contentPage == 'userComentarios'}" >
-				<tags:userComentarios/>
+        	<c:when test="${contentPage == 'userComentarios'}">
+				<tags:userComentarios />
         	</c:when>  
-        	<c:when test="${contentPage == 'saldo'}" >
-				<tags:saldo/>
+        	<c:when test="${contentPage == 'saldo'}">
+				<tags:saldo />
         	</c:when>
-        	<c:when test="${contentPage == 'mapa'}" >
-				<tags:mapa/>
+        	<c:when test="${contentPage == 'mapa'}">
+				<tags:mapa />
         	</c:when>    
 		</c:choose>
 		</div>

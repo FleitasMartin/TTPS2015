@@ -67,5 +67,6 @@
 		</tr>
 	</tbody>
 </table>
-<a href="${pageContext.request.contextPath}/admin/altaUsuario" class="btn btn-primary" role="button">Alta Usuario</a>
+<a href="${pageContext.request.contextPath}/admin/altaUsuario"
+	class="btn btn-primary" role="button">Alta Usuario</a>
 

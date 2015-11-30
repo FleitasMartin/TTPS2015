@@ -26,41 +26,41 @@
 		<div class="col-md-9 col-xs-12">
 			
         	<c:choose>
-        	<c:when test="${contentPage == 'adminUsers'}" >
+        	<c:when test="${contentPage == 'adminUsers'}">
 				<tags:adminUsers />
         	</c:when>
-        	<c:when test="${contentPage == 'buzonVirtual'}" >
+        	<c:when test="${contentPage == 'buzonVirtual'}">
 				<tags:buzonVirtual />
         	</c:when>
-        	<c:when test="${contentPage == 'administracionComponentes'}" >
-				<tags:administracionComponentes/>
+        	<c:when test="${contentPage == 'administracionComponentes'}">
+				<tags:administracionComponentes />
         	</c:when>
-        	<c:when test="${contentPage == 'altaComponente'}" >
-				<tags:altaComponente/>
+        	<c:when test="${contentPage == 'altaComponente'}">
+				<tags:altaComponente />
         	</c:when>
-        	<c:when test="${contentPage == 'administracionMenues'}" >
-				<tags:administracionMenues/>
+        	<c:when test="${contentPage == 'administracionMenues'}">
+				<tags:administracionMenues />
         	</c:when>
-        	<c:when test="${contentPage == 'altaMenu'}" >
-				<tags:altaMenu/>
+        	<c:when test="${contentPage == 'altaMenu'}">
+				<tags:altaMenu />
         	</c:when>
-        	<c:when test="${contentPage == 'estadisticasMenues'}" >
-				<tags:estadisticasMenues/>
+        	<c:when test="${contentPage == 'estadisticasMenues'}">
+				<tags:estadisticasMenues />
         	</c:when>
-        	<c:when test="${contentPage == 'cartillaSemanal'}" >
-				<tags:cartillaSemanal/>
+        	<c:when test="${contentPage == 'cartillaSemanal'}">
+				<tags:cartillaSemanal />
         	</c:when>
-        	<c:when test="${contentPage == 'adminSedes'}" >
-				<tags:adminSedes/>
+        	<c:when test="${contentPage == 'adminSedes'}">
+				<tags:adminSedes />
         	</c:when>
-        	<c:when test="${contentPage == 'altaCartilla'}" >
-				<tags:altaCartilla/>
+        	<c:when test="${contentPage == 'altaCartilla'}">
+				<tags:altaCartilla />
         	</c:when>
-        	<c:when test="${contentPage == 'altaSede'}" >
-				<tags:altaSede/>
+        	<c:when test="${contentPage == 'altaSede'}">
+				<tags:altaSede />
         	</c:when>
-        	<c:when test="${contentPage == 'altaUsuario'}" >
-				<tags:altaUsuario/>
+        	<c:when test="${contentPage == 'altaUsuario'}">
+				<tags:altaUsuario />
         	</c:when>
 		</c:choose>
 					

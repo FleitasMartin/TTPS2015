@@ -26,7 +26,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/comedor_unlp" />
 		<property name="username" value="root" />
- 		<property name="password" value="root"/> 	
+		<property name="password" value="root" />
 	</bean>
 
 	<!-- Session Factory bean -->
@@ -97,7 +97,7 @@
 	<bean id="communicationStateDao"
 		class="ar.edu.unlp.lifia.grupo7.persistence.dao.impl.CommunicationStateDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
+	</bean>
 	<bean id="groupIntegrantDao"
 		class="ar.edu.unlp.lifia.grupo7.persistence.dao.impl.GroupIntegrantDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -106,7 +106,7 @@
 		class="ar.edu.unlp.lifia.grupo7.persistence.dao.impl.AccessDeniedNotificationDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 
 
 	<!-- Beans Service -->
@@ -121,7 +121,7 @@
 		<property name="spyDao" ref="spyDao" />
 		<property name="groupDao" ref="groupDao" />
 		<property name="groupRoleDao" ref="groupRoleDao" />
-		<property name="groupIntegrantDao" ref="groupIntegrantDao" />		
+		<property name="groupIntegrantDao" ref="groupIntegrantDao" />
 	</bean>
 	<bean id="communicationStateService"
 		class="ar.edu.unlp.lifia.grupo7.services.impl.CommunicationStateServiceImpl">
@@ -130,7 +130,7 @@
 	<bean id="spyService" class="ar.edu.unlp.lifia.grupo7.services.impl.SpyServiceImpl">
 		<property name="spyDao" ref="spyDao" />
 		<property name="rangeDao" ref="rangeDao" />
-		<property name="groupDao" ref="groupDao" />		
+		<property name="groupDao" ref="groupDao" />
 		<property name="communicationStateDao" ref="communicationStateDao" />
 	</bean>
 	<bean id="authenticatedRestrictedFileService"
@@ -151,7 +151,7 @@
 	<bean id="fileService" class="ar.edu.unlp.lifia.grupo7.services.impl.FileServiceImpl">
 		<property name="fileDao" ref="fileDao" />
 		<property name="spyDao" ref="spyDao" />
-	</bean>	
+	</bean>
 	<bean id="messageService"
 		class="ar.edu.unlp.lifia.grupo7.services.impl.MessageServiceImpl">
 		<property name="messageDao" ref="messageDao" />
@@ -159,6 +159,6 @@
 	<bean id="accessDeniedNotificationService"
 		class="ar.edu.unlp.lifia.grupo7.services.impl.AccessDeniedNotificationServiceImpl">
 		<property name="accessDeniedNotificationDao" ref="accessDeniedNotificationDao" />
-	</bean>	
-	
+	</bean>
+
 </beans>

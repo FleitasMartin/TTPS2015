@@ -2,6 +2,8 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
 public class DiaMenu {
 
 	private String nombre;

@@ -1,4 +1,4 @@
-<%@tag %>
+<%@tag%>
 
 <a href="${pageContext.request.contextPath}/admin/altaComponente"
 	class="btn btn-primary" role="button">Alta Componente</a>
@@ -30,7 +30,7 @@
 			</tr>
 		</tbody>
 	</table>
-<h3>Entradas</h3>
+	<h3>Entradas</h3>
 	<table class="table">
 		<thead>
 			<tr>

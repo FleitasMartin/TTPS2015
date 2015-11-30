@@ -13,12 +13,15 @@
   <div class="col-sm-6 col-md-4">
   	<div class="panel panel-default">
   		<div class="panel-heading">
-    		<h3 class="panel-title"><h3>Administrador General</h3></h3>
+    		<h3 class="panel-title">
+								<h3>Administrador General</h3>
+							</h3>
   		</div>
   		<div class="panel-body">
     		
     		<p>
-    	<a href="${pageContext.request.contextPath}/admin/home" class="btn btn-primary" role="button">Ingresar</a>
+    	<a href="${pageContext.request.contextPath}/admin/home"
+									class="btn btn-primary" role="button">Ingresar</a>
 		</p>
   		</div>
 	</div>
@@ -26,12 +29,15 @@
   <div class="col-sm-6 col-md-4">
   	<div class="panel panel-default">
   		<div class="panel-heading">
-    		<h3 class="panel-title"><h3>Responsable de Sede</h3></h3>
+    		<h3 class="panel-title">
+								<h3>Responsable de Sede</h3>
+							</h3>
   		</div>
   		<div class="panel-body">
     		
     		<p>
-								<a href="${pageContext.request.contextPath}/responsable/home" class="btn btn-primary" role="button">Ingresar</a>
+								<a href="${pageContext.request.contextPath}/responsable/home"
+									class="btn btn-primary" role="button">Ingresar</a>
 							</p>
   		</div>
 	</div>
@@ -39,12 +45,15 @@
   <div class="col-sm-6 col-md-4">
   	<div class="panel panel-default">
   		<div class="panel-heading">
-    		<h3 class="panel-title"><h3>Usuario</h3></h3>
+    		<h3 class="panel-title">
+								<h3>Usuario</h3>
+							</h3>
   		</div>
   		<div class="panel-body">
     		
     		<p>
-								<a href="${pageContext.request.contextPath}/user/login" class="btn btn-primary" role="button">Ingresar</a>
+								<a href="${pageContext.request.contextPath}/user/login"
+									class="btn btn-primary" role="button">Ingresar</a>
 							</p>
   		</div>
 	</div>

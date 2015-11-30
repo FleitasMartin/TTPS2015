@@ -52,41 +52,18 @@
 			<version>5.0.3.Final</version>
 		</dependency>
 
-		<!-- Spring Core 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
--->
-		<!-- Spring Context 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
--->
-		<!-- Spring Beans 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
--->
-		<!-- Spring Expression 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-expression</artifactId>
-			<version>4.2.3.RELEASE</version>
-		</dependency>
--->
-		<!-- Commons logging 
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
-		</dependency>
--->
+		<!-- Spring Core <dependency> <groupId>org.springframework</groupId> <artifactId>spring-core</artifactId> 
+			<version>4.2.3.RELEASE</version> </dependency> -->
+		<!-- Spring Context <dependency> <groupId>org.springframework</groupId> 
+			<artifactId>spring-context-support</artifactId> <version>4.2.3.RELEASE</version> 
+			</dependency> -->
+		<!-- Spring Beans <dependency> <groupId>org.springframework</groupId> <artifactId>spring-beans</artifactId> 
+			<version>4.2.3.RELEASE</version> </dependency> -->
+		<!-- Spring Expression <dependency> <groupId>org.springframework</groupId> 
+			<artifactId>spring-expression</artifactId> <version>4.2.3.RELEASE</version> 
+			</dependency> -->
+		<!-- Commons logging <dependency> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
+			<version>1.2</version> </dependency> -->
 
 		<dependency>
 			<groupId>jstl</groupId>

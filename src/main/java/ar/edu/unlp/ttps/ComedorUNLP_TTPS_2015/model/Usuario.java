@@ -1,7 +1,14 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
+import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+
+
+@Entity 
 public class Usuario extends Persona {
 
 	private String apellido;
@@ -16,26 +23,31 @@ public class Usuario extends Persona {
 	private boolean hipertenso;
 	private boolean intoLactosa;
 	
-	private List<Compra> compras;
-	private List<Pago> pagos;
-	private List<Sugerencia> sugerencias;
+	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	private Collection<Compra> compras;
 	
-	public List<Compra> getCompras() {
+	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	private Collection<Pago> pagos;
+	
+	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	private Collection<Sugerencia> sugerencias;
+	
+	public Collection<Compra> getCompras() {
 		return compras;
 	}
 	public void setCompras(List<Compra> compras) {
 		this.compras = compras;
 	}
-	public List<Pago> getPagos() {
+	public Collection<Pago> getPagos() {
 		return pagos;
 	}
-	public void setPagos(List<Pago> pagos) {
+	public void setPagos(Collection<Pago> pagos) {
 		this.pagos = pagos;
 	}
-	public List<Sugerencia> getSugerencias() {
+	public Collection<Sugerencia> getSugerencias() {
 		return sugerencias;
 	}
-	public void setSugerencias(List<Sugerencia> sugerencias) {
+	public void setSugerencias(Collection<Sugerencia> sugerencias) {
 		this.sugerencias = sugerencias;
 	}
 	public String getApellido() {
