@@ -33,42 +33,39 @@ public class TestComponente extends TestCase {
 	}
 	
 	@Test
-	public void testSaveComponente(){
+	public void testComponente(){
 		componenteDAO.save(cPostre);
 		componenteDAO.save(cPlato);
 		componenteDAO.save(cEntrada);
 		componenteDAO.save(cBebida);
-	}
-	
-	@Test
-	public void testGetAllComponente(){
+		
+		Assert.assertNotNull(cPostre.getId());
+		Assert.assertNotNull(cPlato.getId());
+		Assert.assertNotNull(cEntrada.getId());
+		Assert.assertNotNull(cBebida.getId());
+		
 		ArrayList<Componente> componentes = (ArrayList<Componente>) componenteDAO.getAll();
 		Assert.assertTrue(componentes.size()==4);
-	}
-	
-	@Test
-	public void testGetComponente(){
+		
 		Componente postreRecuperado = componenteDAO.get(cPostre.getId());
 		Componente platoRecuperado = componenteDAO.get(cPlato.getId());
 		Componente entradaRecuperado = componenteDAO.get(cEntrada.getId());
 		Componente bebidaRecuperado = componenteDAO.get(cBebida.getId());
-		Assert.assertTrue(postreRecuperado.getNombre().equals(cPostre.getNombre()));
-		Assert.assertTrue(platoRecuperado.getNombre().equals(cPlato.getNombre()));
-		Assert.assertTrue(entradaRecuperado.getNombre().equals(cEntrada.getNombre()));
-		Assert.assertTrue(bebidaRecuperado.getNombre().equals(cBebida.getNombre()));
-	}
-	
-	@Test
-	public void testEditComponente(){
-		cPostre.setNombre("Gelatina");
+		
+		Assert.assertTrue(postreRecuperado.getId().equals(cPostre.getId()));
+		Assert.assertTrue(platoRecuperado.getId().equals(cPlato.getId()));
+		Assert.assertTrue(entradaRecuperado.getId().equals(cEntrada.getId()));
+		Assert.assertTrue(bebidaRecuperado.getId().equals(cBebida.getId()));
+		
+		Long idARecuperar = cPostre.getId();
+		cPostre.setNombre("Gelatina");		
 		componenteDAO.edit(cPostre);
-	}
-	
-	@Test
-	public void testDeleteComponente(){
+		Componente cPostreRecuperado = componenteDAO.get(idARecuperar);
+		Assert.assertEquals(cPostreRecuperado.getId(), cPostre.getId());
+		
 		componenteDAO.delete(cBebida.getId());
-		componenteDAO.get(cBebida.getId());
-		Assert.assertFalse(cBebida.getActivo());		
+		Componente cBebidaEliminada = componenteDAO.get(cBebida.getId());
+		Assert.assertFalse(cBebidaEliminada.getActivo());
 	}
-	
+
 }
