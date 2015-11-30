@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class Pago {
 	@Id @GeneratedValue
 	@Column(name="id")
+	protected Long id;
 	private Date fechaPago;
     @OneToOne(optional = false)   
 	private Compra compra;
@@ -41,9 +42,13 @@ public class Pago {
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 	
 

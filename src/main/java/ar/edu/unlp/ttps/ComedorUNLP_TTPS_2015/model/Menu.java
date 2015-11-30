@@ -96,4 +96,12 @@ public class Menu {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
+	}
 }

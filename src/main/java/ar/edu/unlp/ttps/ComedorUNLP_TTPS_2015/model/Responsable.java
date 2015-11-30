@@ -7,6 +7,7 @@ import javax.persistence.Table;
 @Entity  
 @Table(name="responsable")
 public class Responsable extends Persona {
+	
 	@OneToOne(optional = false) 
 	private Sede sede;
 
@@ -18,9 +19,13 @@ public class Responsable extends Persona {
 		this.sede = sede;
 	}
 
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 	
 	

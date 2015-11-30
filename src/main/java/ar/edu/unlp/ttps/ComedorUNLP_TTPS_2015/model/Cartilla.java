@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="cartilla")
 public class Cartilla {
-	@Id
+	@Id @GeneratedValue
+	@Column(name="id")
+	protected Long id;
 	private Double precio;
 	private Date fechaInicio;
 	private Date fechaFin;
@@ -44,8 +47,12 @@ public class Cartilla {
 	public void setDiasMenues(List<DiaMenu> diasMenues) {
 		this.diasMenues = diasMenues;
 	}
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 }

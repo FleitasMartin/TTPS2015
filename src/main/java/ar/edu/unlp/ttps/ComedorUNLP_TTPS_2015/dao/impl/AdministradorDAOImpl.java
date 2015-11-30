@@ -13,7 +13,7 @@ public class AdministradorDAOImpl extends GenericDAOImpl implements Administrado
 
 	@Override
 	public Administrador save(Administrador administrador) {
-		return (Administrador) super.save(administrador);
+		return  (Administrador) super.save(administrador);
 		
 	}
 

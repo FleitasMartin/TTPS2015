@@ -11,6 +11,7 @@ import javax.persistence.Table;
 public class Sede {
 	@Id @GeneratedValue
 	@Column(name="id")
+	protected Long id;
 	private String nombre;
 	private String ubicacion;
 	private Double latitud;
@@ -47,9 +48,13 @@ public class Sede {
 	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 	
 }

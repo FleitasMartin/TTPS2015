@@ -17,10 +17,9 @@ import javax.persistence.Table;
 @Table(name="sugerencia")
 public class Sugerencia implements Serializable{
 	@Id @GeneratedValue
-	
-	
+	@Column(name="id")
+	protected Long id;
 	@ManyToOne
-	@JoinColumn(name="id")
 	private Usuario usuario;
 	
 	private String tipo;
@@ -46,8 +45,12 @@ public class Sugerencia implements Serializable{
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 }

@@ -12,6 +12,7 @@ import javax.persistence.Table;
 public class SeleccionDiaMenu {
 	@Id @GeneratedValue
 	@Column(name="id")
+	protected Long id;
 	private String nombre;
 	private boolean vianda;
 	private boolean consumido;
@@ -50,8 +51,12 @@ public class SeleccionDiaMenu {
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
-	public void setActivo(boolean b) {
-		// TODO Auto-generated method stub
-		
+	protected Boolean activo=true;
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 }
