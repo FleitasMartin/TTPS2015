@@ -44,4 +44,8 @@ public class Sugerencia implements Serializable{
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
+	public void setActivo(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -45,5 +45,9 @@ public class Sede {
 	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
+	public void setActivo(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

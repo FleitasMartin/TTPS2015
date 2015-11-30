@@ -116,4 +116,8 @@ public class Usuario extends Persona {
 	public void setIntoLactosa(boolean intoLactosa) {
 		this.intoLactosa = intoLactosa;
 	}
+	public void setActivo(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
 }

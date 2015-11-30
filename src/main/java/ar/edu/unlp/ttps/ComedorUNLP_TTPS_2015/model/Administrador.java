@@ -6,4 +6,9 @@ import javax.persistence.Entity;
 
 public class Administrador extends Persona {
 
+	public void setActivo(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
