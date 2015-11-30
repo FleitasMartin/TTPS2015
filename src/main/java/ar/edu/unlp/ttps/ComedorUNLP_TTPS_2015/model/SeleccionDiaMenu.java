@@ -12,6 +12,7 @@ import javax.persistence.Table;
 public class SeleccionDiaMenu {
 	@Id @GeneratedValue
 	@Column(name="id")
+	protected Long id;
 	private String nombre;
 	private boolean vianda;
 	private boolean consumido;

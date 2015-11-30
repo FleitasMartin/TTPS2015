@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class Pago {
 	@Id @GeneratedValue
 	@Column(name="id")
+	protected Long id;
 	private Date fechaPago;
     @OneToOne(optional = false)   
 	private Compra compra;

@@ -17,10 +17,9 @@ import javax.persistence.Table;
 @Table(name="sugerencia")
 public class Sugerencia implements Serializable{
 	@Id @GeneratedValue
-	
-	
+	@Column(name="id")
+	protected Long id;
 	@ManyToOne
-	@JoinColumn(name="id")
 	private Usuario usuario;
 	
 	private String tipo;

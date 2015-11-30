@@ -7,6 +7,7 @@ import javax.persistence.Table;
 @Entity  
 @Table(name="responsable")
 public class Responsable extends Persona {
+	
 	@OneToOne(optional = false) 
 	private Sede sede;
 

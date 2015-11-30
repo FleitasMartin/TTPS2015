@@ -19,6 +19,7 @@ import javax.persistence.Table;
 public class Compra {
 	@Id @GeneratedValue
 	@Column(name="id")
+	protected Long id;
 	private Double monto;
 	@OneToMany
 	private List<SeleccionDiaMenu> selecciones;

@@ -11,6 +11,7 @@ import javax.persistence.Table;
 public class Sede {
 	@Id @GeneratedValue
 	@Column(name="id")
+	protected Long id;
 	private String nombre;
 	private String ubicacion;
 	private Double latitud;
