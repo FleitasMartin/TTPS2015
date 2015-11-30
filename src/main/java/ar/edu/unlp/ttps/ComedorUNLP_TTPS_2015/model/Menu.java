@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,7 +30,8 @@ public class Menu {
 	private boolean intoLactosa;
 	private boolean visible;
 	private Date fechaAlta;
-	
+	@ManyToOne(optional = false)
+	private DiaMenu diaMenu;
 	@ManyToMany
 	private List<Componente> componentes;
 	
