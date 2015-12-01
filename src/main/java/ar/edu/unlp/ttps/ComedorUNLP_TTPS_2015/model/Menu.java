@@ -3,6 +3,7 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class Menu {
 	
 	@Id @GeneratedValue
 	@Column(name="id")
-	protected Long id;
+	private Long id;
 	
 	private String nombre;
 	private boolean vegetariano;
@@ -30,9 +31,9 @@ public class Menu {
 	private boolean intoLactosa;
 	private boolean visible;
 	private Date fechaAlta;
-	@ManyToOne(optional = false)
-	private DiaMenu diaMenu;
-	@ManyToMany
+	/*@ManyToOne(optional = false)
+	private DiaMenu diaMenu;*/
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Componente> componentes;
 	
 	

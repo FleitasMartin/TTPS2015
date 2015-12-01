@@ -8,19 +8,24 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="cartilla")
 public class Cartilla {
+	
 	@Id @GeneratedValue
 	@Column(name="id")
-	protected Long id;
+	private Long id;
+	
 	private Double precio;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private Boolean activo=true;
 	
-	@OneToMany(mappedBy="cartilla", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	//@OneToMany(mappedBy="cartilla", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<DiaMenu> diasMenues;
 	
 	public Double getPrecio() {
@@ -47,12 +52,16 @@ public class Cartilla {
 	public void setDiasMenues(List<DiaMenu> diasMenues) {
 		this.diasMenues = diasMenues;
 	}
-	protected Boolean activo=true;
 	public Boolean getActivo() {
 		return activo;
 	}
-
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
