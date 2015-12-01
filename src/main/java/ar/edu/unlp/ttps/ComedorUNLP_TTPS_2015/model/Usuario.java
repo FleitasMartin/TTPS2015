@@ -25,13 +25,13 @@ public class Usuario extends Persona {
 	private boolean hipertenso;
 	private boolean intoLactosa;
 	
-	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
 	private List<Compra> compras;
 	
-	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
 	private List<Pago> pagos;
 	
-	@OneToMany(mappedBy="usuario", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
 	private List<Sugerencia> sugerencias;
 	
 	public List<Compra> getCompras() {

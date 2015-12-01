@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
 @Table(name="menu")
 public class Menu {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -33,7 +34,7 @@ public class Menu {
 	private Date fechaAlta;
 	/*@ManyToOne(optional = false)
 	private DiaMenu diaMenu;*/
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany//(cascade=CascadeType.ALL)
 	private List<Componente> componentes;
 	
 	

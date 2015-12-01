@@ -3,15 +3,16 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="sede")
 public class Sede {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	protected Long id;
+	private Long id;
 	private String nombre;
 	private String ubicacion;
 	private Double latitud;
@@ -55,6 +56,12 @@ public class Sede {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

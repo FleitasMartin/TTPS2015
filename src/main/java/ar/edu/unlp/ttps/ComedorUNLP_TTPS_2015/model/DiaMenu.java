@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -16,13 +17,14 @@ import javax.persistence.Table;
 @Table(name = "diaMenu")
 public class DiaMenu {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	@Column(name = "id")
 	private Long id;
 	private String nombre;
 	//@OneToMany(mappedBy = "diaMenu", cascade = { CascadeType.PERSIST,
 	//		CascadeType.REMOVE })
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	private List<Menu> menues;
 	private Boolean activo = true;
 	//@ManyToOne(optional = false)
