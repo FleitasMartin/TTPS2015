@@ -1,6 +1,7 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -8,9 +9,10 @@ import javax.persistence.Table;
 @Table(name="responsable")
 public class Responsable extends Persona {
 	
-	@OneToOne(optional = false) 
+	@ManyToOne(optional = false) 
 	private Sede sede;
 
+	
 	public Sede getSede() {
 		return sede;
 	}

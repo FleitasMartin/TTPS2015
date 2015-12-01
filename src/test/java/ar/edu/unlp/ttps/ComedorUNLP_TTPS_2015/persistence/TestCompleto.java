@@ -298,6 +298,52 @@ public class TestCompleto extends TestCase {
 		Assert.assertNotNull(pago.getId());
 		Assert.assertNotNull(seleccionLunes.getId());
 		
+		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) usuarioDAO.getAll();
+		Assert.assertTrue(usuarios.size()==1);
+		
+		ArrayList<Compra> compras2 = (ArrayList<Compra>) compraDAO.getAll();
+		Assert.assertTrue(compras2.size()==1);
+		
+		ArrayList<Pago> pagos2 = (ArrayList<Pago>) pagoDAO.getAll();
+		Assert.assertTrue(pagos2.size()==1);
+		
+		Usuario usuarioRecuperado = usuarioDAO.get(usuario.getId());
+		Pago pagoRecuperado = pagoDAO.get(pago.getId());
+		Compra compraRecuperada = compraDAO.get(compra.getId());
+		
+		Assert.assertTrue(usuarioRecuperado.getId().equals(usuario.getId()));
+		Assert.assertTrue(pagoRecuperado.getId().equals(pago.getId()));
+		Assert.assertTrue(compraRecuperada.getId().equals(compra.getId()));
+	
+		Long idUsuarioRecuperar = usuario.getId();
+		usuario.setNombre("Roberto");		
+		usuarioDAO.edit(usuario);
+		Usuario usuarioRecuperado2 = usuarioDAO.get(idUsuarioRecuperar);
+		Assert.assertEquals(usuarioRecuperado2.getId(), usuario.getId());
+		
+		Long idCompraRecuperar = compra.getId();
+		compra.setMonto(10.9);		
+		compraDAO.edit(compra);
+		Compra compraRecuperada2 = compraDAO.get(idCompraRecuperar);
+		Assert.assertEquals(compraRecuperada2.getId(), compra.getId());
+		
+		Long idPagoRecuperar = pago.getId();
+		pago.setFechaPago((new Date(2015,11,30)));		
+		pagoDAO.edit(pago);
+		Pago pagoRecuperado2 = pagoDAO.get(idPagoRecuperar);
+		Assert.assertEquals(pagoRecuperado2.getId(), pago.getId());
+		
+		usuarioDAO.delete(usuario.getId());
+		Usuario usuarioEliminado = usuarioDAO.get(usuario.getId());
+		Assert.assertFalse(usuarioEliminado.getActivo());
+		
+		compraDAO.delete(compra.getId());
+		Compra compraEliminada = compraDAO.get(compra.getId());
+		Assert.assertFalse(compraEliminada.getActivo());
+		
+		pagoDAO.delete(pago.getId());
+		Pago pagoEliminado = pagoDAO.get(pago.getId());
+		Assert.assertFalse(pagoEliminado.getActivo());
 	}
 	
 }

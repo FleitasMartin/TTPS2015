@@ -28,7 +28,7 @@ public class TestAdministrador extends TestCase {
 		
 	}
 	@Test
-	public void testSaveComponente(){
+	public void testAdministrador(){
 		administradorDAO.save(admin1);
 		administradorDAO.save(admin2);
 		Administrador admin1Recuperado = administradorDAO.get(admin1.getId());
@@ -39,6 +39,10 @@ public class TestAdministrador extends TestCase {
 		
 		admin1.setDni(789);
 		administradorDAO.edit(admin1);
+		
+		administradorDAO.delete(admin1.getId());
+		Administrador adminEliminado = administradorDAO.get(admin1.getId());
+		Assert.assertFalse(adminEliminado.getActivo());
 	}
 	@Test
 	public void testGetAllAdministradores(){

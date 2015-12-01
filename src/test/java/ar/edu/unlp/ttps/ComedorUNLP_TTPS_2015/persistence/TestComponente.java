@@ -66,6 +66,7 @@ public class TestComponente extends TestCase {
 		componenteDAO.delete(cBebida.getId());
 		Componente cBebidaEliminada = componenteDAO.get(cBebida.getId());
 		Assert.assertFalse(cBebidaEliminada.getActivo());
+		
 	}
 
 }
