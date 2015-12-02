@@ -31,16 +31,25 @@ public class TestSugerencia extends TestCase{
 	protected void setUp() throws Exception{
 		super.setUp();
 		
+		
+		sede1 = new Sede();
+		sede1.setNombre("Bosque");
+		sede1.setUbicacion("115 y 50");
+		sede1.setCapacidad(1500);
 		responsable1 = new Responsable();
 		responsable1.setDni(34818052);
 		responsable1.setSede(sede1);
-	
+		responsableDAO.save(responsable1);
+		Assert.assertNotNull(responsable1.getId());
+		
+		sede2 = new Sede();
+		sede2.setNombre("Bosque");
+		sede2.setUbicacion("115 y 50");
+		sede2.setCapacidad(1500);
 		responsable2 = new Responsable();
 		responsable2.setDni(38298166);
 		responsable2.setSede(sede2);
-		responsableDAO.save(responsable1);
 		responsableDAO.save(responsable2);
-		Assert.assertNotNull(responsable1.getId());
 		Assert.assertNotNull(responsable2.getId());
 		
 
@@ -48,17 +57,14 @@ public class TestSugerencia extends TestCase{
 		sede1.setNombre("Bosque");
 		sede1.setUbicacion("115 y 50");
 		sede1.setCapacidad(1500);
-		ArrayList<Responsable> responsables = new ArrayList<Responsable>();
-		responsables.add(responsable1);
-		sede1.setResponsables(responsables);
+		ArrayList<Responsable> responsables1 = new ArrayList<Responsable>();
+		responsables1.add(responsable1);
+		sede1.setResponsables(responsables1);
 		sedeDAO.save(sede1);
 		Assert.assertNotNull(sede1.getId());
 		
 	
-		sede2 = new Sede();
-		sede2.setNombre("Bosque");
-		sede2.setUbicacion("115 y 50");
-		sede2.setCapacidad(1500);
+		
 		ArrayList<Responsable> responsables2 = new ArrayList<Responsable>();
 		responsables2.add(responsable2);
 		sede2.setResponsables(responsables2);

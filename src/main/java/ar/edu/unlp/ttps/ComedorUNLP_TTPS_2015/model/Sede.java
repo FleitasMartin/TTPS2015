@@ -1,18 +1,19 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
 import java.util.List;
-
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="sede")
-public class Sede {
+public class Sede implements Serializable{
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
@@ -24,7 +25,6 @@ public class Sede {
 
 	@OneToMany(mappedBy="sede")
 	private List<Responsable> responsables;
-	
 	
 	public String getNombre() {
 		return nombre;
