@@ -20,13 +20,14 @@ public class Sugerencia implements Serializable{
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	protected Long id;
-	@ManyToOne
+	
+	@ManyToOne(optional = false)
 	private Usuario usuario;
 	
 	private String tipo;
 	private String mensaje;
-	@OneToOne(optional = false) 
-	private Sede sede = null; // así pongo que es opcional?
+	@OneToOne
+	private Sede sede; // así pongo que es opcional?
 	
 	public String getTipo() {
 		return tipo;
@@ -45,6 +46,18 @@ public class Sugerencia implements Serializable{
 	}
 	public void setSede(Sede sede) {
 		this.sede = sede;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	protected Boolean activo=true;
 	public Boolean getActivo() {
