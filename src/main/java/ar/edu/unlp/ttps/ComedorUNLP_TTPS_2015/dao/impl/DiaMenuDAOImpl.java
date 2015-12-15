@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.stereotype.Repository;
+
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.DiaMenuDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.DiaMenu;
 
 
-
+@Repository
 public class DiaMenuDAOImpl extends GenericDAOImpl implements DiaMenuDAO {
 
 	@Override

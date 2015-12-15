@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.stereotype.Repository;
+
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.AdministradorDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
 
 
-
+@Repository
 public class UsuarioDAOImpl extends GenericDAOImpl implements UsuarioDAO{
 	@Override
 	public Usuario save(Usuario usuario) {

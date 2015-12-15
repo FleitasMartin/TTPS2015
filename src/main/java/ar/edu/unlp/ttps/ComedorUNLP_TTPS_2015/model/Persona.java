@@ -9,12 +9,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)//TABLE_PER_CLASS)
 public abstract class Persona {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	protected Long id;
 	protected Integer dni;
+	protected String contrasena;
 
 	public Integer getDni() {
 		return dni;
@@ -28,6 +29,14 @@ public abstract class Persona {
 	}
 
 	public void setId(Long id) {
-		this.dni = dni;
+		this.id = id;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 }

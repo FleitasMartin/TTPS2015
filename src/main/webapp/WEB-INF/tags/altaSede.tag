@@ -1,16 +1,16 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <div class="form">
-	<form>
+	<form method="post" action="crearSede">
 		<div class="form-group">
-			<label>Nombre</label> <input type="text" name="name"
+			<label>Nombre</label> <input type="text" name="nombre"
 				class="form-control" /><br>
 		</div>
 		<div class="form-group">
-			<label>Ubicaci&oacute;n</label> <input type="text" name="ubication"
+			<label>Ubicaci&oacute;n</label> <input type="text" name="ubicacion"
 				class="form-control" /><br>
 		</div>
 		<div class="form-group">
-			<label>Capacidad</label> <input type="text" name="capability"
+			<label>Capacidad</label> <input type="text" name="capacidad"
 				class="form-control" /><br>
 		</div>
 

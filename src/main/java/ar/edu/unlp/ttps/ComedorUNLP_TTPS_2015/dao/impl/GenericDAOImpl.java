@@ -3,19 +3,31 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.GenericDAO;
 
+@Transactional
 public class GenericDAOImpl<T> implements GenericDAO<T> {
 
-	protected T persistentClass; //Esto está sacado del ejemplo de la catedra
-								// No lo entiendo y posiblemente sea eliminado.
+	@PersistenceContext
+	private EntityManager entityManager;
 
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+		
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
 	protected T save(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
+		this.getEntityManager().persist(entity);
+		/*EntityManager em = EMF.getEMF().createEntityManager();
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();
@@ -29,17 +41,18 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 			//throw e;
 		} finally {
 			em.close();
-		}
+		}*/
 		return entity;
 	}
 
 	protected T edit(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
+		this.getEntityManager().merge(entity);
+		/*EntityManager em = EMF.getEMF().createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		entity = em.merge(entity);
 		etx.commit();
-		em.close();
+		em.close();*/
 		return entity;
 	}
 
@@ -65,20 +78,6 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		@SuppressWarnings("unchecked")
 		List<T> resultado = (List<T>)consulta.getResultList();
 		return resultado;
-	}
-	
-	/*protected void delete(Class<?> clas, Long id){
-		Query consulta= EMF.getEMF().createEntityManager().createQuery("update "+clas.getSimpleName()+" e "+
-				"set activo=false where e.id = "+ id);
-		consulta.executeUpdate();
-	}*/
-
-	public T getPersistentClass() {
-		return persistentClass;
-	}
-
-	public void setPersistentClass(T persistentClass) {
-		this.persistentClass = persistentClass;
 	}
 
 }

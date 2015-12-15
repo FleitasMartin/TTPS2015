@@ -4,11 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.stereotype.Repository;
+
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 
-
-
+@Repository
 public class ResponsableDAOImpl extends GenericDAOImpl implements ResponsableDAO {
 
 	@Override

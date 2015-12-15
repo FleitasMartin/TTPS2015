@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.stereotype.Repository;
+
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 
-
-public class SedeDAOImpl extends GenericDAOImpl implements SedeDAO{
+@Repository("sedeDAO")
+public class SedeDAOImpl extends GenericDAOImpl<Sede> implements SedeDAO{
 	@Override
 	public Sede save(Sede sede) {
 		return (Sede) super.save(sede);
