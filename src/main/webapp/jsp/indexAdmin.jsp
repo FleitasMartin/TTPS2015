@@ -21,13 +21,21 @@
 		</div>
 		<div class="row">
 		<div class="col-md-3 col-xs-6">
-		<tags:menuAdmin />
+		<c:if test="${!(contentPage == 'loginAdmin')}">
+			<tags:menuAdmin />
+		</c:if>		
 		</div>
 		<div class="col-md-9 col-xs-12">
 			
         	<c:choose>
-        	<c:when test="${contentPage == 'adminUsers'}">
-				<tags:adminUsers />
+        	<c:when test="${contentPage == 'loginAdmin'}">
+				<tags:loginAdmin />
+        	</c:when>
+        	<c:when test="${contentPage == 'listarAdmins'}">
+				<tags:listarAdmins />
+        	</c:when>
+        	<c:when test="${contentPage == 'listarResponsables'}">
+				<tags:listarResponsables />
         	</c:when>
         	<c:when test="${contentPage == 'buzonVirtual'}">
 				<tags:buzonVirtual />
@@ -59,8 +67,11 @@
         	<c:when test="${contentPage == 'altaSede'}">
 				<tags:altaSede />
         	</c:when>
-        	<c:when test="${contentPage == 'altaUsuario'}">
-				<tags:altaUsuario />
+        	<c:when test="${contentPage == 'altaAdmin'}">
+				<tags:altaAdmin />
+        	</c:when>
+        	<c:when test="${contentPage == 'altaResponsable'}">
+				<tags:altaResponsable />
         	</c:when>
 		</c:choose>
 					

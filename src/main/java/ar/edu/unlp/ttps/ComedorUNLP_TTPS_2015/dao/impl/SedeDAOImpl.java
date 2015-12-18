@@ -37,11 +37,15 @@ public class SedeDAOImpl extends GenericDAOImpl<Sede> implements SedeDAO{
 		return (Sede) super.getByName(Sede.class, nombre);
 	}
 	
+	/**
+	 * TODO Debemos implementar el delete de esta manera en todos los DAOS
+	 */
 	@Override
 	public void delete(Long id){
-		Sede sede = this.get(id);
+		super.delete(Sede.class, id);
+		/*Sede sede = this.get(id);
 		sede.setActivo(false);
-		this.edit(sede);
+		this.edit(sede);*/
 	}
 
 

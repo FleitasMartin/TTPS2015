@@ -21,11 +21,16 @@
 		</div>
 		<div class="row">
 		<div class="col-md-3 col-xs-6">
-		<tags:menuResponsable />
+		<c:if test="${!(contentPage == 'loginResponsable')}">
+			<tags:menuResponsable />
+		</c:if>
 		</div>
 		<div class="col-md-9 col-xs-12">
 			
         	<c:choose>
+        	<c:when test="${contentPage == 'loginResponsable'}">
+				<tags:loginResponsable />
+        	</c:when>
         	<c:when test="${contentPage == 'usersList'}">
 				<tags:usersList />
         	</c:when>

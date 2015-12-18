@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
 
 
@@ -19,5 +20,7 @@ public interface UsuarioDAO {
 	public List<Usuario> getAll();
 
 	void delete(Long id);
+	
+	public Usuario login(int dni, String contrasena);
 	
 }

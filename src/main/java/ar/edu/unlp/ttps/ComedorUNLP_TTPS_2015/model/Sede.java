@@ -22,7 +22,7 @@ public class Sede implements Serializable{
 	private Double latitud;
 	private Double longitud;
 	private Integer capacidad;
-
+	private Boolean activo=true;
 	@OneToMany(mappedBy="sede")
 	private List<Responsable> responsables;
 	
@@ -62,7 +62,7 @@ public class Sede implements Serializable{
 	public void setResponsables(List<Responsable> responsables) {
 		this.responsables = responsables;
 	}
-	protected Boolean activo=true;
+	
 	public Boolean getActivo() {
 		return activo;
 	}

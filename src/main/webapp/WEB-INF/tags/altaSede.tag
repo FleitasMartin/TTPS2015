@@ -1,6 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <div class="form">
-	<form method="post" action="crearSede">
+	<form method="post" action="altaSede">
 		<div class="form-group">
 			<label>Nombre</label> <input type="text" name="nombre"
 				class="form-control" /><br>

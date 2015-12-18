@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -37,6 +38,18 @@ public class AdministradorDAOImpl extends GenericDAOImpl implements Administrado
 	@Override
 	public Administrador get(String nombre)	throws EntityNotFoundException {
 		return (Administrador) super.getByName(Administrador.class, nombre);
+	}
+	
+	@Override
+	public Administrador login(int dni, String contrasena){
+		Query consulta=getEntityManager().createQuery("select e from "+Administrador.class.getSimpleName()+" e where e.dni = :dni and e.contrasena = :contrasena ").setParameter("dni", dni).setParameter("contrasena", contrasena);
+		Administrador resultado = new Administrador();
+		try{
+			resultado = (Administrador)consulta.getSingleResult();
+		}catch(Exception e){
+			resultado = null;
+		}
+		return resultado;
 	}
 	
 	@Override

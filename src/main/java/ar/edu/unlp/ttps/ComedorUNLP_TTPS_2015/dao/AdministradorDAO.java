@@ -20,5 +20,6 @@ public interface AdministradorDAO {
 
 	void delete(Long id);
 	
+	public Administrador login(int dni, String contrasena);
 }
 

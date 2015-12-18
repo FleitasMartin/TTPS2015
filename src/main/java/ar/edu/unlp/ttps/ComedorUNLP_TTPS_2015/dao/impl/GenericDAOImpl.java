@@ -79,5 +79,9 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		List<T> resultado = (List<T>)consulta.getResultList();
 		return resultado;
 	}
+	
+	protected void delete(Class<?> clas, Long id){
+		getEntityManager().remove(getEntityManager().find(clas, id));
+	}	
 
 }

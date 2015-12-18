@@ -21,7 +21,7 @@
 		</div>
 		<div class="row">
 		<div class="col-md-3 col-xs-6">
-		<c:if test="${!(contentPage == 'userLogin')}">
+		<c:if test="${!(contentPage == 'loginUsuario')}">
 			<tags:menuUser />
 		</c:if>
 		</div>
@@ -36,8 +36,8 @@
         	<c:when test="${contentPage == 'userPerfil'}">
 				<tags:userPerfil />
         	</c:when>
-        	<c:when test="${contentPage == 'userLogin'}">
-				<tags:userLogin />
+        	<c:when test="${contentPage == 'loginUsuario'}">
+				<tags:loginUsuario />
         	</c:when>        	
         	<c:when test="${contentPage == 'userComentarios'}">
 				<tags:userComentarios />

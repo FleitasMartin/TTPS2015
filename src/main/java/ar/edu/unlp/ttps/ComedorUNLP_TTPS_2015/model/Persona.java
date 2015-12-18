@@ -7,15 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity 
-@Inheritance(strategy = InheritanceType.JOINED)//TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)//JOINED)
 public abstract class Persona {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	protected Long id;
 	protected Integer dni;
 	protected String contrasena;
+	protected String apellido;
+	protected String nombre;
+	//protected int rol;
 
 	public Integer getDni() {
 		return dni;
@@ -39,4 +43,28 @@ public abstract class Persona {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+/*	public int getRol() {
+		return rol;
+	}
+
+	public void setRol(int rol) {
+		this.rol = rol;
+	}*/
 }

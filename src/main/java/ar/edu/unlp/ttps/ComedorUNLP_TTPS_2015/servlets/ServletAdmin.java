@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
+/** "/admin/altaSede", "/admin/altaUsuario"
  * Servlet implementation class ServletAdmin
  */
 @WebServlet(urlPatterns = {"/admin", "/admin/adminUsers", "/admin/home", "/admin/buzonVirtual", 
 		"/admin/administracionComponentes", "/admin/altaComponente", "/admin/administracionMenues"
 		, "/admin/altaMenu", "/admin/estadisticasMenues", "/admin/cartillaSemanal","/admin/sedes"
-		,"/admin/altaCartilla", "/admin/altaSede", "/admin/altaUsuario"})
+		,"/admin/altaCartilla"})
 public class ServletAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

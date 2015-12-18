@@ -20,7 +20,7 @@
   		<div class="panel-body">
     		
     		<p>
-    	<a href="${pageContext.request.contextPath}/admin/home"
+    	<a href="${pageContext.request.contextPath}/login/admin"
 									class="btn btn-primary" role="button">Ingresar</a>
 		</p>
   		</div>
@@ -36,7 +36,7 @@
   		<div class="panel-body">
     		
     		<p>
-								<a href="${pageContext.request.contextPath}/responsable/home"
+								<a href="${pageContext.request.contextPath}/login/responsable"
 									class="btn btn-primary" role="button">Ingresar</a>
 							</p>
   		</div>
@@ -52,7 +52,7 @@
   		<div class="panel-body">
     		
     		<p>
-								<a href="${pageContext.request.contextPath}/user/login"
+								<a href="${pageContext.request.contextPath}/login/usuario"
 									class="btn btn-primary" role="button">Ingresar</a>
 							</p>
   		</div>
