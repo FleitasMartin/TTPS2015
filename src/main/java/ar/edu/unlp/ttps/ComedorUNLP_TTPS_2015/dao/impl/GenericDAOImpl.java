@@ -25,54 +25,38 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		this.entityManager = entityManager;
 	}
 
-	protected T save(T entity) {
+	@Override
+	public T save(T entity) {
 		this.getEntityManager().persist(entity);
-		/*EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.persist(entity);
-			tx.commit();
-		} catch (RuntimeException e) {
-			if (tx != null && tx.isActive())
-				tx.rollback();
-			e.printStackTrace();
-			//throw e;
-		} finally {
-			em.close();
-		}*/
 		return entity;
 	}
-
-	protected T edit(T entity) {
+	
+	@Override
+	public T edit(T entity) {
 		this.getEntityManager().merge(entity);
-		/*EntityManager em = EMF.getEMF().createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-		entity = em.merge(entity);
-		etx.commit();
-		em.close();*/
 		return entity;
 	}
 
-	protected List<T> getAll(Class<?> clas){
-		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " +clas.getSimpleName()+" e");
+	@Override
+	public List<T> getAll(Class<?> clas){
+		Query consulta= getEntityManager().createQuery("select e from " +clas.getSimpleName()+" e");
 				@SuppressWarnings("unchecked")
 		List<T> resultado = (List<T>)consulta.getResultList();
 		return resultado;
 	}
 	
-	protected T getById(Class<?> clas, Long id){
-		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " 
+	@Override
+	public T getById(Class<?> clas, Long id){
+		Query consulta= getEntityManager().createQuery("select e from " 
 					+clas.getSimpleName()+" e where e.id = "+ id);
 		@SuppressWarnings("unchecked")
 		T resultado = (T)consulta.getSingleResult();
 		return resultado;
 	}
 
-	protected List<T> getByName(Class<?> clas, String nombre){
-		Query consulta= EMF.getEMF().createEntityManager().createQuery("select e from " 
+	@Override
+	public List<T> getByName(Class<?> clas, String nombre){
+		Query consulta= getEntityManager().createQuery("select e from " 
 					+clas.getSimpleName()+" e where e.nombre = :nombre");
 		consulta.setParameter("nombre", nombre);
 		@SuppressWarnings("unchecked")
@@ -80,7 +64,8 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		return resultado;
 	}
 	
-	protected void delete(Class<?> clas, Long id){
+	@Override
+	public void delete(Class<?> clas, Long id){
 		getEntityManager().remove(getEntityManager().find(clas, id));
 	}	
 
