@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.GenericDAO;
@@ -16,15 +17,17 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	protected Class<T> persistentClass;
 	
-	public EntityManager getEntityManager() {
-		return entityManager;
+	public GenericDAOImpl(Class<T> persistentClass) {
+		super();
+		this.persistentClass = persistentClass;
 	}
+	
+	public GenericDAOImpl(){
 		
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-
+	}	
+	
 	@Override
 	public T save(T entity) {
 		this.getEntityManager().persist(entity);
@@ -38,26 +41,26 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public List<T> getAll(Class<?> clas){
-		Query consulta= getEntityManager().createQuery("select e from " +clas.getSimpleName()+" e");
+	public List<T> getAll(){
+		Query consulta= getEntityManager().createQuery("select e from " +getPersistentClass().getSimpleName()+" e");
 				@SuppressWarnings("unchecked")
 		List<T> resultado = (List<T>)consulta.getResultList();
 		return resultado;
 	}
 	
 	@Override
-	public T getById(Class<?> clas, Long id){
+	public T get(Long id){
 		Query consulta= getEntityManager().createQuery("select e from " 
-					+clas.getSimpleName()+" e where e.id = "+ id);
+					+getPersistentClass().getSimpleName()+" e where e.id = "+ id);
 		@SuppressWarnings("unchecked")
 		T resultado = (T)consulta.getSingleResult();
 		return resultado;
 	}
 
 	@Override
-	public List<T> getByName(Class<?> clas, String nombre){
+	public List<T> get(String nombre){
 		Query consulta= getEntityManager().createQuery("select e from " 
-					+clas.getSimpleName()+" e where e.nombre = :nombre");
+					+getPersistentClass().getSimpleName()+" e where e.nombre = :nombre");
 		consulta.setParameter("nombre", nombre);
 		@SuppressWarnings("unchecked")
 		List<T> resultado = (List<T>)consulta.getResultList();
@@ -65,8 +68,24 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	}
 	
 	@Override
-	public void delete(Class<?> clas, Long id){
-		getEntityManager().remove(getEntityManager().find(clas, id));
+	public void delete(Long id){
+		getEntityManager().remove(getEntityManager().find(getPersistentClass(), id));
+	}
+
+	public Class<T> getPersistentClass() {
+		return persistentClass;
+	}
+
+	public void setPersistentClass(Class<T> persistentClass) {
+		this.persistentClass = persistentClass;
 	}	
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+		
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
 }

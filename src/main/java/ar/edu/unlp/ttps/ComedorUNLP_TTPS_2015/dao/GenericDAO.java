@@ -8,11 +8,12 @@ public interface GenericDAO<T> {
 	
 	public T edit(T entity);
 	
-	public 	List<T> getAll(Class<?> clas);
+	public 	List<T> getAll();
 	
-	public T getById(Class<?> clas, Long id);
+	public T get(Long id);
 	
-	public List<T> getByName(Class<?> clas, String nombre);
+	public List<T> get(String nombre);
 	
-	public void delete(Class<?> clas, Long id);
+	public void delete(Long id);
+	
 }
