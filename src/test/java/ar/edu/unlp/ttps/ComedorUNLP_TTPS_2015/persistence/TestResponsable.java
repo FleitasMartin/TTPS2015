@@ -2,23 +2,34 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.persistence;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import junit.framework.Assert;
 
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.ResponsableDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.SedeDAOImpl;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
-import junit.framework.Assert;
-import junit.framework.TestCase;
 
-public class TestResponsable extends TestCase {
-	private ResponsableDAOImpl responsableDAO = new ResponsableDAOImpl();
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/test/resources/applicationContextTest.xml"})
+public class TestResponsable {
+	
+	@Autowired
+	private ResponsableDAO responsableDAO;
+	@Autowired
+	private SedeDAO sedeDAO;
 	private Responsable responsable1, responsable2 ;
 	private Sede sede1, sede2;
-	private SedeDAOImpl sedeDAO = new SedeDAOImpl();
-	@Override
-	protected void setUp() throws Exception{
-		super.setUp();
+	
+	
+	@Before
+	public void setUp(){
 		
 		sede1 = new Sede();
 		sede1.setNombre("Bosque");
@@ -32,8 +43,7 @@ public class TestResponsable extends TestCase {
 		sede2.setUbicacion("115 y 50");
 		sede2.setCapacidad(1500);
 		sedeDAO.save(sede2);
-		Assert.assertNotNull(sede2.getId());
-		
+		Assert.assertNotNull(sede2.getId());		
 		
 		responsable1 = new Responsable();
 		responsable1.setDni(34818052);
@@ -66,8 +76,7 @@ public class TestResponsable extends TestCase {
 		Assert.assertEquals(responsableRecuperado2.getId(), responsable1.getId());
 		
 		responsableDAO.delete(responsable2.getId());
-		Responsable responsableEliminado = responsableDAO.get(responsable2.getId());
-		Assert.assertFalse(responsableEliminado.getActivo());
+		Assert.assertNull(responsableDAO.get(responsable2.getId()));
 
 	}
 

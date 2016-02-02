@@ -2,17 +2,23 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.persistence;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
+import junit.framework.Assert;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.CartillaDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.ComponenteDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.CompraDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.MenuDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.PagoDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.SedeDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.UsuarioDAOImpl;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.CartillaDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ComponenteDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.CompraDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.MenuDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.PagoDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Cartilla;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Compra;
@@ -22,19 +28,32 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Pago;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.SeleccionDiaMenu;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
-import junit.framework.Assert;
-import junit.framework.TestCase;
 
-public class TestCompleto extends TestCase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/test/resources/applicationContextTest.xml"})
+public class TestCompleto{
 
-	private CartillaDAOImpl cartillaDAO = new CartillaDAOImpl();
-	private SedeDAOImpl sedeDAO = new SedeDAOImpl();
-	private Cartilla cartilla = new Cartilla();
-	private Sede sede = new Sede();
+	@Autowired
+	private CartillaDAO cartillaDAO;
+	@Autowired
+	private SedeDAO sedeDAO;
+	@Autowired
+	private ComponenteDAO componenteDAO;// = new ComponenteDAOImpl();
+	@Autowired
+	private MenuDAO menuDAO;
+	@Autowired
+	private UsuarioDAO usuarioDAO;
+	@Autowired
+	private CompraDAO compraDAO;
+	@Autowired
+	private PagoDAO pagoDAO;
+	private Cartilla cartilla;// = new Cartilla();
+	private Sede sede;// = new Sede();
 		
-	@Override
-	protected void setUp() throws Exception{
-		super.setUp();
+	@Before
+	public void setUp(){
+		cartilla = new Cartilla();
+		sede = new Sede();
 		Componente bebida = new Componente(), 
 				entrada1 = new Componente(), 
 				entrada2 = new Componente(), 
@@ -57,7 +76,7 @@ public class TestCompleto extends TestCase {
 		postre2.setNombre("Postre2");
 		postre2.setTipo("Postre");
 		
-		ComponenteDAOImpl componenteDAO = new ComponenteDAOImpl();
+		
 		componenteDAO.save(postre2);
 		componenteDAO.save(postre1);
 		componenteDAO.save(plato1);
@@ -147,7 +166,7 @@ public class TestCompleto extends TestCase {
 		lista5.add(postre1);
 		menu5.setComponentes( lista5 );
 		
-		MenuDAOImpl menuDAO = new MenuDAOImpl();
+		
 		menuDAO.save(menu1);
 		menuDAO.save(menu2);
 		menuDAO.save(menu3);
@@ -224,8 +243,10 @@ public class TestCompleto extends TestCase {
 		Assert.assertEquals(cartillaRecuperada2.getPrecio(), 99.9);
 		
 		cartillaDAO.delete(cartilla.getId());
-		Cartilla cartillaRecuperada3 = cartillaDAO.get(cartilla.getId());
-		Assert.assertFalse(cartillaRecuperada3.getActivo());
+		Assert.assertNull(cartillaDAO.get(cartilla.getId()));
+		
+		//Cartilla cartillaRecuperada3 = cartillaDAO.get(cartilla.getId());
+		//Assert.assertFalse(cartillaRecuperada3.getActivo());
 		
 		
 	}
@@ -246,7 +267,7 @@ public class TestCompleto extends TestCase {
 		usuario.setIntoLactosa(false);
 		usuario.setDni(12345678);
 		
-		UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl();
+		
 		usuarioDAO.save(usuario);
 		
 		SeleccionDiaMenu seleccionLunes = new SeleccionDiaMenu(),
@@ -278,7 +299,7 @@ public class TestCompleto extends TestCase {
 		compras.add(compra);
 		usuario.setCompras(compras);		
 		
-		CompraDAOImpl compraDAO = new CompraDAOImpl();
+		
 		compraDAO.save(compra);
 				
 		Pago pago = new Pago();
@@ -291,7 +312,7 @@ public class TestCompleto extends TestCase {
 		pagos.add(pago);
 		usuario.setPagos( pagos );		
 		
-		PagoDAOImpl pagoDAO = new PagoDAOImpl();
+		
 		pagoDAO.save(pago);
 		Assert.assertNotNull(usuario.getId());
 		Assert.assertNotNull(compra.getId());
@@ -332,18 +353,15 @@ public class TestCompleto extends TestCase {
 		pagoDAO.edit(pago);
 		Pago pagoRecuperado2 = pagoDAO.get(idPagoRecuperar);
 		Assert.assertEquals(pagoRecuperado2.getId(), pago.getId());
-		
-		usuarioDAO.delete(usuario.getId());
-		Usuario usuarioEliminado = usuarioDAO.get(usuario.getId());
-		Assert.assertFalse(usuarioEliminado.getActivo());
+				
+		pagoDAO.delete(pago.getId());
+		Assert.assertNull(pagoDAO.get(pago.getId()));
 		
 		compraDAO.delete(compra.getId());
-		Compra compraEliminada = compraDAO.get(compra.getId());
-		Assert.assertFalse(compraEliminada.getActivo());
-		
-		pagoDAO.delete(pago.getId());
-		Pago pagoEliminado = pagoDAO.get(pago.getId());
-		Assert.assertFalse(pagoEliminado.getActivo());
+		Assert.assertNull(compraDAO.get(compra.getId()));
+			
+		usuarioDAO.delete(usuario.getId());
+		Assert.assertNull(usuarioDAO.get(usuario.getId()));
 	}
 	
 }

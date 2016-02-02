@@ -2,22 +2,28 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.persistence;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
-
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.ComponenteDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-public class TestComponente extends TestCase {
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ComponenteDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
 
-	private ComponenteDAOImpl componenteDAO = new ComponenteDAOImpl();
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/test/resources/applicationContextTest.xml"})
+public class TestComponente {
+
+	@Autowired
+	private ComponenteDAO componenteDAO;
 	private Componente cPostre, cPlato, cEntrada, cBebida;
 	
-	@Override
-	protected void setUp() throws Exception{
-		super.setUp();
+	@Before
+	public void setUp(){
 		cPostre = new Componente();
 		cPostre.setNombre("Helado");
 		cPostre.setTipo("Postre");
@@ -64,8 +70,7 @@ public class TestComponente extends TestCase {
 		Assert.assertEquals(cPostreRecuperado.getId(), cPostre.getId());
 		
 		componenteDAO.delete(cBebida.getId());
-		Componente cBebidaEliminada = componenteDAO.get(cBebida.getId());
-		Assert.assertFalse(cBebidaEliminada.getActivo());
+		Assert.assertNull(componenteDAO.get(cBebida.getId()));
 		
 	}
 

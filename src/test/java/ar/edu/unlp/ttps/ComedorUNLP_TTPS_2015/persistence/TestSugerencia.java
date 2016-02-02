@@ -3,42 +3,63 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.persistence;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SugerenciaDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.ResponsableDAOImpl;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.SedeDAOImpl;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.SugerenciaDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.UsuarioDAOImpl;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.DiaMenu;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.SeleccionDiaMenu;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sugerencia;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
-import junit.framework.Assert;
-import junit.framework.TestCase;
 
-public class TestSugerencia extends TestCase{
-	private UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl();
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/test/resources/applicationContextTest.xml"})
+public class TestSugerencia{
+	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
+	@Autowired
+	private SedeDAO sedeDAO = new SedeDAOImpl();
+	@Autowired
+	private SugerenciaDAO sugerenciaDAO = new SugerenciaDAOImpl();
+	@Autowired
+	private ResponsableDAO responsableDAO = new ResponsableDAOImpl();
 	private Usuario usuario;
 	private Sede sede1, sede2;
-	private SedeDAOImpl sedeDAO = new SedeDAOImpl();
 	private Sugerencia sugerencia1, sugerencia2;
-	private SugerenciaDAOImpl sugerenciaDAO = new SugerenciaDAOImpl();
-	private ResponsableDAOImpl responsableDAO = new ResponsableDAOImpl();
 	private Responsable responsable1, responsable2 ;
 	
-	protected void setUp() throws Exception{
-		super.setUp();
-		
+	@Before
+	public void setUp(){
 		
 		sede1 = new Sede();
 		sede1.setNombre("Bosque");
 		sede1.setUbicacion("115 y 50");
 		sede1.setCapacidad(1500);
+		
 		responsable1 = new Responsable();
 		responsable1.setDni(34818052);
 		responsable1.setSede(sede1);
+		
+		ArrayList<Responsable> responsables1 = new ArrayList<Responsable>();
+		responsables1.add(responsable1);
+		sede1.setResponsables(responsables1);
+		
+		sedeDAO.save(sede1);
+		Assert.assertNotNull(sede1.getId());
+		
 		responsableDAO.save(responsable1);
 		Assert.assertNotNull(responsable1.getId());
 		
@@ -46,37 +67,21 @@ public class TestSugerencia extends TestCase{
 		sede2.setNombre("Bosque");
 		sede2.setUbicacion("115 y 50");
 		sede2.setCapacidad(1500);
+		
 		responsable2 = new Responsable();
 		responsable2.setDni(38298166);
 		responsable2.setSede(sede2);
-		responsableDAO.save(responsable2);
-		Assert.assertNotNull(responsable2.getId());
-		
-
-		sede1 = new Sede();
-		sede1.setNombre("Bosque");
-		sede1.setUbicacion("115 y 50");
-		sede1.setCapacidad(1500);
-		ArrayList<Responsable> responsables1 = new ArrayList<Responsable>();
-		responsables1.add(responsable1);
-		sede1.setResponsables(responsables1);
-		sedeDAO.save(sede1);
-		Assert.assertNotNull(sede1.getId());
-		
-	
 		
 		ArrayList<Responsable> responsables2 = new ArrayList<Responsable>();
 		responsables2.add(responsable2);
 		sede2.setResponsables(responsables2);
+		
 		sedeDAO.save(sede2);
 		Assert.assertNotNull(sede2.getId());
 		
-		sedeDAO.save(sede1);
-		sedeDAO.save(sede2);
-		Assert.assertNotNull(sede1.getId());
-		Assert.assertNotNull(sede2.getId());
-		
-		
+		responsableDAO.save(responsable2);
+		Assert.assertNotNull(responsable2.getId());
+				
 		Usuario usuario = new Usuario();
 		usuario.setApellido("Lopez");
 		usuario.setNombre("Luis");
@@ -130,8 +135,7 @@ public class TestSugerencia extends TestCase{
 		Assert.assertEquals(sugerenciaRecuperada1.getId(), sugerencia1.getId());
 		
 		sugerenciaDAO.delete(sugerencia2.getId());
-		Sugerencia sugerenciaEliminada = sugerenciaDAO.get(sugerencia2.getId());
-		Assert.assertFalse(sugerenciaEliminada.getActivo());
+		Assert.assertNull(sugerenciaDAO.get(sugerencia2.getId()));
 		
 	}
 

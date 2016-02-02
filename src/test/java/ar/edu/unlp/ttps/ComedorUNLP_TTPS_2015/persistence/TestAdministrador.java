@@ -3,6 +3,7 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.persistence;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.AdministradorDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.AdministradorDAOImpl;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Administrador;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
@@ -18,24 +20,24 @@ import junit.framework.TestCase;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/test/resources/applicationContextTest.xml"})
-public class TestAdministrador extends TestCase {
+public class TestAdministrador {
 
 	@Autowired
-	private AdministradorDAOImpl administradorDAO;//= new AdministradorDAOImpl();
+	private AdministradorDAO administradorDAO;
 	
 	
 	private Administrador admin1,admin2;
 	
 	
-	@Override
-	protected void setUp() throws Exception{
-		super.setUp();
+	@Before
+	public void setUp(){
 		admin1 = new Administrador();
 		admin1.setDni(1234);
 		admin2 = new Administrador();
 		admin2.setDni(456);
 		
 	}
+	
 	@Test
 	public void testAdministrador(){
 		administradorDAO.save(admin1);
@@ -50,20 +52,10 @@ public class TestAdministrador extends TestCase {
 		administradorDAO.edit(admin1);
 		
 		administradorDAO.delete(admin1.getId());
-		Administrador adminEliminado = administradorDAO.get(admin1.getId());
-		Assert.assertFalse(adminEliminado.getActivo());
-	}
-	@Test
-	public void testGetAllAdministradores(){
+		Assert.assertNull(administradorDAO.get(admin1.getId()));
+		
 		ArrayList<Administrador> administrador = (ArrayList<Administrador>) administradorDAO.getAll();
-		Assert.assertTrue(administrador.size()==2);
+		Assert.assertTrue(administrador.size()==1);
 	}
-	public AdministradorDAOImpl getAdministradorDAO() {
-		return administradorDAO;
-	}
-	public void setAdministradorDAO(AdministradorDAOImpl administradorDAO) {
-		this.administradorDAO = administradorDAO;
-	}
-
 
 }

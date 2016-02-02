@@ -20,7 +20,7 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/comedor_unlp" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/comedor_unlp_test" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -39,7 +39,7 @@
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto"></prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
@@ -52,11 +52,10 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<bean id="administradorDAO"
+	<!-- <bean id="administradorDAO"
 		class="ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.AdministradorDAOImpl">
 	</bean>
 	<bean id="genericDAO"
 		class="ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl.GenericDAOImpl">
-
-	</bean>
+	</bean>-->
 </beans>
