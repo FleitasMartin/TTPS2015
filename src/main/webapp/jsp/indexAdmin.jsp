@@ -28,6 +28,12 @@
 		<div class="col-md-9 col-xs-12">
 			
         	<c:choose>
+        	<c:when test="${contentPage == 'editarMenu'}">
+				<tags:editarMenu />
+        	</c:when>
+        	<c:when test="${contentPage == 'editarComponente'}">
+				<tags:editarComponente />
+        	</c:when>
         	<c:when test="${contentPage == 'loginAdmin'}">
 				<tags:loginAdmin />
         	</c:when>
@@ -40,14 +46,14 @@
         	<c:when test="${contentPage == 'buzonVirtual'}">
 				<tags:buzonVirtual />
         	</c:when>
-        	<c:when test="${contentPage == 'administracionComponentes'}">
-				<tags:administracionComponentes />
+        	<c:when test="${contentPage == 'adminComponentes'}">
+				<tags:adminComponentes />
         	</c:when>
         	<c:when test="${contentPage == 'altaComponente'}">
 				<tags:altaComponente />
         	</c:when>
-        	<c:when test="${contentPage == 'administracionMenues'}">
-				<tags:administracionMenues />
+        	<c:when test="${contentPage == 'adminMenues'}">
+				<tags:adminMenues />
         	</c:when>
         	<c:when test="${contentPage == 'altaMenu'}">
 				<tags:altaMenu />

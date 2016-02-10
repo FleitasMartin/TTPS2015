@@ -21,7 +21,7 @@ public class Componente {
 
 	protected String tipo;
 	
-	protected Boolean activo=true;
+	//protected Boolean activo=true;
 
 	public String getNombre() {
 		return nombre;
@@ -47,11 +47,11 @@ public class Componente {
 		this.tipo = tipo;
 	}
 
-	public Boolean getActivo() {
+/*	public Boolean getActivo() {
 		return activo;
 	}
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
+	}*/
 }

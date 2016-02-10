@@ -4,10 +4,10 @@
 	<li><a href="${pageContext.request.contextPath}/admin/listarSedes">Gestion
 			de sedes</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/admin/administracionComponentes">Administraci&oacute;n
+		href="${pageContext.request.contextPath}/admin/adminComponentes">Administraci&oacute;n
 			de Componentes</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/admin/administracionMenues">Administraci&oacute;n
+		href="${pageContext.request.contextPath}/admin/adminMenues">Administraci&oacute;n
 			de Men&uacute;es</a></li>
 	<li><a
 		href="${pageContext.request.contextPath}/admin/buzonVirtual">Buzon

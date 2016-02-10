@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 /** "/admin/altaSede", "/admin/altaUsuario"
  * Servlet implementation class ServletAdmin
  */
-@WebServlet(urlPatterns = {"/admin", "/admin/adminUsers", "/admin/home", "/admin/buzonVirtual", 
-		"/admin/administracionComponentes", "/admin/altaComponente", "/admin/administracionMenues"
-		, "/admin/altaMenu", "/admin/estadisticasMenues", "/admin/cartillaSemanal","/admin/sedes"
-		,"/admin/altaCartilla"})
+@WebServlet(urlPatterns = {"/admin", "/admin/adminUsers", "/admin/home", "/admin/buzonVirtual",
+		"/admin/estadisticasMenues", "/admin/cartillaSemanal","/admin/sedes","/admin/altaCartilla"})
 public class ServletAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,8 +46,8 @@ public class ServletAdmin extends HttpServlet {
 		case "administracionComponentes":
 			contentPage = "administracionComponentes";
 			break;
-		case "administracionMenues":
-			contentPage = "administracionMenues";
+		case "adminMenues":
+			contentPage = "adminMenues";
 			break;
 		case "altaComponente":
 			contentPage = "altaComponente";

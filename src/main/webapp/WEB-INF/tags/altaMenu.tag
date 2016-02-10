@@ -1,44 +1,54 @@
-<%@ tag%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ tag language="java" pageEncoding="UTF-8"%>
 <div class="form">
-	<form>
+	<form method="POST" action="${pageContext.request.contextPath}/admin/altaMenu">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Nombre</label> <input type="text"
-				class="form-control" id="nombreMenu" name="name">
+				class="form-control" id="nombreMenu" name="nombre">
 		</div>
-		<label>Caracteristicas</label> <select multiple name="duallistbox"
+		<label>Caracteristicas</label> <select multiple name="caracteristicas" id="caracteristicas"
 			class="form-control">
-			<option>Celiaco</option>
-			<option>Diab&eacute;tico</option>
-			<option>Hipertenso</option>
-			<option>Intolerante a la Lactosa</option>
-		</select> <label>Bebidas</label> <select multiple name="duallistbox"
+			<option value="1">Celiaco</option>
+			<option value="2">Diab&eacute;tico</option>
+			<option value="3">Hipertenso</option>
+			<option value="4">Intolerante a la Lactosa</option>
+			<option value="5">Vegetariano</option>
+		</select> <label>Bebidas</label> <select multiple name="bebidas" id="bebidas"
 			class="form-control">
-			<option>Bebida 1</option>
-			<option>Bebida 1</option>
-			<option>Bebida 1</option>
-			<option>Bebida 1</option>
-		</select> <label>Entradas</label> <select multiple name="duallistbox"
+			<c:forEach var="componente" items="${componentes}">
+				<c:if test="${componente.tipo == 'bebida'}">
+					<option value="${componente.id }"><c:out value="${componente.nombre }" /></option>
+				</c:if>
+			</c:forEach>
+		</select> <label>Entradas</label> <select multiple name="entradas" id="entradas"
 			class="form-control">
-			<option>Entrada 1</option>
-			<option>Entrada 1</option>
-			<option>Entrada 1</option>
-			<option>Entrada 1</option>
-		</select> <label>Platos</label> <select multiple name="duallistbox"
+			<c:forEach var="componente" items="${componentes}">
+				<c:if test="${componente.tipo == 'entrada'}">
+					<option value="${componente.id }"><c:out value="${componente.nombre }" /></option>
+				</c:if>
+			</c:forEach>
+		</select> <label>Platos</label> <select multiple name="platos" id="platos"
 			class="form-control">
-			<option>Plato 1</option>
-			<option>Plato 2</option>
-			<option>Plato 3</option>
-			<option>Plato 4</option>
-		</select> <label>Postres</label> <select multiple name="duallistbox"
+			<c:forEach var="componente" items="${componentes}">
+				<c:if test="${componente.tipo == 'plato'}">
+					<option value="${componente.id }"><c:out value="${componente.nombre }" /></option>
+				</c:if>
+			</c:forEach>
+		</select> <label>Postres</label> <select multiple name="postres" id="postres"
 			class="form-control">
-			<option>Postre 1</option>
-			<option>Postre 2</option>
-			<option>Postre 3</option>
-			<option>Postre 4</option>
+			<c:forEach var="componente" items="${componentes}">
+				<c:if test="${componente.tipo == 'postre'}">
+					<option value="${componente.id }"><c:out value="${componente.nombre }" /></option>
+				</c:if>
+			</c:forEach>
 		</select> <input type="submit" value="Crear"
 			class="form-control btn btn-success">
 	</form>
 </div>
 <script type="text/javascript">
-	var demo1 = $('select[name="duallistbox"]').bootstrapDualListbox();
+	var dual1 = $("#caracteristicas").bootstrapDualListbox();
+	var dual2 = $("#bebidas").bootstrapDualListbox();
+	var dual3 = $("#entradas").bootstrapDualListbox();
+	var dual4 = $("#platos").bootstrapDualListbox();
+	var dual5 = $("#postres").bootstrapDualListbox();
 </script>

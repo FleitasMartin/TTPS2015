@@ -1,25 +1,17 @@
 <%@ tag%>
 <div class="form">
-	<form>
-		<label>Tipo</label> <select class="form-control">
-			<option>Bebida</option>
-			<option>Entrada</option>
-			<option>Plato principal</option>
-			<option>Postre</option>
+	<form method="POST" action="${pageContext.request.contextPath}/admin/altaComponente">
+		<label>Tipo</label> <select class="form-control" name="tipo">
+			<option value="bebida">Bebida</option>
+			<option value="entrada">Entrada</option>
+			<option value="plato">Plato principal</option>
+			<option value="postre">Postre</option>
 		</select>
 		<div class="form-group">
-			<label>Nombre</label> <input type="text" name="name"
+			<label>Nombre</label> <input type="text" name="nombre"
 				class="form-control" /><br>
 		</div>
-		<select multiple name="duallistbox" class="form-control">
-			<option>Arroz</option>
-			<option>Pollo</option>
-			<option>Tomate</option>
-			<option>Lechuga</option>
-		</select> <input type="submit" value="Crear"
+		<input type="submit" value="Crear"
 			class="form-control btn btn-success">
 	</form>
 </div>
-<script type="text/javascript">
-var demo1 = $('select[name="duallistbox"]').bootstrapDualListbox();
-</script>
