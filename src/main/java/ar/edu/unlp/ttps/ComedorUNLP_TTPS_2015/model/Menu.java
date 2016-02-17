@@ -21,22 +21,31 @@ import javax.persistence.Table;
 @Table(name="menu")
 public class Menu {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
 	
 	private String nombre;
-	private boolean vegetariano;
-	private boolean celiaco;
-	private boolean diabetico;
-	private boolean hipertenso;
-	private boolean intoLactosa;
+
 	private boolean visible;
 	private Date fechaAlta;
 	/*@ManyToOne(optional = false)
 	private DiaMenu diaMenu;*/
 	@ManyToMany(fetch=FetchType.EAGER)//(cascade=CascadeType.ALL)
 	private List<Componente> componentes;
+//	@OneToMany(fetch=FetchType.EAGER)//(cascade=CascadeType.ALL)
+//	@JoinTable
+//	(
+//			name="menu_caracteristicas",
+//	joinColumns = {@JoinColumn(name="idMenu", referencedColumnName="id")},
+//	inverseJoinColumns = {@JoinColumn(name="idCaracteristica", referencedColumnName="id")}
+//	)
+	 @ManyToMany(fetch = FetchType.EAGER)
+	  @JoinTable(
+	      name="menu_caracteristicas",
+	      joinColumns=@JoinColumn(name="idMenu", referencedColumnName="id"),
+	      inverseJoinColumns=@JoinColumn(name="idCaracteristicas", referencedColumnName="id"))
+	private List<Caracteristica> caracteristica;
 	
 	
 	public List<Componente> getComponentes() {
@@ -45,42 +54,48 @@ public class Menu {
 	public void setComponentes(List<Componente> componentes) {
 		this.componentes = componentes;
 	}
+	public List<Caracteristica> getCaracteristica() {
+		return caracteristica;
+	}
+	public void setCaracteristica(List<Caracteristica> caracteristica) {
+		this.caracteristica = caracteristica;
+	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public boolean isVegetariano() {
-		return vegetariano;
-	}
-	public void setVegetariano(boolean vegetariano) {
-		this.vegetariano = vegetariano;
-	}
-	public boolean isCeliaco() {
-		return celiaco;
-	}
-	public void setCeliaco(boolean celiaco) {
-		this.celiaco = celiaco;
-	}
-	public boolean isDiabetico() {
-		return diabetico;
-	}
-	public void setDiabetico(boolean diabetico) {
-		this.diabetico = diabetico;
-	}
-	public boolean isHipertenso() {
-		return hipertenso;
-	}
-	public void setHipertenso(boolean hipertenso) {
-		this.hipertenso = hipertenso;
-	}
-	public boolean isIntoLactosa() {
-		return intoLactosa;
-	}
-	public void setIntoLactosa(boolean intoLactosa) {
-		this.intoLactosa = intoLactosa;
-	}
+//	public boolean isVegetariano() {
+//		return vegetariano;
+//	}
+//	public void setVegetariano(boolean vegetariano) {
+//		this.vegetariano = vegetariano;
+//	}
+//	public boolean isCeliaco() {
+//		return celiaco;
+//	}
+//	public void setCeliaco(boolean celiaco) {
+//		this.celiaco = celiaco;
+//	}
+//	public boolean isDiabetico() {
+//		return diabetico;
+//	}
+//	public void setDiabetico(boolean diabetico) {
+//		this.diabetico = diabetico;
+//	}
+//	public boolean isHipertenso() {
+//		return hipertenso;
+//	}
+//	public void setHipertenso(boolean hipertenso) {
+//		this.hipertenso = hipertenso;
+//	}
+//	public boolean isIntoLactosa() {
+//		return intoLactosa;
+//	}
+//	public void setIntoLactosa(boolean intoLactosa) {
+//		this.intoLactosa = intoLactosa;
+//	}
 	public boolean isVisible() {
 		return visible;
 	}

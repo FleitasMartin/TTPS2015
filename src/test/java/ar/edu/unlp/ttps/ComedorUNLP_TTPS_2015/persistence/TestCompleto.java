@@ -91,44 +91,44 @@ public class TestCompleto{
 			menu4 = new Menu(), 
 			menu5 = new Menu();
 		
-		menu1.setNombre("MENU1");
-		menu1.setCeliaco(true);
-		menu1.setDiabetico(false);
-		menu1.setHipertenso(true);
-		menu1.setIntoLactosa(false);
-		menu1.setVegetariano(true);
-		menu1.setFechaAlta(new Date());
-		
-		menu2.setNombre("MENU2");
-		menu2.setCeliaco(true);
-		menu2.setDiabetico(false);
-		menu2.setHipertenso(true);
-		menu2.setIntoLactosa(false);
-		menu2.setVegetariano(true);
-		menu2.setFechaAlta(new Date());
-		
-		menu3.setNombre("MENU3");
-		menu3.setCeliaco(true);
-		menu3.setDiabetico(false);
-		menu3.setHipertenso(true);
-		menu3.setIntoLactosa(false);
-		menu3.setVegetariano(true);
-		menu3.setFechaAlta(new Date());
-		
-		menu4.setNombre("MENU4");
-		menu4.setCeliaco(true);
-		menu4.setDiabetico(false);
-		menu4.setHipertenso(true);
-		menu4.setIntoLactosa(false);
-		menu4.setVegetariano(true);
-		menu4.setFechaAlta(new Date());
-		
-		menu5.setNombre("MENU5");
-		menu5.setCeliaco(true);
-		menu5.setDiabetico(false);
-		menu5.setHipertenso(true);
-		menu5.setIntoLactosa(false);
-		menu5.setVegetariano(true);
+//		menu1.setNombre("MENU1");
+//		menu1.setCeliaco(true);
+//		menu1.setDiabetico(false);
+//		menu1.setHipertenso(true);
+//		menu1.setIntoLactosa(false);
+//		menu1.setVegetariano(true);
+//		menu1.setFechaAlta(new Date());
+//		
+//		menu2.setNombre("MENU2");
+//		menu2.setCeliaco(true);
+//		menu2.setDiabetico(false);
+//		menu2.setHipertenso(true);
+//		menu2.setIntoLactosa(false);
+//		menu2.setVegetariano(true);
+//		menu2.setFechaAlta(new Date());
+//		
+//		menu3.setNombre("MENU3");
+//		menu3.setCeliaco(true);
+//		menu3.setDiabetico(false);
+//		menu3.setHipertenso(true);
+//		menu3.setIntoLactosa(false);
+//		menu3.setVegetariano(true);
+//		menu3.setFechaAlta(new Date());
+//		
+//		menu4.setNombre("MENU4");
+//		menu4.setCeliaco(true);
+//		menu4.setDiabetico(false);
+//		menu4.setHipertenso(true);
+//		menu4.setIntoLactosa(false);
+//		menu4.setVegetariano(true);
+//		menu4.setFechaAlta(new Date());
+//		
+//		menu5.setNombre("MENU5");
+//		menu5.setCeliaco(true);
+//		menu5.setDiabetico(false);
+//		menu5.setHipertenso(true);
+//		menu5.setIntoLactosa(false);
+//		menu5.setVegetariano(true);
 		menu5.setFechaAlta(new Date());
 		
 		ArrayList<Componente> lista1 = new ArrayList<Componente>(),
