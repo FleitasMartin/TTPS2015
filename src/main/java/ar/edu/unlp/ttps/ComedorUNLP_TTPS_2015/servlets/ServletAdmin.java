@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ServletAdmin
  */
 @WebServlet(urlPatterns = {"/admin", "/admin/adminUsers", "/admin/home", "/admin/buzonVirtual",
-		"/admin/estadisticasMenues", "/admin/cartillaSemanal","/admin/sedes","/admin/altaCartilla"})
+		"/admin/estadisticasMenues", "/admin/cartillaSemanal","/admin/sedes"})
 public class ServletAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
