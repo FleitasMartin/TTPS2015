@@ -9,50 +9,18 @@
 				value="${menu.nombre }">
 				<input type="hidden" value="${menu.id }" name="id">
 		</div>
-		<label>Caracteristicas</label> <select multiple name="caracteristicas"
-			id="caracteristicas" class="form-control">
-			<c:choose>
-				<c:when test="${menu.celiaco}">
-					<option selected value="1">Celiaco</option>
-				</c:when>
-				<c:when test="${not menu.celiaco}">
-					<option value="1">Celiaco</option>
-				</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${menu.diabetico}">
-					<option selected value="2">Diab&eacute;tico</option>
-				</c:when>
-				<c:when test="${not menu.diabetico}">
-					<option value="2">Diab&eacute;tico</option>
-				</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${menu.hipertenso}">
-					<option selected value="3">Hipertenso</option>
-				</c:when>
-				<c:when test="${not menu.hipertenso}">
-					<option value="3">Hipertenso</option>
-				</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${menu.intoLactosa}">
-					<option selected value="4">Intolerante a la Lactosa</option>
-				</c:when>
-				<c:when test="${not menu.intoLactosa}">
-					<option value="4">Intolerante a la Lactosa</option>
-				</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${menu.vegetariano}">
-					<option selected value="5">Vegetariano</option>
-				</c:when>
-				<c:when test="${not menu.vegetariano}">
-					<option value="5">Vegetariano</option>
-				</c:when>
-			</c:choose>
-		</select> <label>Bebidas</label> <select multiple name="bebidas" id="bebidas"
-			class="form-control">
+		<label>Caracteristicas</label> 
+		<select multiple name="caracteristicas" id="caracteristicas" class="form-control">
+			<c:forEach var="caracteristica" items="${caracteristicas}">
+				<option value="${caracteristica.id }"><c:out value="${caracteristica.nombre }" /></option>
+			</c:forEach>
+			<c:forEach var="caracteristica" items="${menu.caracteristica}">
+				<option selected value="${caracteristica.id }"><c:out value="${caracteristica.nombre }" /></option>	
+			</c:forEach>
+		</select> 
+		
+		 <label>Bebidas</label> 
+		 <select multiple name="bebidas" id="bebidas" class="form-control">
 			<c:forEach var="componente" items="${componentes}">
 				<c:if test="${componente.tipo == 'bebida'}">
 					<option value="${componente.id }"><c:out
@@ -65,7 +33,8 @@
 							value="${componente.nombre }" /></option>
 				</c:if>
 			</c:forEach>
-		</select> <label>Entradas</label> <select multiple name="entradas"
+		</select> 
+		<label>Entradas</label> <select multiple name="entradas"
 			id="entradas" class="form-control">
 			<c:forEach var="componente" items="${componentes}">
 				<c:if test="${componente.tipo == 'entrada'}">

@@ -22,7 +22,7 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/comedor_unlp" />
 		<property name="user" value="root" />
-		<property name="password" value="root" />
+ 	<property name="password" value="" /> 
 	</bean>
 
 	<!-- Configuración JPA -->

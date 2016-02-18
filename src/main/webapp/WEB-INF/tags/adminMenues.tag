@@ -5,29 +5,26 @@
 	<table class="table">
 		<tr>
 			<td>Nombre</td>
-			<td>Celiaco</td>
-			<td>Diab&eacute;tco</td>
-			<td>Hipertenso</td>
-			<td>Intolerante a la Lactosa</td>
 			<td>Detalle</td>
 			<td>Modificar</td>
 			<td>Eliminar</td>
 		</tr>
 		<c:forEach var="menu" items="${menues}">
 			<tr>
-				<td><c:out value="${menu.nombre }" /></td>
-				<td><c:out value="${menu.celiaco }" /></td>
-				<td><c:out value="${menu.diabetico }" /></td>
-				<td><c:out value="${menu.hipertenso }" /></td>
-				<td><c:out value="${menu.intoLactosa }" /></td>
-<!-- 				<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
+			<td><c:out value="${menu.nombre }" /></td>
 				<td>
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    Detalle <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
+				   <li class="dropdown-header">Componentes</li>
 				  <c:forEach var="componente" items="${menu.componentes}">
 				    <li><c:out value="${componente.nombre }" /></li>
+				  </c:forEach>
+				 
+				  <li class="dropdown-header">Caracteristicas</li>
+				  <c:forEach var="carac" items="${menu.caracteristica}">
+				    <li><c:out value="${carac.nombre }" /></li>
 				  </c:forEach>
 				  </ul>
 			  </td>
