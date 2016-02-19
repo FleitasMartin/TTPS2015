@@ -28,6 +28,9 @@
 		<div class="col-md-9 col-xs-12">
 			
         	<c:choose>
+        	<c:when test="${contentPage == 'editarCartilla'}">
+				<tags:editarCartilla />
+        	</c:when>
         	<c:when test="${contentPage == 'editarMenu'}">
 				<tags:editarMenu />
         	</c:when>

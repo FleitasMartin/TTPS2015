@@ -44,7 +44,7 @@
 				<input type="hidden" value="${menu.id }" name="id">
 				<tr>					
 					<td><c:out value="${menu.nombre }" /></td>
-					<td><input type="checkbox" name="lunes" value="${menu.id }"></td>
+					<td><input type="checkbox" name="lunes"  value="${menu.id }"></td>
 					<td><input type="checkbox" name="martes" value="${menu.id }">
 					</td>
 					<td><input type="checkbox" name="miercoles" value="${menu.id }">

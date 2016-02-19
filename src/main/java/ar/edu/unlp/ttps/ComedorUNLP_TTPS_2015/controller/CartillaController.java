@@ -48,11 +48,30 @@ public class CartillaController {
 		model.addObject("contentPage","cartillaSemanal");
 		return model;
 	}
+	@RequestMapping( value = "/admin/editarCartilla" ,method = RequestMethod.GET)
+	public ModelAndView editarCartilla(@RequestParam(value="id") Long id){
+		ModelAndView model = new ModelAndView();
+		ArrayList<Menu> menues = (ArrayList<Menu>) menuDAO.getAll();
+		Cartilla cartilla = cartillaDAO.get(id);
+		ArrayList<Menu> menuesLunes = (ArrayList<Menu>) cartilla.getSemanas().get(0).getDias().get(0).getMenues();
+		ArrayList<Menu> menuesMartes = (ArrayList<Menu>) cartilla.getSemanas().get(0).getDias().get(1).getMenues();
+		ArrayList<Menu> menuesMiercoles = (ArrayList<Menu>) cartilla.getSemanas().get(0).getDias().get(2).getMenues();
+		ArrayList<Menu> menuesJueves = (ArrayList<Menu>) cartilla.getSemanas().get(0).getDias().get(3).getMenues();
+		ArrayList<Menu> menuesViernes = (ArrayList<Menu>) cartilla.getSemanas().get(0).getDias().get(4).getMenues();
+		
+		ArrayList<MenuChecked> menuesChecked = this.seleccionarMenues(menues, menuesLunes, menuesMartes, menuesMiercoles, menuesJueves, menuesViernes);
+		
+		model.setViewName("indexAdmin");
+		model.addObject("cartilla", cartilla);
+		model.addObject("menues", menuesChecked);
+		model.addObject("contentPage","editarCartilla");
+		return model;
+	}
 	
 	@RequestMapping( value = "/admin/altaCartilla" ,method = RequestMethod.GET)
-	public ModelAndView altaMenu(){
+	public ModelAndView altaCartilla(){
 		ModelAndView model = new ModelAndView();
-		ArrayList<Menu> menues = new ArrayList<Menu>();;
+		ArrayList<Menu> menues = new ArrayList<Menu>();
 		menues = (ArrayList<Menu>) menuDAO.getAll();
 		model.setViewName("indexAdmin");
 		model.addObject("menues", menues);
@@ -94,11 +113,6 @@ public class CartillaController {
 		}		
 		
 		cartillaDAO.save(cartilla);
-		//ArrayList<DiaMenu> dias = this.armadorDiasSemanas(inicio, fin, diasMenues);
-
-		//Semana semana = this.armarSemana(dias, inicioDate);
-		
-		//semanaDAO.save(semana);
 		
 		ModelAndView model = new ModelAndView();
 		ArrayList<Menu> menues = new ArrayList<Menu>();;
@@ -113,11 +127,11 @@ public class CartillaController {
 		ArrayList<Semana> semanas = new ArrayList<Semana>();
 		while ( diaActual.isBefore(diaFin.getMillis()) ) {
 			ArrayList<DiaMenu> dias = new ArrayList<DiaMenu>();
-			dias.add(this.armaLunes(atributos.get(0), diaActual.plusDays(0).toDate()));
-			dias.add(this.armaMartes(atributos.get(1), diaActual.plusDays(1).toDate()));
-			dias.add(this.armaMiercoles(atributos.get(2), diaActual.plusDays(2).toDate()));
-			dias.add(this.armaJueves(atributos.get(3), diaActual.plusDays(3).toDate()));
-			dias.add(this.armaViernes(atributos.get(4), diaActual.plusDays(4).toDate()));
+			dias.add(this.armarYGuardarDia(atributos.get(0), "Lunes", diaActual.plusDays(0).toDate()));
+			dias.add(this.armarYGuardarDia(atributos.get(1), "Martes", diaActual.plusDays(1).toDate()));
+			dias.add(this.armarYGuardarDia(atributos.get(2), "Miercoles", diaActual.plusDays(2).toDate()));
+			dias.add(this.armarYGuardarDia(atributos.get(3), "Jueves", diaActual.plusDays(3).toDate()));
+			dias.add(this.armarYGuardarDia(atributos.get(4), "Viernes", diaActual.plusDays(4).toDate()));
 			semanas.add(this.armarYGuardarSemana(dias, diaActual.toDate()));
 			diaActual = diaActual.plusDays(7);
 		}
@@ -132,21 +146,6 @@ public class CartillaController {
 		return semana;
 	}
 	
-	private DiaMenu armaLunes(Long[] menues, Date fecha){
-		return this.armarYGuardarDia(menues, "Lunes", fecha);
-	}
-	private DiaMenu armaMartes(Long[] menues, Date fecha){
-		return this.armarYGuardarDia(menues, "Martes", fecha);
-	}
-	private DiaMenu armaMiercoles(Long[] menues, Date fecha){
-		return this.armarYGuardarDia(menues, "Miercoles", fecha);
-	}
-	private DiaMenu armaJueves(Long[] menues, Date fecha){
-		return this.armarYGuardarDia(menues, "Jueves", fecha);
-	}
-	private DiaMenu armaViernes(Long[] menues, Date fecha){
-		return this.armarYGuardarDia(menues, "Viernes", fecha);
-	}
 	private DiaMenu armarYGuardarDia(Long[] menues, String nombre, Date fecha){
 		DiaMenu diaMenu = new DiaMenu();
 		diaMenu.setFecha(fecha);
@@ -160,4 +159,96 @@ public class CartillaController {
 		return diaMenu;
 	}
 	
+	public ArrayList<MenuChecked> seleccionarMenues(ArrayList<Menu> menues, ArrayList<Menu> lunes, ArrayList<Menu> martes, ArrayList<Menu> miercoles,
+			ArrayList<Menu> jueves, ArrayList<Menu> viernes){
+		
+		ArrayList<MenuChecked> menuesChecked = new ArrayList<MenuChecked>();
+		for (Menu menu : menues) {
+			MenuChecked menuChecked = new MenuChecked();
+			menuChecked.setId(menu.getId());
+			menuChecked.setNombre(menu.getNombre());
+			if( lunes.contains(menu)){
+				menuChecked.setLunes("checked");
+			}else{
+				menuChecked.setLunes(" ");
+			}
+			if( martes.contains(menu)){
+				menuChecked.setMartes("checked");
+			}else{
+				menuChecked.setMartes(" ");
+			}
+			if( miercoles.contains(menu)){
+				menuChecked.setMiercoles("checked");
+			}else{
+				menuChecked.setMiercoles(" ");
+			}
+			if( jueves.contains(menu)){
+				menuChecked.setJueves("checked");
+			}else{
+				menuChecked.setJueves(" ");
+			}
+			if( viernes.contains(menu)){
+				menuChecked.setViernes("checked");
+			}else{
+				menuChecked.setViernes(" ");
+			}
+			menuesChecked.add(menuChecked);
+		}
+		return menuesChecked;
+	}
+	
+	public class MenuChecked{
+		
+		private Long id;
+		private String nombre;
+		private String lunes;
+		private String martes;
+		private String miercoles;
+		private String jueves;
+		private String viernes;
+		
+		public Long getId() {
+			return id;
+		}
+		public void setId(Long id) {
+			this.id = id;
+		}
+		public String getNombre() {
+			return nombre;
+		}
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+		public String getLunes() {
+			return lunes;
+		}
+		public void setLunes(String lunes) {
+			this.lunes = lunes;
+		}
+		public String getMartes() {
+			return martes;
+		}
+		public void setMartes(String martes) {
+			this.martes = martes;
+		}
+		public String getMiercoles() {
+			return miercoles;
+		}
+		public void setMiercoles(String miercoles) {
+			this.miercoles = miercoles;
+		}
+		public String getJueves() {
+			return jueves;
+		}
+		public void setJueves(String jueves) {
+			this.jueves = jueves;
+		}
+		public String getViernes() {
+			return viernes;
+		}
+		public void setViernes(String viernes) {
+			this.viernes = viernes;
+		}
+		
+	}
 }
