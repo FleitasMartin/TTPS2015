@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "semana")
 public class Semana {
 	
-	@Id	@GeneratedValue(strategy=GenerationType.AUTO)//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY)//@GeneratedValue(strategy=GenerationType.AUTO)//
 	@Column(name = "id")
 	private Long id;	
 	private Date fechaDesde;
