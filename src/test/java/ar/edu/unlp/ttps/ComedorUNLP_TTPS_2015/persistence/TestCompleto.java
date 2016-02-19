@@ -208,7 +208,7 @@ public class TestCompleto{
 		diasMenues.add(diaMiercoles);
 		diasMenues.add(diaJueves);
 		diasMenues.add(diaViernes);
-		cartilla.setDiasMenues(diasMenues);
+		//cartilla.setDiasMenues(diasMenues);***
 		cartilla.setPrecio(7.5);
 		Date fechaInicio = new Date();
 		fechaInicio.setYear(2015);;
@@ -275,12 +275,12 @@ public class TestCompleto{
 		
 		seleccionLunes.setNombre("Lunes");
 		seleccionLunes.setVianda(true);
-		seleccionLunes.setMenu(cartilla.getDiasMenues().get(0).getMenues().get(0));
-		System.out.println(cartilla.getDiasMenues().get(0).getMenues().get(0).getNombre());
+		//seleccionLunes.setMenu(cartilla.getDiasMenues().get(0).getMenues().get(0)); ***
+		//System.out.println(cartilla.getDiasMenues().get(0).getMenues().get(0).getNombre());***
 		
 		seleccionMartes.setNombre("Martes");
 		seleccionMartes.setVianda(true);
-		seleccionMartes.setMenu(cartilla.getDiasMenues().get(1).getMenues().get(0));	
+		//seleccionMartes.setMenu(cartilla.getDiasMenues().get(1).getMenues().get(0));	***
 		
 		seleccionLunes.setSede(sede);
 		seleccionMartes.setSede(sede);

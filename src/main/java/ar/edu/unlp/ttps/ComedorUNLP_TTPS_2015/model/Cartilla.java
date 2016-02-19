@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="cartilla")
@@ -25,9 +24,8 @@ public class Cartilla {
 	private Date fechaFin;
 	private Boolean activo=true;
 	
-	//@OneToMany(mappedBy="cartilla", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	@ManyToMany(cascade=CascadeType.ALL)
-	private List<DiaMenu> diasMenues;
+	private List<Semana> semanas;
 	
 	public Double getPrecio() {
 		return precio;
@@ -47,12 +45,6 @@ public class Cartilla {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public List<DiaMenu> getDiasMenues() {
-		return diasMenues;
-	}
-	public void setDiasMenues(List<DiaMenu> diasMenues) {
-		this.diasMenues = diasMenues;
-	}
 	public Boolean getActivo() {
 		return activo;
 	}
@@ -64,5 +56,11 @@ public class Cartilla {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public List<Semana> getSemanas() {
+		return semanas;
+	}
+	public void setSemanas(List<Semana> semanas) {
+		this.semanas = semanas;
 	}
 }

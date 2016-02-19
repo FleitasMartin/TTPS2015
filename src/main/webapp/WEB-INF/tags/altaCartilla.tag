@@ -1,7 +1,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <div>
-	<form method="POST" action="${pageContext.request.contextPath}/admin/altaCartilla">
+	<form method="POST" action="${pageContext.request.contextPath}/admin/altaCartilla" >
+		<div class="row">
+			<div class='col-sm-8'>
+				<div class="form-group">
+					<div class='input-group date ' >
+						<label>Desde</label> <input type='text' id='desde' name='desde' class="form-control" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+					<div class='input-group date ' >
+						<label>Hasta</label> <input type='text' id='hasta' name='hasta' class="form-control" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+	            $(function () {
+	                $('#desde').datepicker();
+	            });
+	            $(function () {
+	                $('#hasta').datepicker();
+	            });
+	        </script>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -32,6 +58,8 @@
 
 			</tbody>
 		</table>
+		<label>Precio</label>
+		<input type="number" value="" name="precio">
 		<input type="submit" value="Alta Cartilla"
 			class="form-control btn btn-primary">
 		

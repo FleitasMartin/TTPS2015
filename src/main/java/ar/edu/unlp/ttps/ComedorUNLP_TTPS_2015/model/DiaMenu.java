@@ -1,8 +1,8 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,26 +10,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "diaMenu")
-public class DiaMenu {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
+public class DiaMenu implements Comparable<DiaMenu>{
+	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	private String nombre;
-	//@OneToMany(mappedBy = "diaMenu", cascade = { CascadeType.PERSIST,
-	//		CascadeType.REMOVE })
+	private Date fecha;
 	@ManyToMany
 	private List<Menu> menues;
-	private Boolean activo = true;
-	//@ManyToOne(optional = false)
-	//private Cartilla cartilla;
-
+	@ManyToOne
+	private Semana semana;
+	
 	public List<Menu> getMenues() {
 		return menues;
 	}
@@ -46,14 +41,6 @@ public class DiaMenu {
 		this.nombre = nombre;
 	}
 
-	public Boolean getActivo() {
-		return activo;
-	}
-
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -61,13 +48,25 @@ public class DiaMenu {
 	public void setId(Long id) {
 		this.id = id;
 	}
-/*
-	public Cartilla getCartilla() {
-		return cartilla;
+
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setCartilla(Cartilla cartilla) {
-		this.cartilla = cartilla;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
-	*/
+
+	public Semana getSemana() {
+		return semana;
+	}
+
+	public void setSemana(Semana semana) {
+		this.semana = semana;
+	}
+	
+	@Override
+	  public int compareTo(DiaMenu diaMenu) {
+	    return getFecha().compareTo(diaMenu.getFecha());
+	  }
 }
