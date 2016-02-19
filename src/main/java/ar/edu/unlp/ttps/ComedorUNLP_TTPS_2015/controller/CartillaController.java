@@ -49,6 +49,21 @@ public class CartillaController {
 		return model;
 	}
 	
+	
+	@RequestMapping( value = "/admin/detalleCartilla" ,method = RequestMethod.GET)
+	public ModelAndView detalleCartilla(@RequestParam("id") Long id){
+		ModelAndView model = new ModelAndView();
+		Cartilla cartilla = new Cartilla();
+		cartilla = cartillaDAO.get(id);
+		Semana semana = cartilla.getSemanas().get(1);
+		model.setViewName("indexAdmin");
+		model.addObject("semana", semana);
+		//System.out.println("HOLA HOLA HOLA"+semana.toString());
+		model.addObject("contentPage","detalleCartilla");
+		return model;
+				
+		
+	}
 	@RequestMapping( value = "/admin/altaCartilla" ,method = RequestMethod.GET)
 	public ModelAndView altaMenu(){
 		ModelAndView model = new ModelAndView();
