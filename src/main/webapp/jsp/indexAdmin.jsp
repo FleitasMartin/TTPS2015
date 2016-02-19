@@ -82,6 +82,7 @@
         	<c:when test="${contentPage == 'detalleCartilla'}">
 				<tags:detalleCartilla/>
         	</c:when>
+ 
         	
 		</c:choose>
 					

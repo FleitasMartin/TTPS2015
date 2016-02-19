@@ -16,8 +16,7 @@
 						<table>
 							<c:forEach var="menu" items="${dia.menues}">
 								<tr>
-									<td>
-										<c:out value="${menu.nombre }" /></a>
+									<td><c:out value="${menu.nombre }" /></a>
 
 										<button type="button" class="btn btn-default dropdown-toggle"
 											data-toggle="dropdown" aria-haspopup="true"
@@ -34,8 +33,7 @@
 											<c:forEach var="carac" items="${menu.caracteristica}">
 												<li><c:out value="${carac.nombre }" /></li>
 											</c:forEach>
-										</ul>
-									</td>
+										</ul></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -46,9 +44,19 @@
 	</c:forEach>
 	<div class="col-xs-6 col-md-1"></div>
 </div>
-<a href="${pageContext.request.contextPath}/admin/editarCartilla"
-	class="btn btn-danger botondelet" role="button">Eliminar</a>
-<a href="${pageContext.request.contextPath}/admin/eliminarCartilla"
-	class="btn btn-warning" role="button">Editar</a>
+
+<form action="${pageContext.request.contextPath}/admin/editarCartilla"
+	method="POST">
+	<input type="hidden" value="${id}" name="id"> <a
+		href="${pageContext.request.contextPath}/admin/editarCartilla"
+		class="btn btn-warning botondelet" role="button">Editar</a>
+</form>
+
+<form action="${pageContext.request.contextPath}/admin/eliminarCartilla"
+	method="POST">
+	<input type="hidden" value="${id}" name="id"> <input
+		type="submit" class="btn btn-danger botondelete" value="Eliminar" />
+</form>
+
 <a href="${pageContext.request.contextPath}/admin/cartillaSemanal"
 	class="btn btn-primary" role="button">Volver</a>

@@ -57,6 +57,7 @@ public class CartillaController {
 		cartilla = cartillaDAO.get(id);
 		Semana semana = cartilla.getSemanas().get(1);
 		model.setViewName("indexAdmin");
+		model.addObject("id", id);
 		model.addObject("semana", semana);
 		//System.out.println("HOLA HOLA HOLA"+semana.toString());
 		model.addObject("contentPage","detalleCartilla");
@@ -174,5 +175,11 @@ public class CartillaController {
 		diaMenuDAO.save(diaMenu);
 		return diaMenu;
 	}
-	
+	@RequestMapping(value = "/admin/eliminarCartilla", method = RequestMethod.POST)
+	public ModelAndView eliminarCartilla(@RequestParam("id") Long id) {		
+		cartillaDAO.delete(id);
+		ModelAndView model = new ModelAndView();
+		model = listar();
+		return model;
+	}
 }
