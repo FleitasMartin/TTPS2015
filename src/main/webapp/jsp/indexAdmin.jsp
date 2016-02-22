@@ -82,6 +82,11 @@
         	<c:when test="${contentPage == 'altaResponsable'}">
 				<tags:altaResponsable />
         	</c:when>
+        	<c:when test="${contentPage == 'detalleCartilla'}">
+				<tags:detalleCartilla/>
+        	</c:when>
+ 
+        	
 		</c:choose>
 					
 		</div>

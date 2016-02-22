@@ -7,13 +7,15 @@
 			<div class='col-sm-8'>
 				<div class="form-group">
 					<div class='input-group date ' >
-						<label>Desde</label> <input type='text' id='desde' name='desde' class="form-control" value="${cartilla.fechaInicio}" /> <span
+						<label>Desde</label> <input type='text' id='desde' name='desde' class="form-control" value="<fmt:formatDate value="${cartilla.fechaInicio}" pattern="MM/dd/yyyy"/>" /> 
+						
+						<span
 							class="input-group-addon"> <span
 							class="glyphicon glyphicon-calendar"></span>
 						</span>
 					</div>
 					<div class='input-group date ' >
-						<label>Hasta</label> <input type='text' id='hasta' name='hasta' class="form-control" value="${cartilla.fechaFin}" /> <span
+						<label>Hasta</label> <input type='text' id='hasta' name='hasta' class="form-control" value="<fmt:formatDate value="${cartilla.fechaFin}" pattern="MM/dd/yyyy"/>" /> <span
 							class="input-group-addon"> <span
 							class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -60,8 +62,9 @@
 			</tbody>
 		</table>
 		<label>Precio</label>
-		<input type="number" value="" name="precio">
-		<input type="submit" value="Alta Cartilla"
+		<input type="number" value="${cartilla.precio }" name="precio">
+		<input type="hidden" value="${cartilla.id }" name="id">
+		<input type="submit" value="Modificar Cartilla"
 			class="form-control btn btn-primary">
 		
 	</form>

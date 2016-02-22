@@ -11,69 +11,71 @@
 		</tr>
 		<c:forEach var="menu" items="${menues}">
 			<tr>
-			<td><c:out value="${menu.nombre }" /></td>
+				<td><c:out value="${menu.nombre }" /></td>
 				<td>
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Detalle <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu">
-				   <li class="dropdown-header">Componentes</li>
-				  <c:forEach var="componente" items="${menu.componentes}">
-				    <li><c:out value="${componente.nombre }" /></li>
-				  </c:forEach>
-				 
-				  <li class="dropdown-header">Caracteristicas</li>
-				  <c:forEach var="carac" items="${menu.caracteristica}">
-				    <li><c:out value="${carac.nombre }" /></li>
-				  </c:forEach>
-				  </ul>
-			  </td>
-				<td><form action="${pageContext.request.contextPath}/admin/editarMenu" method="GET">
-							<input type="hidden" value="${menu.id }" name="id">
-							<input type="submit" class="btn btn-warning"
-									value="Modificar" />
-						</form>
+					<button type="button" class="btn btn-default dropdown-toggle"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Detalle <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Componentes</li>
+						<c:forEach var="componente" items="${menu.componentes}">
+							<li><c:out value="${componente.nombre }" /></li>
+						</c:forEach>
+
+						<li class="dropdown-header">Caracteristicas</li>
+						<c:forEach var="carac" items="${menu.caracteristica}">
+							<li><c:out value="${carac.nombre }" /></li>
+						</c:forEach>
+					</ul>
 				</td>
+				<td><form
+						action="${pageContext.request.contextPath}/admin/editarMenu"
+						method="GET">
+						<input type="hidden" value="${menu.id }" name="id"> <input
+							type="submit" class="btn btn-warning" value="Modificar" />
+					</form></td>
 				<td>
-				<form action="${pageContext.request.contextPath}/admin/eliminarMenu" method="POST">
-						<input type="hidden" value="${menu.id }" name="id">
-						<input type="submit" class="btn btn-danger botondelete"
-								value="Eliminar" />
-				</form>
+					<form
+						action="${pageContext.request.contextPath}/admin/eliminarMenu"
+						method="POST">
+						<input type="hidden" value="${menu.id }" name="id"> <input
+							type="submit" class="btn btn-danger botondelete" value="Eliminar" />
+					</form>
 				</td>
-<!-- 				<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
+				<!-- 				<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
 			</tr>
 		</c:forEach>
-<!-- 		<tr> -->
-<!-- 			<td>Rizzoto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
-<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
-<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<td>Pastel de Papa</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
-<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
-<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<td>Pasta</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td>Apto</td> -->
-<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
-<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
-<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
-<!-- 		</tr> -->
+		<!-- 		<tr> -->
+		<!-- 			<td>Rizzoto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
+		<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
+		<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
+		<!-- 		</tr> -->
+		<!-- 		<tr> -->
+		<!-- 			<td>Pastel de Papa</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
+		<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
+		<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
+		<!-- 		</tr> -->
+		<!-- 		<tr> -->
+		<!-- 			<td>Pasta</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td>Apto</td> -->
+		<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
+		<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
+		<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
+		<!-- 		</tr> -->
 
 
 	</table>

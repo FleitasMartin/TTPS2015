@@ -10,6 +10,7 @@
 			<tr>
 				<td>Desde</td>
 				<td>Hasta</td>
+				<td>Precio</td>
 				<td>Detalle</td>
 				<td>Modificar</td>
 				<td>Eliminar</td>
@@ -18,10 +19,9 @@
 		<tbody>
 		<c:forEach var="cartilla" items="${cartillas}">
    				<tr>
-<%-- 					<td><c:out value="${cartilla.fechaInicio }" /></td> --%>
 					<td><fmt:formatDate value="${cartilla.fechaInicio}" pattern="dd/MM/yyyy"/></td>
 					<td><fmt:formatDate value="${cartilla.fechaFin}" pattern="dd/MM/yyyy"/></td>
-<%-- 					<td><c:out value="${cartilla.fechaFin }" /></td> --%>
+					<td><c:out value="${cartilla.precio }" /></td>
 					<td>
 						<form action="${pageContext.request.contextPath}/admin/detalleCartilla" method="GET">
 							<input type="hidden" value="${cartilla.id }" name="id">
