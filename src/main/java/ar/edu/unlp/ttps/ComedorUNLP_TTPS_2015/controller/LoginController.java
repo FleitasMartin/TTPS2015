@@ -13,6 +13,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Administrador;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.SesionUtil;
 
 @Controller
 public class LoginController {
@@ -25,70 +26,49 @@ public class LoginController {
 
 	@Autowired
 	UsuarioDAO usuarioDAO;
-
-	@RequestMapping(value= "/login/admin",method = RequestMethod.POST)
-	public ModelAndView loginAdmin(@RequestParam("dni") int dni,
-			@RequestParam("contrasena") String contrasena) {
+	
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public ModelAndView loginUnico(@RequestParam("dni") int dni,
+			@RequestParam("contrasena") String contrasena){
 		
-		Administrador admin = adminDAO.login(dni, contrasena);
 		ModelAndView model = new ModelAndView();
-		if(admin!=null){
-			model.setViewName("indexAdmin");
+		if ( !SesionUtil.checkLogin() ){
+			Usuario usuario = usuarioDAO.login(dni, contrasena);
+			if( usuario != null){
+				model.setViewName("indexUsuario");
+				SesionUtil.crearSesion(usuario);
+				model.addObject("nombreUsuario", SesionUtil.getSesion().getAttribute("nombre"));
+			}else{
+				Administrador admin = adminDAO.login(dni, contrasena);
+				if (admin != null){
+					model.setViewName("indexAdmin");
+					SesionUtil.crearSesion(admin);
+					model.addObject("nombreUsuario", SesionUtil.getSesion().getAttribute("nombre"));
+				}else{
+					Responsable responsable = responsableDAO.login(dni, contrasena);
+					if (responsable != null){
+						model.setViewName("indexResponsable");
+						SesionUtil.crearSesion(responsable);
+						model.addObject("nombreUsuario", SesionUtil.getSesion().getAttribute("nombre"));
+					}else{
+						model.setViewName("index");
+						SesionUtil.destruirSesion();
+					}				
+				}
+			}		
 		}else{
 			model.setViewName("index");
-		}		
-		return model;
-	}
-	
-	@RequestMapping(value= "/login/admin",method = RequestMethod.GET)
-	public ModelAndView loginAdmin(){
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("contentPage","loginAdmin");
-		return model;
-	}
-	
-	@RequestMapping(value= "/login/responsable",method = RequestMethod.POST)
-	public ModelAndView loginResponsable(@RequestParam("dni") int dni,
-			@RequestParam("contrasena") String contrasena) {
+			SesionUtil.destruirSesion();
+		}
 		
-		Responsable responsable = responsableDAO.login(dni, contrasena);
-		ModelAndView model = new ModelAndView();
-		if(responsable!=null){
-			model.setViewName("indexResponsable");
-		}else{
-			model.setViewName("index");
-		}		
 		return model;
 	}
 	
-	@RequestMapping(value= "/login/responsable",method = RequestMethod.GET)
-	public ModelAndView loginResponsable(){
+	@RequestMapping(value= "/salir",method = RequestMethod.GET)
+	private ModelAndView salir(){
+		SesionUtil.destruirSesion();
 		ModelAndView model = new ModelAndView();
-		model.setViewName("indexResponsable");
-		model.addObject("contentPage","loginResponsable");
-		return model;
-	}
-
-	@RequestMapping(value= "/login/usuario",method = RequestMethod.POST)
-	public ModelAndView loginUsuario(@RequestParam("dni") int dni,
-			@RequestParam("contrasena") String contrasena) {
-		
-		Usuario usuario = usuarioDAO.login(dni, contrasena);
-		ModelAndView model = new ModelAndView();
-		if(usuario!=null){
-			model.setViewName("indexUsuario");
-		}else{
-			model.setViewName("index");
-		}		
-		return model;
-	}
-	
-	@RequestMapping(value= "/login/usuario",method = RequestMethod.GET)
-	public ModelAndView loginUsuario(){
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("contentPage","loginUsuario");
+		model.setViewName("index");
 		return model;
 	}
 	

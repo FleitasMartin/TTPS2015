@@ -10,54 +10,29 @@
 				</h1>
 </div>
 <div class="row">
-  <div class="col-sm-6 col-md-4">
-  	<div class="panel panel-default">
-  		<div class="panel-heading">
-    		<h3 class="panel-title">
-								<h3>Administrador General</h3>
-							</h3>
-  		</div>
-  		<div class="panel-body">
-    		
-    		<p>
-    	<a href="${pageContext.request.contextPath}/login/admin"
-									class="btn btn-primary" role="button">Ingresar</a>
-		</p>
-  		</div>
-	</div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-  	<div class="panel panel-default">
-  		<div class="panel-heading">
-    		<h3 class="panel-title">
-								<h3>Responsable de Sede</h3>
-							</h3>
-  		</div>
-  		<div class="panel-body">
-    		
-    		<p>
-								<a href="${pageContext.request.contextPath}/login/responsable"
-									class="btn btn-primary" role="button">Ingresar</a>
-							</p>
-  		</div>
-	</div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-  	<div class="panel panel-default">
-  		<div class="panel-heading">
-    		<h3 class="panel-title">
-								<h3>Usuario</h3>
-							</h3>
-  		</div>
-  		<div class="panel-body">
-    		
-    		<p>
-								<a href="${pageContext.request.contextPath}/login/usuario"
-									class="btn btn-primary" role="button">Ingresar</a>
-							</p>
-  		</div>
-	</div>
-  </div>
+<br>
+<div class="col-sm-offset-3 col-sm-8">
+	<form action="${pageContext.request.contextPath}/login"
+						method="POST" class="form-horizontal">
+		<div class="form-group">
+		<label class="col-sm-2 control-label">DNI</label> 
+		<div class="col-sm-6">
+								<input type="text" name="dni" class="form-control">
+								</div>
+		</div>
+		<div class="form-group"> <label class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-6">
+								<input type="password" name="contrasena" class="form-control">
+							</div>
+		</div>  
+		<div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-4">
+		<input type="submit" value="Ingresar"
+									class="form-control btn btn-primary ">
+							</div>
+							</div>
+	</form>
+</div>
 </div>
 </div>
 </jsp:attribute>
