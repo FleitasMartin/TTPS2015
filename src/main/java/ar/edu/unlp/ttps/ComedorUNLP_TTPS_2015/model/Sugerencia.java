@@ -17,14 +17,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name="sugerencia")
 public class Sugerencia implements Serializable{
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	protected Long id;
+	
 	@ManyToOne(optional = false)
 	private Usuario usuario;
 	
 	private String tipo;
 	private String mensaje;
+	
 	@OneToOne
 	private Sede sede = null; // así pongo que es opcional?
 	
@@ -58,12 +61,5 @@ public class Sugerencia implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	protected Boolean activo=true;
-	public Boolean getActivo() {
-		return activo;
-	}
 
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
 }

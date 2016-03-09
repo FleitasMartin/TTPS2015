@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)//JOINED)
 public abstract class Persona {
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	protected Long id;
@@ -19,7 +20,6 @@ public abstract class Persona {
 	protected String contrasena;
 	protected String apellido;
 	protected String nombre;
-	//protected int rol;
 
 	public Integer getDni() {
 		return dni;
@@ -60,11 +60,4 @@ public abstract class Persona {
 		this.nombre = nombre;
 	}
 
-/*	public int getRol() {
-		return rol;
-	}
-
-	public void setRol(int rol) {
-		this.rol = rol;
-	}*/
 }

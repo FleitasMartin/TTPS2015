@@ -8,27 +8,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="caracteristica")
+@Table(name = "caracteristica")
 public class Caracteristica {
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	protected Long id;
 
+	private String nombre;
+	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-private String nombre;
-
-public String getNombre() {
-	return nombre;
-}
-
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 }

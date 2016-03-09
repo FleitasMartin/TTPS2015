@@ -2,29 +2,28 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
 @Entity
 @Table(name="pago")
 public class Pago {
+	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	private Date fechaPago;
+	
     @ManyToOne(optional = false)//, cascade=CascadeType.ALL)   
 	private Compra compra;
+    
     @ManyToOne(optional = false) 
 	private Sede sede;
-    private Boolean activo=true;
 	
 	@ManyToOne(optional = false)
 	private Usuario usuario;
@@ -47,11 +46,6 @@ public class Pago {
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
-	
-	public Boolean getActivo() {
-		return activo;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -63,10 +57,6 @@ public class Pago {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
-	
+	}	
 
 }

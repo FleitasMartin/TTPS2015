@@ -1,6 +1,5 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -10,23 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="compra")
 public class Compra {
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
 	private Double monto;
-	@ManyToMany(cascade=CascadeType.ALL)
-	private List<SeleccionDiaMenu> selecciones;
 	private Date fechaEfectuada;
-	private Boolean activo=true;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<SeleccionDiaMenu> selecciones;	
 	
 	@ManyToOne(optional = false)
 	private Usuario usuario;
@@ -48,14 +46,6 @@ public class Compra {
 	}
 	public void setFechaEfectuada(Date fechaEfectuada) {
 		this.fechaEfectuada = fechaEfectuada;
-	}
-	
-	public Boolean getActivo() {
-		return activo;
-	}
-
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
 	}
 	public Long getId() {
 		return id;

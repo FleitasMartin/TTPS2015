@@ -18,7 +18,6 @@ public class SeleccionDiaMenu {
 	private Long id;
 	private String nombre;
 	private boolean vianda;
-	private Boolean activo=true;
 	
 	@ManyToOne(optional = false) 
 	private Menu menu;
@@ -66,14 +65,7 @@ public class SeleccionDiaMenu {
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
-	
-	public Boolean getActivo() {
-		return activo;
-	}
 
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
 	public Long getId() {
 		return id;
 	}

@@ -26,20 +26,12 @@ public class Menu {
 	private Long id;
 	
 	private String nombre;
-
 	private boolean visible;
 	private Date fechaAlta;
-	/*@ManyToOne(optional = false)
-	private DiaMenu diaMenu;*/
+	
 	@ManyToMany(fetch=FetchType.EAGER)//(cascade=CascadeType.ALL)
 	private List<Componente> componentes;
-//	@OneToMany(fetch=FetchType.EAGER)//(cascade=CascadeType.ALL)
-//	@JoinTable
-//	(
-//			name="menu_caracteristicas",
-//	joinColumns = {@JoinColumn(name="idMenu", referencedColumnName="id")},
-//	inverseJoinColumns = {@JoinColumn(name="idCaracteristica", referencedColumnName="id")}
-//	)
+
 	 @ManyToMany(fetch = FetchType.EAGER)
 	  @JoinTable(
 	      name="menu_caracteristicas",
@@ -66,36 +58,6 @@ public class Menu {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-//	public boolean isVegetariano() {
-//		return vegetariano;
-//	}
-//	public void setVegetariano(boolean vegetariano) {
-//		this.vegetariano = vegetariano;
-//	}
-//	public boolean isCeliaco() {
-//		return celiaco;
-//	}
-//	public void setCeliaco(boolean celiaco) {
-//		this.celiaco = celiaco;
-//	}
-//	public boolean isDiabetico() {
-//		return diabetico;
-//	}
-//	public void setDiabetico(boolean diabetico) {
-//		this.diabetico = diabetico;
-//	}
-//	public boolean isHipertenso() {
-//		return hipertenso;
-//	}
-//	public void setHipertenso(boolean hipertenso) {
-//		this.hipertenso = hipertenso;
-//	}
-//	public boolean isIntoLactosa() {
-//		return intoLactosa;
-//	}
-//	public void setIntoLactosa(boolean intoLactosa) {
-//		this.intoLactosa = intoLactosa;
-//	}
 	public boolean isVisible() {
 		return visible;
 	}
@@ -114,12 +76,5 @@ public class Menu {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	protected Boolean activo=true;
-	public Boolean getActivo() {
-		return activo;
-	}
 
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
 }

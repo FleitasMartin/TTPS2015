@@ -21,6 +21,19 @@ public class SesionUtil {
 
 	
 	/**
+	 * Este método chequea que el tipo de usuario de la sesion actual.
+	 * 
+	 * @param tipo es un int que se usa para consultar el tipo de usuario actual.
+	 * @return true si el atributo de sesion "tipo" se corresponde con el parametro tipo, false en caso contrario.
+	 */
+	public static boolean checkTipo(int tipo){
+		if (checkLogin() && (int)getSesion().getAttribute("tipo")==tipo ){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Este método debería ser utilizado cada vez que sea necesario validar que exista una sesion activa.
 	 * 
 	 * @return true si existe una sesion activa, false en caso contrario.

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="sede")
 public class Sede implements Serializable{
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
@@ -22,7 +23,7 @@ public class Sede implements Serializable{
 	private Double latitud;
 	private Double longitud;
 	private Integer capacidad;
-	private Boolean activo=true;
+	
 	@OneToMany(mappedBy="sede")
 	private List<Responsable> responsables;
 	
@@ -61,14 +62,6 @@ public class Sede implements Serializable{
 	}
 	public void setResponsables(List<Responsable> responsables) {
 		this.responsables = responsables;
-	}
-	
-	public Boolean getActivo() {
-		return activo;
-	}
-
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
 	}
 	public Long getId() {
 		return id;

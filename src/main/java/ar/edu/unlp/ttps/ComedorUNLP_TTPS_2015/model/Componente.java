@@ -18,10 +18,7 @@ public class Componente {
 	protected Long id;
 	
 	protected String nombre;
-
 	protected String tipo;
-	
-	//protected Boolean activo=true;
 
 	public String getNombre() {
 		return nombre;
@@ -47,11 +44,4 @@ public class Componente {
 		this.tipo = tipo;
 	}
 
-/*	public Boolean getActivo() {
-		return activo;
-	}
-
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}*/
 }

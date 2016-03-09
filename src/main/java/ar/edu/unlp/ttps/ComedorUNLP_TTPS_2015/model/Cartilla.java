@@ -23,7 +23,6 @@ public class Cartilla {
 	private Double precio;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private Boolean activo=true;
 	
 	@ManyToMany(cascade=CascadeType.ALL , fetch=FetchType.EAGER)
 	private List<Semana> semanas;
@@ -45,12 +44,6 @@ public class Cartilla {
 	}
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
-	}
-	public Boolean getActivo() {
-		return activo;
-	}
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
 	}
 	public Long getId() {
 		return id;

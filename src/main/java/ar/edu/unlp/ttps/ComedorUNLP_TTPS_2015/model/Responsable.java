@@ -20,15 +20,5 @@ public class Responsable extends Persona {
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
-
-	protected Boolean activo=true;
-	public Boolean getActivo() {
-		return activo;
-	}
-
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
-	
 	
 }

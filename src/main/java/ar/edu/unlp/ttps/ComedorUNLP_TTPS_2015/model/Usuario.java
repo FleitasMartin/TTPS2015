@@ -104,12 +104,5 @@ public class Usuario extends Persona {
 	public void setIntoLactosa(boolean intoLactosa) {
 		this.intoLactosa = intoLactosa;
 	}
-	protected Boolean activo=true;
-	public Boolean getActivo() {
-		return activo;
-	}
 
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
 }

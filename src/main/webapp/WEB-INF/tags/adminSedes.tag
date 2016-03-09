@@ -11,71 +11,19 @@
 	</thead>
 	<tbody>
 		<c:forEach var="sede" items="${sedes}">
-			<!-- <c:if test="${sede.activo }">-->
-				<tr>
-					<td><c:out value="${sede.nombre }" /></td>
-					<td><c:out value="${sede.ubicacion }" /></td>
-					<td><c:out value="${sede.capacidad }" /></td>
-					<td>
-						<form action="#" method="POST">
-							<input type="hidden" value="${sede.id }" name="id">
-							<input type="submit" class="btn btn-danger botondelete"
-								value="Eliminar" />
-						</form>
-					</td>
-					<td><a class="btn btn-warning" href="#">Editar</a></td>
-				</tr>
-			<!-- </c:if>-->
+			<tr>
+				<td><c:out value="${sede.nombre }" /></td>
+				<td><c:out value="${sede.ubicacion }" /></td>
+				<td><c:out value="${sede.capacidad }" /></td>
+				<td>
+					<form action="#" method="POST">
+						<input type="hidden" value="${sede.id }" name="id"> <input
+							type="submit" class="btn btn-danger botondelete" value="Eliminar" />
+					</form>
+				</td>
+				<td><a class="btn btn-warning" href="#">Editar</a></td>
+			</tr>
 		</c:forEach>
-		<!-- 
-		<tr>
-			<td>Club Everton</td>
-			<td>Calle 14 entre 63 y 64</td>
-			<td>2500</td>
-			<td>
-				<form action="">
-					<input type="submit" class="btn btn-danger botondelete"
-						value="Eliminar" />
-				</form>
-			</td>
-			<td><a class="btn btn-warning" href="#">Editar</a></td>
-		</tr>
-		<tr>
-			<td>Sede Bosque Oeste</td>
-			<td>Calle 50 y 116</td>
-			<td>2500</td>
-			<td>
-				<form action="">
-					<input type="submit" class="btn btn-danger botondelete"
-						value="Eliminar" />
-				</form>
-			</td>
-			<td><a class="btn btn-warning" href="#">Editar</a></td>
-		</tr>
-		<tr>
-			<td>Sede Bosque</td>
-			<td>Boulevard 120 entre 61 y 62</td>
-			<td>2500</td>
-			<td>
-				<form action="">
-					<input type="submit" class="btn btn-danger botondelete"
-						value="Eliminar" />
-				</form>
-			</td>
-			<td><a class="btn btn-warning" href="#">Editar</a></td>
-		</tr>
-		<tr>
-			<td>Sede Centro de La Plata</td>
-			<td>Calle 44 N&ordm; 733 (ATULP)</td>
-			<td>2500</td>
-			<td>
-				<form action="">
-					<input type="submit" class="btn btn-danger botondelete"
-						value="Eliminar" />
-				</form>
-			</td>
-			<td><a class="btn btn-warning" href="#">Editar</a></td>
-		</tr>  -->
 	</tbody>
 </table>
 <a href="${pageContext.request.contextPath}/admin/altaSede"
