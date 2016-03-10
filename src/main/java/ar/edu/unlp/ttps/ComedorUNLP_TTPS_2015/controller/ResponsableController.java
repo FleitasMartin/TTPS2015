@@ -34,11 +34,14 @@ public class ResponsableController {
 			@RequestParam("apellido") String apellido,
 			@RequestParam("dni") int dni,
 			@RequestParam("contrasena") String contrasena,
+			@RequestParam("telefono") Integer telefono,
+			@RequestParam("email") String email,
+			@RequestParam("domicilio") String domicilio,
 			@RequestParam("sedeId") Long sedeId){
 		
 		if ( SesionUtil.checkLogin() ){
 			if (SesionUtil.checkTipo(1)){
-				return responsableService.crear(nombre, apellido, dni, contrasena, sedeId);
+				return responsableService.crear(nombre, apellido, dni, contrasena,telefono, email, domicilio, sedeId);
 			}
 			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
 		}

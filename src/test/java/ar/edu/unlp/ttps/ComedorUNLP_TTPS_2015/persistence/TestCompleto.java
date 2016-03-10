@@ -260,12 +260,12 @@ public class TestCompleto{
 		usuario.setFacultad("Informatica");
 		usuario.setTipo("Alumno");
 		usuario.setEmail("juan@perez.com");
-		usuario.setCeliaco(false);
-		usuario.setVegetariano(false);
-		usuario.setDiabetico(false);
-		usuario.setHipertenso(false);
-		usuario.setIntoLactosa(false);
-		usuario.setDni(12345678);
+//		usuario.setCeliaco(false);
+//		usuario.setVegetariano(false);
+//		usuario.setDiabetico(false);
+//		usuario.setHipertenso(false);
+//		usuario.setIntoLactosa(false);
+//		usuario.setDni(12345678);
 		
 		
 		usuarioDAO.save(usuario);

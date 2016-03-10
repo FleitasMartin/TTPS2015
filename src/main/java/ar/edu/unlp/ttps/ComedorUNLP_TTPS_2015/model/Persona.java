@@ -20,6 +20,33 @@ public abstract class Persona {
 	protected String contrasena;
 	protected String apellido;
 	protected String nombre;
+	protected String email;
+	protected Integer telefono;
+	protected String domicilio;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Integer getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
 
 	public Integer getDni() {
 		return dni;

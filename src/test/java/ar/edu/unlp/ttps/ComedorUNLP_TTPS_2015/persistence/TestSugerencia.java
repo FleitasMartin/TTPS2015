@@ -88,11 +88,11 @@ public class TestSugerencia{
 		usuario.setFacultad("Abogado");
 		usuario.setTipo("No Docente");
 		usuario.setEmail("luis@lopez.com");
-		usuario.setCeliaco(false);
-		usuario.setVegetariano(false);
-		usuario.setDiabetico(false);
-		usuario.setHipertenso(false);
-		usuario.setIntoLactosa(false);
+//		usuario.setCeliaco(false);
+//		usuario.setVegetariano(false);
+//		usuario.setDiabetico(false);
+//		usuario.setHipertenso(false);
+//		usuario.setIntoLactosa(false);
 		usuario.setDni(17486225);
 		
 		sugerencia1 = new Sugerencia();

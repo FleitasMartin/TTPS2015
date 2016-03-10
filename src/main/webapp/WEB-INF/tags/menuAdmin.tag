@@ -16,7 +16,7 @@
 		href="${pageContext.request.contextPath}/admin/listar">Gestion
 			de administradores</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/responsable/listar">Gestion
+		href="${pageContext.request.contextPath}/admin/listarResponsables">Gestion
 			de responsables</a></li>
 	<li><a href="${pageContext.request.contextPath}/cartilla/listar">Cartilla
 			Semanal</a></li>

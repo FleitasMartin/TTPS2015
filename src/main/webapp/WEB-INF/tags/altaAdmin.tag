@@ -14,6 +14,18 @@
 				class="form-control" /><br>
 		</div>
 		<div class="form-group">
+			<label>Telefono</label> <input type="num" name="telefono"
+				class="form-control" /><br>
+		</div>
+		<div class="form-group">
+			<label>Domicilio</label> <input type="text" name="domicilio"
+				class="form-control" /><br>
+		</div>
+				<div class="form-group">
+		<label>Email</label> <input type="text" name="email"
+				class="form-control" /><br>
+		</div>
+		<div class="form-group">
 			<label>Contrase&ntilde;a</label> <input type="password" name="contrasena"
 				class="form-control" /><br>
 		</div>

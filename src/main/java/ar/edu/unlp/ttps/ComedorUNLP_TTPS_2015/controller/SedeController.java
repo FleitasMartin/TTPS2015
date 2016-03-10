@@ -77,7 +77,7 @@ public class SedeController {
 	}
 	
 	@RequestMapping(value="/editar", method = RequestMethod.POST)
-	public ModelAndView eliminar(@RequestParam("id") Long id,
+	public ModelAndView editar(@RequestParam("id") Long id,
 			@RequestParam("nombre") String nombre,
 			@RequestParam("capacidad") int capacidad,
 			@RequestParam("ubicacion") String ubicacion){

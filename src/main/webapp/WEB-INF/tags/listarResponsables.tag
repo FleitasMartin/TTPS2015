@@ -7,16 +7,37 @@
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>Sede</th>
+			<th>Email</th>
+			<th>Telefono</th>
+			<th>Domicilio</th>
+			<th>Modificar</th>
+			<th>Eliminar</th>
 		</tr>
 	</thead>
 	<tbody>
 
-		<c:forEach var="responsable" items="${resps}">
+		<c:forEach var="responsable" items="${responsables}">
 			<tr>
 				<td><c:out value="${responsable.dni }" /></td>
 				<td><c:out value="${responsable.nombre }" /></td>
 				<td><c:out value="${responsable.apellido }" /></td>
 				<td><c:out value="${responsable.sede.nombre }" /></td>
+				<td><c:out value="${responsable.email }" /></td>
+				<td><c:out value="${responsable.telefono }" /></td>
+				<td><c:out value="${responsable.domicilio }" /></td>
+				<td><form
+					action="${pageContext.request.contextPath}/admin/editarResponsable"
+					method="GET">
+					<input type="hidden" value="${responsable.id }" name="id"> <input
+					type="submit" class="btn btn-warning" value="Modificar" />
+					</form></td>
+				<td>
+								<td>
+				<form action="${pageContext.request.contextPath}/admin/eliminarResponsable" method="POST">
+						<input type="hidden" value="${responsable.id }" name="id"> <input
+							type="submit" class="btn btn-danger botondelete" value="Eliminar" />
+					</form>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

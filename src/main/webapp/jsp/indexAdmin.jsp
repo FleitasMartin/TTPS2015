@@ -37,6 +37,12 @@
         	<c:when test="${contentPage == 'editarMenu'}">
 				<tags:editarMenu />
         	</c:when>
+        	<c:when test="${contentPage == 'editarAdmin'}">
+				<tags:editarAdmin />
+        	</c:when>
+        	<c:when test="${contentPage == 'editarResponsable'}">
+				<tags:editarResponsable />
+        	</c:when>
         	<c:when test="${contentPage == 'editarComponente'}">
 				<tags:editarComponente />
         	</c:when>

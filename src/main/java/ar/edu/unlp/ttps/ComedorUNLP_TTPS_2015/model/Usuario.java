@@ -4,6 +4,10 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 import javax.persistence.Table;
@@ -15,13 +19,19 @@ public class Usuario extends Persona {
 
 	private String facultad;
 	private String tipo;
-	private String email;
+//	private String email;
 	private String pathFoto; //estará bien guardar el path de la imagen?
-	private boolean vegetariano;
-	private boolean celiaco;
-	private boolean diabetico;
-	private boolean hipertenso;
-	private boolean intoLactosa;
+//	private boolean vegetariano;
+//	private boolean celiaco;
+//	private boolean diabetico;
+//	private boolean hipertenso;
+//	private boolean intoLactosa;
+	 @ManyToMany(fetch = FetchType.EAGER)
+	  @JoinTable(
+	      name="usuario_caracteristicas",
+	      joinColumns=@JoinColumn(name="idUsuario", referencedColumnName="id"),
+	      inverseJoinColumns=@JoinColumn(name="idCaracteristicas", referencedColumnName="id"))
+	private List<Caracteristica> caracteristica;
 	
 	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
 	private List<Compra> compras;
@@ -62,47 +72,53 @@ public class Usuario extends Persona {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+//	public String getEmail() {
+//		return email;
+//	}
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
 	public String getPathFoto() {
 		return pathFoto;
 	}
 	public void setPathFoto(String pathFoto) {
 		this.pathFoto = pathFoto;
 	}
-	public boolean isVegetariano() {
-		return vegetariano;
+//	public boolean isVegetariano() {
+//		return vegetariano;
+//	}
+//	public void setVegetariano(boolean vegetariano) {
+//		this.vegetariano = vegetariano;
+//	}
+//	public boolean isCeliaco() {
+//		return celiaco;
+//	}
+//	public void setCeliaco(boolean celiaco) {
+//		this.celiaco = celiaco;
+//	}
+//	public boolean isDiabetico() {
+//		return diabetico;
+//	}
+//	public void setDiabetico(boolean diabetico) {
+//		this.diabetico = diabetico;
+//	}
+//	public boolean isHipertenso() {
+//		return hipertenso;
+//	}
+//	public void setHipertenso(boolean hipertenso) {
+//		this.hipertenso = hipertenso;
+//	}
+//	public boolean isIntoLactosa() {
+//		return intoLactosa;
+//	}
+//	public void setIntoLactosa(boolean intoLactosa) {
+//		this.intoLactosa = intoLactosa;
+//	}
+	public List<Caracteristica> getCaracteristica() {
+		return caracteristica;
 	}
-	public void setVegetariano(boolean vegetariano) {
-		this.vegetariano = vegetariano;
-	}
-	public boolean isCeliaco() {
-		return celiaco;
-	}
-	public void setCeliaco(boolean celiaco) {
-		this.celiaco = celiaco;
-	}
-	public boolean isDiabetico() {
-		return diabetico;
-	}
-	public void setDiabetico(boolean diabetico) {
-		this.diabetico = diabetico;
-	}
-	public boolean isHipertenso() {
-		return hipertenso;
-	}
-	public void setHipertenso(boolean hipertenso) {
-		this.hipertenso = hipertenso;
-	}
-	public boolean isIntoLactosa() {
-		return intoLactosa;
-	}
-	public void setIntoLactosa(boolean intoLactosa) {
-		this.intoLactosa = intoLactosa;
+	public void setCaracteristica(List<Caracteristica> caracteristica) {
+		this.caracteristica = caracteristica;
 	}
 
 }
