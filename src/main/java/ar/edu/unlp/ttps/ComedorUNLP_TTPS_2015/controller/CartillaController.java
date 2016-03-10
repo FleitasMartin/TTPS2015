@@ -14,6 +14,8 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.DiaMenuDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.MenuDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SemanaDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service.CartillaService;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.ErrorHelper;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.SesionUtil;
 
 @RestController(value="cartillaController")
 @RequestMapping(value="/cartilla")
@@ -36,13 +38,24 @@ public class CartillaController {
 
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public ModelAndView listar() {
-		return cartillaService.listar();
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return cartillaService.listar();
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
 	}
 
 	@RequestMapping(value = "/editar", method = RequestMethod.GET)
 	public ModelAndView editar(@RequestParam(value = "id") Long id) {
-		
-		return cartillaService.editar(id);
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return cartillaService.editar(id);
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
 	}
 	
 	@RequestMapping(value = "/editar", method = RequestMethod.POST)
@@ -56,19 +69,36 @@ public class CartillaController {
 			@RequestParam(value = "viernes") Long[] viernesMenues,
 			@RequestParam(value = "precio") Double precio) throws ParseException {
 		
-		return cartillaService.editar(id, fechaDesde, fechaHasta, lunesMenues, martesMenues, 
-				miercolesMenues, juevesMenues, viernesMenues, precio);
-		
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return cartillaService.editar(id, fechaDesde, fechaHasta, lunesMenues, martesMenues, 
+						miercolesMenues, juevesMenues, viernesMenues, precio);
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
 	}
 
 	@RequestMapping(value = "/detalle", method = RequestMethod.GET)
 	public ModelAndView detalle(@RequestParam("id") Long id) {
-		return cartillaService.detalle(id);
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return cartillaService.detalle(id);
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
 	}
 
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public ModelAndView crear() {
-		return cartillaService.crear();
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return cartillaService.crear();
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
 	}
 
 	@RequestMapping(value = "/crear", method = RequestMethod.POST)
@@ -83,12 +113,26 @@ public class CartillaController {
 			@RequestParam(value = "precio") Double precio)
 			throws ParseException {
 
-		return cartillaService.crear(fechaDesde, fechaHasta, lunesMenues, martesMenues, miercolesMenues, juevesMenues, viernesMenues, precio);
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return cartillaService.crear(fechaDesde, fechaHasta, lunesMenues, martesMenues, 
+						miercolesMenues, juevesMenues, viernesMenues, precio);
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
 	}
 	
 	@RequestMapping(value = "/eliminar", method = RequestMethod.POST)
 	public ModelAndView eliminar(@RequestParam("id") Long id) {
-		return cartillaService.eliminar(id);
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return cartillaService.eliminar(id);
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");
+	
 	}
 	
 }

@@ -52,12 +52,14 @@ public class LoginController {
 						model.addObject("nombreUsuario", SesionUtil.getSesion().getAttribute("nombre"));
 					}else{
 						model.setViewName("index");
+						model.addObject("error", "Contraseña erronea o no existe usuario con DNI "+dni);
 						SesionUtil.destruirSesion();
 					}				
 				}
 			}		
 		}else{
 			model.setViewName("index");
+			model.addObject("error", "Ya existe una sesión activa para esta máquina.");
 			SesionUtil.destruirSesion();
 		}
 		
@@ -69,6 +71,7 @@ public class LoginController {
 		SesionUtil.destruirSesion();
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
+		model.addObject("mensaje", "Sesión cerrada.");
 		return model;
 	}
 	
