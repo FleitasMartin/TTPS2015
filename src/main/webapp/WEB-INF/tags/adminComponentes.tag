@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ tag language="java" pageEncoding="UTF-8"%>
 
-<a href="${pageContext.request.contextPath}/admin/altaComponente"
+<a href="${pageContext.request.contextPath}/componente/crear"
 	class="btn btn-primary" role="button">Alta Componente</a>
 <div>
 	<h3>Bebidas</h3>
@@ -19,14 +19,14 @@
    				<tr>
 					<td><c:out value="${componente.nombre }" /></td>
 					<td>
-						<form action="${pageContext.request.contextPath}/admin/editarComponente" method="GET">
+						<form action="${pageContext.request.contextPath}/componente/editar" method="GET">
 							<input type="hidden" value="${componente.id }" name="id">
 							<input type="submit" class="btn btn-warning"
 									value="Modificar" />
 						</form>
 					</td>
 					<td>
-					<form action="${pageContext.request.contextPath}/admin/eliminarComponente" method="POST">
+					<form action="${pageContext.request.contextPath}/componente/eliminar" method="POST">
 						<input type="hidden" value="${componente.id }" name="id">
 						<input type="submit" class="btn btn-danger botondelete"
 								value="Eliminar" />
@@ -52,14 +52,14 @@
    				<tr>
 					<td><c:out value="${componente.nombre }" /></td>
 					<td>
-						<form action="${pageContext.request.contextPath}/admin/editarComponente" method="GET">
+						<form action="${pageContext.request.contextPath}/componente/editar" method="GET">
 							<input type="hidden" value="${componente.id }" name="id">
 							<input type="submit" class="btn btn-warning"
 									value="Modificar" />
 						</form>
 					</td>
 					<td>
-					<form action="${pageContext.request.contextPath}/admin/eliminarComponente" method="POST">
+					<form action="${pageContext.request.contextPath}/componente/eliminar" method="POST">
 						<input type="hidden" value="${componente.id }" name="id">
 						<input type="submit" class="btn btn-danger botondelete"
 								value="Eliminar" />
@@ -85,14 +85,14 @@
    				<tr>
 					<td><c:out value="${componente.nombre }" /></td>
 					<td>
-						<form action="${pageContext.request.contextPath}/admin/editarComponente" method="GET">
+						<form action="${pageContext.request.contextPath}/componente/editar" method="GET">
 							<input type="hidden" value="${componente.id }" name="id">
 							<input type="submit" class="btn btn-warning"
 									value="Modificar" />
 						</form>
 					</td>
 					<td>
-					<form action="${pageContext.request.contextPath}/admin/eliminarComponente" method="POST">
+					<form action="${pageContext.request.contextPath}/componente/eliminar" method="POST">
 						<input type="hidden" value="${componente.id }" name="id">
 						<input type="submit" class="btn btn-danger botondelete"
 								value="Eliminar" />
@@ -118,14 +118,14 @@
    				<tr>
 					<td><c:out value="${componente.nombre }" /></td>
 					<td>
-						<form action="${pageContext.request.contextPath}/admin/editarComponente" method="GET">
+						<form action="${pageContext.request.contextPath}/componente/editar" method="GET">
 							<input type="hidden" value="${componente.id }" name="id">
 							<input type="submit" class="btn btn-warning"
 									value="Modificar" />
 						</form>
 					</td>
 					<td>
-					<form action="${pageContext.request.contextPath}/admin/eliminarComponente" method="POST">
+					<form action="${pageContext.request.contextPath}/componente/eliminar" method="POST">
 						<input type="hidden" value="${componente.id }" name="id">
 						<input type="submit" class="btn btn-danger botondelete"
 								value="Eliminar" />

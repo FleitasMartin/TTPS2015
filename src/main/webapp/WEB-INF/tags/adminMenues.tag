@@ -30,56 +30,24 @@
 					</ul>
 				</td>
 				<td><form
-						action="${pageContext.request.contextPath}/admin/editarMenu"
+						action="${pageContext.request.contextPath}/menu/editar"
 						method="GET">
 						<input type="hidden" value="${menu.id }" name="id"> <input
 							type="submit" class="btn btn-warning" value="Modificar" />
 					</form></td>
 				<td>
 					<form
-						action="${pageContext.request.contextPath}/admin/eliminarMenu"
+						action="${pageContext.request.contextPath}/menu/eliminar"
 						method="POST">
 						<input type="hidden" value="${menu.id }" name="id"> <input
 							type="submit" class="btn btn-danger botondelete" value="Eliminar" />
 					</form>
 				</td>
-				<!-- 				<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
 			</tr>
 		</c:forEach>
-		<!-- 		<tr> -->
-		<!-- 			<td>Rizzoto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
-		<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
-		<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
-		<!-- 		</tr> -->
-		<!-- 		<tr> -->
-		<!-- 			<td>Pastel de Papa</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
-		<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
-		<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
-		<!-- 		</tr> -->
-		<!-- 		<tr> -->
-		<!-- 			<td>Pasta</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td>Apto</td> -->
-		<!-- 			<td><a class="btn btn-warning" href="#">Detalle</a></td> -->
-		<!-- 			<td><a class="btn btn-warning" href="#">Modificar</a></td> -->
-		<!-- 			<td><a class="btn btn-danger botondelete" href="#">Eliminar</a></td> -->
-		<!-- 		</tr> -->
-
-
+		
 	</table>
 
-	<a href="${pageContext.request.contextPath}/admin/altaMenu"
+	<a href="${pageContext.request.contextPath}/menu/crear"
 		class="btn btn-primary" role="button">Alta Menu</a>
 </div>

@@ -15,6 +15,8 @@
 	<context:annotation-config />
 	<context:component-scan
 		base-package="ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.impl" />
+	<context:component-scan
+		base-package="ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service" />
 
 	<!-- DataSource -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"

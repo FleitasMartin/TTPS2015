@@ -45,17 +45,17 @@
 	<div class="col-xs-6 col-md-1"></div>
 </div>
 
-<form action="${pageContext.request.contextPath}/admin/editarCartilla"
+<form action="${pageContext.request.contextPath}/cartilla/editar"
 	method="GET">
 	<input type="hidden" value="${id}" name="id"> <input
 		type="submit" class="btn btn-warning" value="Modificar" />
 </form>
 
-<form action="${pageContext.request.contextPath}/admin/eliminarCartilla"
+<form action="${pageContext.request.contextPath}/cartilla/eliminar"
 	method="POST">
 	<input type="hidden" value="${id}" name="id"> <input
 		type="submit" class="btn btn-danger botondelete" value="Eliminar" />
 </form>
 
-<a href="${pageContext.request.contextPath}/admin/cartillaSemanal"
+<a href="${pageContext.request.contextPath}/cartilla/listar"
 	class="btn btn-primary" role="button">Volver</a>

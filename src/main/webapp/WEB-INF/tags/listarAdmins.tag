@@ -19,5 +19,5 @@
 		</c:forEach>
 	</tbody>
 </table>
-<a href="${pageContext.request.contextPath}/admin/altaAdmin"
+<a href="${pageContext.request.contextPath}/admin/crear"
 	class="btn btn-primary" role="button">Alta Administrador</a>

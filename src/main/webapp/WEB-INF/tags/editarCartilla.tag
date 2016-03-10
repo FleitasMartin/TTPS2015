@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <div>
-	<form method="POST" action="${pageContext.request.contextPath}/admin/editarCartilla" >
+	<form method="POST" action="${pageContext.request.contextPath}/cartilla/editar" >
 		<div class="row">
 			<div class='col-sm-8'>
 				<div class="form-group">

@@ -23,21 +23,21 @@
 					<td><fmt:formatDate value="${cartilla.fechaFin}" pattern="dd/MM/yyyy"/></td>
 					<td><c:out value="${cartilla.precio }" /></td>
 					<td>
-						<form action="${pageContext.request.contextPath}/admin/detalleCartilla" method="GET">
+						<form action="${pageContext.request.contextPath}/cartilla/detalle" method="GET">
 							<input type="hidden" value="${cartilla.id }" name="id">
 							<input type="submit" class="btn btn-warning"
 									value="Detalle" />
 						</form>
 					</td>
 					<td>
-						<form action="${pageContext.request.contextPath}/admin/editarCartilla" method="GET">
+						<form action="${pageContext.request.contextPath}/cartilla/editar" method="GET">
 							<input type="hidden" value="${cartilla.id }" name="id">
 							<input type="submit" class="btn btn-warning"
 									value="Modificar" />
 						</form>
 					</td>
 					<td>
-					<form action="${pageContext.request.contextPath}/admin/eliminarCartilla" method="POST">
+					<form action="${pageContext.request.contextPath}/cartilla/eliminar" method="POST">
 						<input type="hidden" value="${cartilla.id }" name="id">
 						<input type="submit" class="btn btn-danger botondelete"
 								value="Eliminar" />

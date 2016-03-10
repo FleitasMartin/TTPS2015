@@ -2,7 +2,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <div class="form">
 	<form method="POST"
-		action="${pageContext.request.contextPath}/admin/altaResponsable">
+		action="${pageContext.request.contextPath}/responsable/crear">
 		<div class="form-group">
 			<label>Nombre</label> <input type="text" name="nombre"
 				class="form-control" /><br>

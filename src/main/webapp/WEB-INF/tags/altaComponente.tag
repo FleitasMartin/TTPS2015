@@ -1,6 +1,6 @@
 <%@ tag%>
 <div class="form">
-	<form method="POST" action="${pageContext.request.contextPath}/admin/altaComponente">
+	<form method="POST" action="${pageContext.request.contextPath}/componente/crear">
 		<label>Tipo</label> <select class="form-control" name="tipo">
 			<option value="bebida">Bebida</option>
 			<option value="entrada">Entrada</option>

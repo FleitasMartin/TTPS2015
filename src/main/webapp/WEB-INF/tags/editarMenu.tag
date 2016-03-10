@@ -2,7 +2,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <div class="form">
 	<form method="POST"
-		action="${pageContext.request.contextPath}/admin/editarMenu">
+		action="${pageContext.request.contextPath}/menu/editar">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Nombre</label> <input type="text"
 				class="form-control" id="nombreMenu" name="nombre"
