@@ -34,8 +34,8 @@
         	<c:when test="${contentPage == 'usersList'}">
 				<tags:usersList />
         	</c:when>
-        	        	<c:when test="${contentPage == 'buzonVirtual'}">
-				<tags:buzonVirtual />
+        	<c:when test="${contentPage == 'buzonVirtualDeSede'}">
+				<tags:buzonVirtualDeSede />
         	</c:when>
         	    
         	<c:when test="${contentPage == 'pagosTickets'}">

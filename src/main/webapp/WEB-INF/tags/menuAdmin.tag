@@ -8,7 +8,7 @@
 	<li><a href="${pageContext.request.contextPath}/menu/listar">Administraci&oacute;n
 			de Men&uacute;es</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/admin/buzonVirtual">Buzon
+		href="${pageContext.request.contextPath}/sugerencia/buzonVirtual">Buzon
 			virtual</a></li>
 	<li><a
 		href="${pageContext.request.contextPath}/admin/estadisticasMenues">Estad&iacute;sticas</a></li>

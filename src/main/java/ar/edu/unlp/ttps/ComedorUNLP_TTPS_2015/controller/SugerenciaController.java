@@ -41,5 +41,27 @@ public class SugerenciaController {
 		}
 		return ErrorHelper.generarErrorIndex("No hay sesión activa.");			
 	}
+	
+	@RequestMapping(value = "/buzonVirtual", method = RequestMethod.GET)
+	public ModelAndView buzonVirtual() {		
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return sugerenciaService.buzonVirtual();
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");			
+	}
+	
+	@RequestMapping(value = "/buzonVirtualDeSede", method = RequestMethod.GET)
+	public ModelAndView buzonVirtualDeSede() {		
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(2)){
+				return sugerenciaService.buzonVirtualDeSede();
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");			
+	}
 
 }

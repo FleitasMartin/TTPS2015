@@ -11,7 +11,7 @@
 		href="${pageContext.request.contextPath}/responsable/registroTickets">Registro
 			tickets</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/responsable/buzonVirtual">Buzon
+		href="${pageContext.request.contextPath}/sugerencia/buzonVirtualDeSede">Buzon
 			virtual</a></li>
 </ul>
 <script>
