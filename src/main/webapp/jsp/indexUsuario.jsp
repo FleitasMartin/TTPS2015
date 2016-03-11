@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="page-header well row">
 			<div class="col-md-10 col-xs-13">
-			<h1>Bienvenido <small><c:out value="${nombreUsuario }"></c:out></small>
+			<h1>Bienvenido <small><c:out value="${nombreUsuario}"></c:out></small>
 				</h1>
 			</div>
 			<div class="col-md-2 col-xs-5">

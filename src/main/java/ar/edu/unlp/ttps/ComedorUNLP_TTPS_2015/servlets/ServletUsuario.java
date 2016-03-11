@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServletUsuario
  */
-@WebServlet(urlPatterns = {"/user", "/user/home", "/user/perfil", "/user/tickets", "/user/login", "/user/comentarios", 
+@WebServlet(urlPatterns = {"/user", "/user/home", "/user/tickets", "/user/login", "/user/comentarios", 
 		"/user/saldo", "/user/mapa"  })
 public class ServletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,9 +39,6 @@ public class ServletUsuario extends HttpServlet {
 			break;
 		case "tickets":
 			contentPage = "userTicket";
-			break;
-		case "perfil":
-			contentPage = "userPerfil";
 			break;
 		case "login":
 			contentPage = "userLogin";

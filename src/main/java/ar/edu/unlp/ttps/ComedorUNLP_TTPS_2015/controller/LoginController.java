@@ -38,6 +38,7 @@ public class LoginController {
 				model.setViewName("indexUsuario");
 				SesionUtil.crearSesion(usuario);
 				model.addObject("nombreUsuario", SesionUtil.getSesion().getAttribute("nombre"));
+				
 			}else{
 				Administrador admin = adminDAO.login(dni, contrasena);
 				if (admin != null){
