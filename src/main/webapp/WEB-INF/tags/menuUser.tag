@@ -4,7 +4,7 @@
 	<li><a href="${pageContext.request.contextPath}/user/perfil">Perfil</a></li>
 	<li><a href="${pageContext.request.contextPath}/user/tickets">Compra
 			de tickets</a></li>
-	<li><a href="${pageContext.request.contextPath}/user/comentarios">Comentar
+	<li><a href="${pageContext.request.contextPath}/sugerencia/comentar">Comentar
 			y sugerir</a></li>
 	<li><a href="${pageContext.request.contextPath}/user/saldo">Saldo</a></li>
 	<li><a href="${pageContext.request.contextPath}/user/mapa">Ubicacion

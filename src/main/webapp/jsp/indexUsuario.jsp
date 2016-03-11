@@ -42,8 +42,8 @@
         	<c:when test="${contentPage == 'loginUsuario'}">
 				<tags:loginUsuario />
         	</c:when>        	
-        	<c:when test="${contentPage == 'userComentarios'}">
-				<tags:userComentarios />
+        	<c:when test="${contentPage == 'comentar'}">
+				<tags:comentar />
         	</c:when>  
         	<c:when test="${contentPage == 'saldo'}">
 				<tags:saldo />
