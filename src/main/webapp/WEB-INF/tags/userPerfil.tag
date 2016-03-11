@@ -31,23 +31,23 @@
 <table class="table">
 
 	<thead>
+		<c:forEach var="caracteristica" items="${usuario.caracteristica}">
 		<tr>
-			<th>Vegetariano</th>
-			<th>Celiaco</th>
-			<th>Diab&eacute;tco</th>
-			<th>Hipertenso</th>
-			<th>Intolerante a la lactosa</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
+		
+			<th><c:out value="${caracteristica.nombre }" /></th>
 			<td><span class="glyphicon glyphicon-ok"></span></td>
-			<td><span class="glyphicon glyphicon-remove"></span></td>
-			<td><span class="glyphicon glyphicon-remove"></span></td>
-			<td><span class="glyphicon glyphicon-remove"></span></td>
-			<td><span class="glyphicon glyphicon-remove"></span></td>
+
 		</tr>
-	</tbody>
+		</c:forEach>
+	</thead>
+<!-- 	<tbody> -->
+<%--  	<c:forEach var="caracteristica" items="${usuario.caracteristica}">  --%>
+<!--  		<tr> -->
+<!--  			<td><span class="glyphicon glyphicon-ok"></span></td> --> 
+<!--  			<td><span class="glyphicon glyphicon-remove"></span></td>  -->
+<!-- 		</tr> -->
+<%--  	</c:forEach> --%> 
+<!-- 	</tbody> -->
 </table>
-<a href="#" class="btn btn-primary" role="button">Modificar
+<a href="${pageContext.request.contextPath}/user/editarPreferencias" class="btn btn-primary" role="button">Modificar
 	preferencias</a>

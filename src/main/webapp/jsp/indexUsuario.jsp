@@ -33,6 +33,9 @@
         	<c:when test="${contentPage == 'userTicket'}">
 				<tags:userTicket />
         	</c:when>
+         	<c:when test="${contentPage == 'editarPreferencias'}">
+				<tags:editarPreferencias />
+        	</c:when> 
         	<c:when test="${contentPage == 'userPerfil'}">
 				<tags:userPerfil />
         	</c:when>
