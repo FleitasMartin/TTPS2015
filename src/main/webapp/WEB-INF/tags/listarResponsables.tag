@@ -26,14 +26,14 @@
 				<td><c:out value="${responsable.telefono }" /></td>
 				<td><c:out value="${responsable.domicilio }" /></td>
 				<td><form
-					action="${pageContext.request.contextPath}/admin/editarResponsable"
+					action="${pageContext.request.contextPath}/responsable/editarResponsable"
 					method="GET">
 					<input type="hidden" value="${responsable.id }" name="id"> <input
 					type="submit" class="btn btn-warning" value="Modificar" />
 					</form></td>
 				<td>
 								<td>
-				<form action="${pageContext.request.contextPath}/admin/eliminarResponsable" method="POST">
+				<form action="${pageContext.request.contextPath}/responsable/eliminarResponsable" method="POST">
 						<input type="hidden" value="${responsable.id }" name="id"> <input
 							type="submit" class="btn btn-danger botondelete" value="Eliminar" />
 					</form>
