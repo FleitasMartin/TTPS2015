@@ -18,7 +18,7 @@
 	<li><a
 		href="${pageContext.request.contextPath}/responsable/listarResponsables">Gestion
 			de responsables</a></li>
-	<li><a href="${pageContext.request.contextPath}/cartilla/listar">Cartilla
+	<li><a href="${pageContext.request.contextPath}/cartilla/crear">Cartilla
 			Semanal</a></li>
 </ul>
 <script>
