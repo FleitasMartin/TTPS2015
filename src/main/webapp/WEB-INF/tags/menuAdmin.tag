@@ -1,6 +1,6 @@
 <%@ tag%>
 <%@ attribute name="id" fragment="true"%>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked" style="color:red;">
 	<li><a href="${pageContext.request.contextPath}/sede/listar">Gestion
 			de sedes</a></li>
 	<li><a href="${pageContext.request.contextPath}/componente/listar">Administraci&oacute;n

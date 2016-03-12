@@ -1114,7 +1114,7 @@ input, button, select, textarea {
 }
 
 a {
-	color: #428bca;
+	color: #B74934;
 	text-decoration: none;
 }
 
@@ -1316,7 +1316,7 @@ mark, .mark {
 }
 
 .text-primary {
-	color: #428bca;
+	color: #B74934;
 }
 
 a.text-primary:hover {
@@ -1357,7 +1357,7 @@ a.text-danger:hover {
 
 .bg-primary {
 	color: #fff;
-	background-color: #428bca;
+	background-color: #B74934;
 }
 
 a.bg-primary:hover {
@@ -3104,7 +3104,7 @@ textarea.input-lg, textarea.form-group-lg .form-control, select[multiple].input-
 
 .btn-primary {
 	color: #fff;
-	background-color: #428bca;
+	background-color: #B74934;
 	border-color: #357ebd;
 }
 
