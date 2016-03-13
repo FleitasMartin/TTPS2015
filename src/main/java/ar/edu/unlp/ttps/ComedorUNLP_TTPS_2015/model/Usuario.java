@@ -46,6 +46,12 @@ public class Usuario extends Persona {
 	@ManyToOne(optional = false) 
 	private Sede sede;
 	
+	public Sede getSede() {
+		return sede;
+	}
+	public void setSede(Sede sede) {
+		this.sede = sede;
+	}
 	public List<Compra> getCompras() {
 		return compras;
 	}

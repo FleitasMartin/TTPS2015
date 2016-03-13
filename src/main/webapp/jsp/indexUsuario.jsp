@@ -31,14 +31,14 @@
         	<c:when test="${contentPage == 'adminUsers'}">
 				<tags:adminUsers />
         	</c:when>
-        	<c:when test="${contentPage == 'userTicket'}">
-				<tags:userTicket />
-        	</c:when>
          	<c:when test="${contentPage == 'editarPreferencias'}">
 				<tags:editarPreferencias />
         	</c:when> 
         	<c:when test="${contentPage == 'userPerfil'}">
 				<tags:userPerfil />
+        	</c:when>
+        	<c:when test="${contentPage == 'compraDeTickets'}">
+				<tags:compraDeTickets />
         	</c:when>
         	<c:when test="${contentPage == 'loginUsuario'}">
 				<tags:loginUsuario />

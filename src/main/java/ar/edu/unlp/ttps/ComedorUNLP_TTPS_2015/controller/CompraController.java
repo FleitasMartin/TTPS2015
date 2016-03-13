@@ -1,5 +1,7 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +21,7 @@ public class CompraController {
 	CompraService compraService;
 	
 	@RequestMapping(value = "/compraDeTickets", method = RequestMethod.GET)
-	public ModelAndView compraDeTickets() {		
+	public ModelAndView compraDeTickets() throws ParseException {		
 		if ( SesionUtil.checkLogin() ){
 			if (SesionUtil.checkTipo(3)){
 				return compraService.compraDeTickets();
