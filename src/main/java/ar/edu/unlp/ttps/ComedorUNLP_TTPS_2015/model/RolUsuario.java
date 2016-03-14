@@ -18,12 +18,6 @@ public class RolUsuario {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer rolUsuarioId;
 	
-	//@ManyToOne(fetch = FetchType.LAZY)
-	/*@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "persona", nullable = false)
-	@OneToMany(fetch = FetchType.LAZY)
-	private Persona persona;
-	*/
 	@OneToMany(mappedBy = "rol")
 	private List<Persona> personas;
 	

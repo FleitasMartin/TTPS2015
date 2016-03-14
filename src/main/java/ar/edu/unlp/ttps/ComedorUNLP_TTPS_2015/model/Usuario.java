@@ -10,123 +10,91 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
 import javax.persistence.Table;
 
-
-@Entity 
-@Table(name="usuario")
+@Entity
+@Table(name = "usuario")
 public class Usuario extends Persona {
 
 	private String facultad;
 	private String tipo;
-//	private String email;
-	private String pathFoto; //estará bien guardar el path de la imagen?
-//	private boolean vegetariano;
-//	private boolean celiaco;
-//	private boolean diabetico;
-//	private boolean hipertenso;
-//	private boolean intoLactosa;
-	 @ManyToMany(fetch = FetchType.EAGER)
-	  @JoinTable(
-	      name="usuario_caracteristicas",
-	      joinColumns=@JoinColumn(name="idUsuario", referencedColumnName="id"),
-	      inverseJoinColumns=@JoinColumn(name="idCaracteristicas", referencedColumnName="id"))
+	private String pathFoto;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "usuario_caracteristicas", joinColumns = @JoinColumn(name = "idUsuario", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idCaracteristicas", referencedColumnName = "id"))
 	private List<Caracteristica> caracteristica;
-	
-	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "usuario")
 	private List<Compra> compras;
-	
-	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "usuario")
 	private List<Pago> pagos;
-	
-	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "usuario")
 	private List<Sugerencia> sugerencias;
-	
-	@ManyToOne(optional = false) 
+
+	@ManyToOne(optional = false)
 	private Sede sede;
-	
+
 	public Sede getSede() {
 		return sede;
 	}
+
 	public void setSede(Sede sede) {
 		this.sede = sede;
 	}
+
 	public List<Compra> getCompras() {
 		return compras;
 	}
+
 	public void setCompras(List<Compra> compras) {
 		this.compras = compras;
 	}
+
 	public Collection<Pago> getPagos() {
 		return pagos;
 	}
+
 	public void setPagos(List<Pago> pagos) {
 		this.pagos = pagos;
 	}
+
 	public List<Sugerencia> getSugerencias() {
 		return sugerencias;
 	}
+
 	public void setSugerencias(List<Sugerencia> sugerencias) {
 		this.sugerencias = sugerencias;
 	}
+
 	public String getFacultad() {
 		return facultad;
 	}
+
 	public void setFacultad(String facultad) {
 		this.facultad = facultad;
 	}
+
 	public String getTipo() {
 		return tipo;
 	}
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-//	public String getEmail() {
-//		return email;
-//	}
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
+
 	public String getPathFoto() {
 		return pathFoto;
 	}
+
 	public void setPathFoto(String pathFoto) {
 		this.pathFoto = pathFoto;
 	}
-//	public boolean isVegetariano() {
-//		return vegetariano;
-//	}
-//	public void setVegetariano(boolean vegetariano) {
-//		this.vegetariano = vegetariano;
-//	}
-//	public boolean isCeliaco() {
-//		return celiaco;
-//	}
-//	public void setCeliaco(boolean celiaco) {
-//		this.celiaco = celiaco;
-//	}
-//	public boolean isDiabetico() {
-//		return diabetico;
-//	}
-//	public void setDiabetico(boolean diabetico) {
-//		this.diabetico = diabetico;
-//	}
-//	public boolean isHipertenso() {
-//		return hipertenso;
-//	}
-//	public void setHipertenso(boolean hipertenso) {
-//		this.hipertenso = hipertenso;
-//	}
-//	public boolean isIntoLactosa() {
-//		return intoLactosa;
-//	}
-//	public void setIntoLactosa(boolean intoLactosa) {
-//		this.intoLactosa = intoLactosa;
-//	}
+
 	public List<Caracteristica> getCaracteristica() {
 		return caracteristica;
 	}
+
 	public void setCaracteristica(List<Caracteristica> caracteristica) {
 		this.caracteristica = caracteristica;
 	}

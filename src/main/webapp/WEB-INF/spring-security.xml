@@ -6,22 +6,36 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
 
-	<http auto-config="true" use-expressions="false"> <!-- auto-config="true" use-expressions="true"> -->
+	<http auto-config="true" use-expressions="false"> 
 
-		<intercept-url pattern="/sede/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/responsable/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/componente/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/cartilla/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/menu/**" access="ROLE_ADMIN" />
+		<!-- Configuracion url - permiso de usuario -->
+		<intercept-url pattern="/login" access="ROLE_ADMIN, ROLE_RESPONSABLE, ROLE_USUARIO" />
 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/cartilla/**" access="ROLE_ADMIN" />		
+		<intercept-url pattern="/componente/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/compra/**" access="ROLE_USUARIO" />
+		<intercept-url pattern="/menu/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/responsable/pagosTickets" access="ROLE_RESPONSABLE" />
+		<intercept-url pattern="/responsable/registroTickets" access="ROLE_RESPONSABLE" />
+		<intercept-url pattern="/responsable/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/sede/usuariosHabilitados" access="ROLE_RESPONSABLE" />		
+		<intercept-url pattern="/sede/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/sugerencia/comentar" access="ROLE_USUARIO" />
+		<intercept-url pattern="/sugerencia/buzonVirtual" access="ROLE_ADMIN" />
+		<intercept-url pattern="/sugerencia/buzonVirtualDeSede" access="ROLE_RESPONSABLE" />
+		<intercept-url pattern="/user/**" access="ROLE_USUARIO" />
 
-		<!-- access denied page -->
+		<!-- Página de acceso denegado-->
 		<access-denied-handler error-page="/403" />
 
+		<!-- Configuración de página de login y parámetros, url que lo procesa, url de error, y url por defecto -->
 		<form-login login-page='/index' username-parameter="dni"
 			login-processing-url="/login" password-parameter="contrasena"
 			default-target-url="/login" authentication-failure-url="/error" />
+			
+		<!-- Configuración de página de logout exitoso -->
 		<logout logout-success-url="/salir" />
+		
 		<csrf disabled="true" />
 	</http>
 

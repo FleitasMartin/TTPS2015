@@ -9,100 +9,67 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service.AdminService;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service.ResponsableService;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.ErrorHelper;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.SesionUtil;
 
-@RestController(value="adminController")
-@RequestMapping(value="/admin")
+@RestController(value = "adminController")
+@RequestMapping(value = "/admin")
 public class AdminController {
-	
+
 	@Autowired
-	private AdminService adminService;	
+	private AdminService adminService;
 	@Autowired
 	private ResponsableService responsableService;
-		
-	@RequestMapping( value = "/crear" ,method = RequestMethod.GET)
-	public ModelAndView crear(){
-		/*if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){*/
-				return adminService.crear();
-			/*}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	*/
+
+	@RequestMapping(value = "/crear", method = RequestMethod.GET)
+	public ModelAndView crear() {
+		return adminService.crear();
 	}
 
-	@RequestMapping( value = "/crear" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public ModelAndView crear(@RequestParam("nombre") String nombre,
 			@RequestParam("apellido") String apellido,
 			@RequestParam("dni") String dni,
 			@RequestParam("contrasena") String contrasena,
 			@RequestParam("telefono") Integer telefono,
 			@RequestParam("domicilio") String domicilio,
-			@RequestParam("email") String email){
-		/*if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){*/
-				return adminService.crear(nombre, apellido, dni, contrasena, telefono, domicilio, email);
-		/*	}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		*/	
+			@RequestParam("email") String email) {
+
+		return adminService.crear(nombre, apellido, dni, contrasena, telefono,
+				domicilio, email);
+
 	}
-	
+
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public ModelAndView listar() {
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return adminService.listar();
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	
+
+		return adminService.listar();
+
 	}
-	
-	
-	@RequestMapping(value="/editarAdmin", method = RequestMethod.GET)
-	public ModelAndView editar(@RequestParam("id") Long id){
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return adminService.editarAdmin(id);
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+
+	@RequestMapping(value = "/editarAdmin", method = RequestMethod.GET)
+	public ModelAndView editar(@RequestParam("id") Long id) {
+
+		return adminService.editarAdmin(id);
+
 	}
-	
-	
-	@RequestMapping(value="/editarAdmin", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/editarAdmin", method = RequestMethod.POST)
 	public ModelAndView editarAdmin(@RequestParam("id") Long id,
 			@RequestParam("nombre") String nombre,
 			@RequestParam("apellido") String apellido,
-			@RequestParam("telefono")Integer telefono,
-			@RequestParam("email")String email,
-			@RequestParam("telefono")String domicilio
-			){
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return adminService.editarAdmin(id, nombre, apellido, telefono,email,domicilio );
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+			@RequestParam("telefono") Integer telefono,
+			@RequestParam("email") String email,
+			@RequestParam("telefono") String domicilio) {
+
+		return adminService.editarAdmin(id, nombre, apellido, telefono, email,
+				domicilio);
+
 	}
-	
-	
-	
-	@RequestMapping(value="/eliminarAdmin", method = RequestMethod.POST)
-	public ModelAndView eliminarAdmin(@RequestParam("id") Long id){
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return adminService.eliminar(id);
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+
+	@RequestMapping(value = "/eliminarAdmin", method = RequestMethod.POST)
+	public ModelAndView eliminarAdmin(@RequestParam("id") Long id) {
+
+		return adminService.eliminar(id);
+
 	}
-	
-	
-	
+
 }

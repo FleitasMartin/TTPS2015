@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.AdministradorDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.SesionUtil;
 
 @Controller
 public class LoginController {
@@ -30,34 +29,32 @@ public class LoginController {
 
 	@Autowired
 	UsuarioDAO usuarioDAO;
-	
-	@RequestMapping(value="/index", method = RequestMethod.GET)
-	public ModelAndView login(){
+
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public ModelAndView login() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
 		return model;
 	}
-	
-	@RequestMapping(value="/403", method = RequestMethod.GET)
-	public ModelAndView errorPermiso(){
+
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public ModelAndView errorPermiso() {
 		ModelAndView model = new ModelAndView();
 		model.addObject("error", "No posee los permisos necesarios.");
 		model.setViewName("index");
 		return model;
 	}
 
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public ModelAndView loginDone(){
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView loginDone() {
 		ModelAndView model = new ModelAndView();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = (auth != null) ? (User)auth.getPrincipal() :  null;
-		
-		System.out.println("---------------------------------------------------------");
-		System.out.println("METODO LOGINDONE");
-		System.out.println(user.getUsername());
-		System.out.println(user.getAuthorities().toArray()[0]);
-		SimpleGrantedAuthority permisoSimple = (SimpleGrantedAuthority)user.getAuthorities().toArray()[0];
-		
+
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+
+		SimpleGrantedAuthority permisoSimple = (SimpleGrantedAuthority) user
+				.getAuthorities().toArray()[0];
+
 		switch (permisoSimple.toString()) {
 		case "ROLE_ADMIN":
 			model.setViewName("indexAdmin");
@@ -70,29 +67,30 @@ public class LoginController {
 			break;
 		default:
 			break;
-		}		
+		}
 		return model;
 	}
-	
-	@RequestMapping(value= "/salir",method = RequestMethod.GET)
-	private ModelAndView salir(HttpServletRequest request, HttpServletResponse response){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    if (auth != null){    
-	        new SecurityContextLogoutHandler().logout(request, response, auth);
-	    }
+
+	@RequestMapping(value = "/salir", method = RequestMethod.GET)
+	private ModelAndView salir(HttpServletRequest request,
+			HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
-		model.addObject("mensaje", "Sesión cerrada.");
+		model.addObject("mensaje", "Sesión cerrada correctamente.");
 		return model;
 	}
-	
-	@RequestMapping(value= "/error",method = RequestMethod.GET)
-	private ModelAndView error(){
-		SesionUtil.destruirSesion();
+
+	@RequestMapping(value = "/error", method = RequestMethod.GET)
+	private ModelAndView error() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
-		model.addObject("error", "ERROR EN LOS DATOS DE ENTRADA");
+		model.addObject("error", "Error en DNI o contraseña ingresada.");
 		return model;
 	}
-	
+
 }

@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.RolUsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Administrador;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 
@@ -18,34 +17,38 @@ public class ResponsableService {
 
 	@Autowired
 	private SedeDAO sedeDAO;
-	
+
 	@Autowired
 	private ResponsableDAO responsableDAO;
-	
-	public ModelAndView crear(){
+
+	@Autowired
+	private RolUsuarioDAO rolUsuarioDAO;
+
+	public ModelAndView crear() {
 		ArrayList<Sede> sedes = new ArrayList<Sede>();
 		sedes = (ArrayList<Sede>) sedeDAO.getAll();
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexAdmin");
-		model.addObject("contentPage","altaResponsable");
+		model.addObject("contentPage", "altaResponsable");
 		model.addObject("sedes", sedes);
 		return model;
 	}
-	
+
 	public ModelAndView listarResponsables() {
-		
+
 		ArrayList<Responsable> responsables = new ArrayList<Responsable>();
 		responsables = (ArrayList<Responsable>) responsableDAO.getAll();
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexAdmin");
 		model.addObject("responsables", responsables);
-		model.addObject("contentPage","listarResponsables");
+		model.addObject("contentPage", "listarResponsables");
 		return model;
 	}
 
-	public ModelAndView crear(String nombre, String apellido, String dni, String contrasena, 
-			Integer telefono, String email, String domicilio, Long sedeId){
-		
+	public ModelAndView crear(String nombre, String apellido, String dni,
+			String contrasena, Integer telefono, String email,
+			String domicilio, Long sedeId) {
+
 		Responsable resp = new Responsable();
 		resp.setDni(dni);
 		resp.setContrasena(contrasena);
@@ -56,11 +59,12 @@ public class ResponsableService {
 		resp.setTelefono(telefono);
 		Sede sede = sedeDAO.get(sedeId);
 		resp.setSede(sede);
+		resp.setRol(rolUsuarioDAO.getRol("ROLE_RESPONSABLE"));
 		responsableDAO.save(resp);
 		return listar();
 	}
-	
-	public ModelAndView editarResponsable(Long id){
+
+	public ModelAndView editarResponsable(Long id) {
 		ArrayList<Sede> sedes = new ArrayList<Sede>();
 		sedes = (ArrayList<Sede>) sedeDAO.getAll();
 		Responsable responsable = responsableDAO.get(id);
@@ -68,20 +72,23 @@ public class ResponsableService {
 		model.setViewName("indexAdmin");
 		model.addObject("responsable", responsable);
 		model.addObject("sedes", sedes);
-		model.addObject("contentPage","editarResponsable");
+		model.addObject("contentPage", "editarResponsable");
 		return model;
 	}
-	public ModelAndView listar() {		
+
+	public ModelAndView listar() {
 		ArrayList<Responsable> resps = new ArrayList<Responsable>();
 		resps = (ArrayList<Responsable>) responsableDAO.getAll();
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexAdmin");
 		model.addObject("resps", resps);
-		model.addObject("contentPage","listarResponsables");
+		model.addObject("contentPage", "listarResponsables");
 		return model;
 	}
-	
-	public ModelAndView editarResponsable(Long id, String nombre, String apellido,Integer telefono, String email,  String domicilio, Long sede) {
+
+	public ModelAndView editarResponsable(Long id, String nombre,
+			String apellido, Integer telefono, String email, String domicilio,
+			Long sede) {
 		Responsable responsable = responsableDAO.get(id);
 		responsable.setApellido(apellido);
 		responsable.setNombre(nombre);
@@ -91,8 +98,8 @@ public class ResponsableService {
 		responsableDAO.edit(responsable);
 		return listarResponsables();
 	}
-	
-	public ModelAndView eliminar(Long id){
+
+	public ModelAndView eliminar(Long id) {
 		responsableDAO.delete(id);
 		return listarResponsables();
 	}

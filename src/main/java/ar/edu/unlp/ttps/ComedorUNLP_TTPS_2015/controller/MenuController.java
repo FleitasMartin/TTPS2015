@@ -10,88 +10,61 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service.MenuService;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.ErrorHelper;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.SesionUtil;
 
-@RestController(value="menuController")
-@RequestMapping(value="/menu")
+@RestController(value = "menuController")
+@RequestMapping(value = "/menu")
 public class MenuController {
 
-	
 	@Autowired
 	private MenuService menuService;
-	
-	@RequestMapping( value = "/crear" ,method = RequestMethod.GET)
-	public ModelAndView crear(){
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return menuService.crear();
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+
+	@RequestMapping(value = "/crear", method = RequestMethod.GET)
+	public ModelAndView crear() {
+		return menuService.crear();
+
 	}
-	
-	@RequestMapping( value = "/crear" ,method = RequestMethod.POST)
+
+	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public ModelAndView crear(@RequestParam("nombre") String nombre,
 			@RequestParam("caracteristicas") ArrayList<Long> caracteristicas,
-			@RequestParam("bebidas") ArrayList<Long> bebidas, @RequestParam("entradas") ArrayList<Long> entradas,
-			@RequestParam("platos") ArrayList<Long> platos, @RequestParam("postres") ArrayList<Long> postres){
-		
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return menuService.crear(nombre, caracteristicas, bebidas, entradas, platos, postres);
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+			@RequestParam("bebidas") ArrayList<Long> bebidas,
+			@RequestParam("entradas") ArrayList<Long> entradas,
+			@RequestParam("platos") ArrayList<Long> platos,
+			@RequestParam("postres") ArrayList<Long> postres) {
+
+		return menuService.crear(nombre, caracteristicas, bebidas, entradas,
+				platos, postres);
+
 	}
-	
-	@RequestMapping( value = "/editar" ,method = RequestMethod.GET)
-	public ModelAndView editar(@RequestParam("id") Long id){
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return menuService.editar(id);
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+
+	@RequestMapping(value = "/editar", method = RequestMethod.GET)
+	public ModelAndView editar(@RequestParam("id") Long id) {
+
+		return menuService.editar(id);
+
 	}
-	
-	@RequestMapping( value = "/editar" ,method = RequestMethod.POST)
-	public ModelAndView editar(@RequestParam("id") Long id, @RequestParam("nombre") String nombre,
+
+	@RequestMapping(value = "/editar", method = RequestMethod.POST)
+	public ModelAndView editar(@RequestParam("id") Long id,
+			@RequestParam("nombre") String nombre,
 			@RequestParam("caracteristicas") ArrayList<Long> caracteristicas,
-			@RequestParam("bebidas") ArrayList<Long> bebidas, @RequestParam("entradas") ArrayList<Long> entradas,
-			@RequestParam("platos") ArrayList<Long> platos, @RequestParam("postres") ArrayList<Long> postres){
-		
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return menuService.editar(id, nombre, caracteristicas, bebidas, entradas, platos, postres);
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");
+			@RequestParam("bebidas") ArrayList<Long> bebidas,
+			@RequestParam("entradas") ArrayList<Long> entradas,
+			@RequestParam("platos") ArrayList<Long> platos,
+			@RequestParam("postres") ArrayList<Long> postres) {
+
+		return menuService.editar(id, nombre, caracteristicas, bebidas,
+				entradas, platos, postres);
+
 	}
-	
+
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
-	public ModelAndView listar() {	
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return menuService.listar();
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+	public ModelAndView listar() {
+		return menuService.listar();
 	}
-	
+
 	@RequestMapping(value = "/eliminar", method = RequestMethod.POST)
 	public ModelAndView eliminarMenu(@RequestParam("id") Long id) {
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return menuService.eliminar(id);
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+		return menuService.eliminar(id);
 	}
 }

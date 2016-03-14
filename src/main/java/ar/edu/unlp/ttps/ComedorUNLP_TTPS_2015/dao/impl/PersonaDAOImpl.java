@@ -5,7 +5,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.PersonaDAO;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Administrador;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Persona;
 
 @Repository
