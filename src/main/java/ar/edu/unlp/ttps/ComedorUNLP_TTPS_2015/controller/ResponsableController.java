@@ -52,10 +52,59 @@ public class ResponsableController {
 		}
 		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	
 	}
+	@RequestMapping(value = "/listarResponsables", method = RequestMethod.GET)
+	public ModelAndView listarResponsables() {
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+			
+				return responsableService.listarResponsables();
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	
+	}
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public ModelAndView listar() {		
 				return responsableService.listar();			
+	}
+	@RequestMapping(value="/editarResponsable", method = RequestMethod.GET)
+	public ModelAndView editarResponsable(@RequestParam("id") Long id){
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return responsableService.editarResponsable(id);
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+	}
+	@RequestMapping(value="/editarResponsable", method = RequestMethod.POST)
+	public ModelAndView editarResponsable(@RequestParam("id") Long id,
+			@RequestParam("nombre") String nombre,
+			@RequestParam("apellido") String apellido,
+			@RequestParam("telefono")Integer telefono,
+			@RequestParam("email")String email,
+			@RequestParam("telefono")String domicilio,
+			@RequestParam("sedeId")Long sede
+			){
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return responsableService.editarResponsable(id, nombre, apellido, telefono,email,domicilio, sede );
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+	}
+	
+	@RequestMapping(value="/eliminarResponsable", method = RequestMethod.POST)
+	public ModelAndView eliminarResponsable(@RequestParam("id") Long id){
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){
+				return responsableService.eliminar(id);
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
 	}
 	@RequestMapping(value="/editarResponsable", method = RequestMethod.GET)
 	public ModelAndView editarResponsable(@RequestParam("id") Long id){
