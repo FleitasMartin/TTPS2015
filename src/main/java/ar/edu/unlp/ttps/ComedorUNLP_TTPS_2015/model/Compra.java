@@ -22,14 +22,11 @@ public class Compra {
 	private Long id;
 	private Double monto;
 	private Date fechaEfectuada;
-	
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<SeleccionDiaMenu> selecciones;	
 	
 	@ManyToOne(optional = false)
 	private Usuario usuario;
-	
-	
 		
 	public Double getMonto() {
 		return monto;

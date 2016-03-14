@@ -20,6 +20,7 @@ public class SeleccionDiaMenu {
 	private Long id;
 	private String nombre;
 	private boolean vianda;
+	private Double precio;
 	
 	@ManyToOne(optional = false) 
 	private Menu menu;
@@ -28,6 +29,12 @@ public class SeleccionDiaMenu {
 	
 	private Date fecha;
 	
+	public Double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
 	public Date getFecha() {
 		return fecha;
 	}

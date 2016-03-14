@@ -3,6 +3,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <html >
 <head>
+
 <style>
 #map {
 	width: 600px;

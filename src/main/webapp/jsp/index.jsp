@@ -7,9 +7,10 @@
 <tags:template>
 	<jsp:attribute name="body">
 <div class="container">
+
 <div class="page-header well">
-  <h1>Comedor Universitario UNLP <small> Bienvenido!</small>
-				</h1>
+  <h1>Comedor Universitario UNLP <small> Bienvenido!</small></h1>
+<%--   <img src="${pageContext.request.contextPath}/img/header.jpg" align="center" /> --%>
 </div>
 <div class="row">
 <br>
