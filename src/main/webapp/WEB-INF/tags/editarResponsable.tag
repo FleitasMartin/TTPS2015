@@ -1,6 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <div class="form">
-	<form method="post" action="${pageContext.request.contextPath}/admin/editarResponsable">
+	<form method="post" action="${pageContext.request.contextPath}/responsable/editarResponsable">
 	<input type="hidden" value="${responsable.id }" name="id">
 		<div class="form-group">
 			<label>Nombre</label> <input type="text" name="nombre"

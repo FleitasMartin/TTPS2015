@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ES" "http://www.w3.org/TR/html4/loose.dtd">
 <tags:template>
 	<jsp:attribute name="body">
 
@@ -30,17 +31,20 @@
         	<c:when test="${contentPage == 'adminUsers'}">
 				<tags:adminUsers />
         	</c:when>
-        	<c:when test="${contentPage == 'userTicket'}">
-				<tags:userTicket />
-        	</c:when>
+         	<c:when test="${contentPage == 'editarPreferencias'}">
+				<tags:editarPreferencias />
+        	</c:when> 
         	<c:when test="${contentPage == 'userPerfil'}">
 				<tags:userPerfil />
+        	</c:when>
+        	<c:when test="${contentPage == 'compraDeTickets'}">
+				<tags:compraDeTickets />
         	</c:when>
         	<c:when test="${contentPage == 'loginUsuario'}">
 				<tags:loginUsuario />
         	</c:when>        	
-        	<c:when test="${contentPage == 'userComentarios'}">
-				<tags:userComentarios />
+        	<c:when test="${contentPage == 'comentar'}">
+				<tags:comentar />
         	</c:when>  
         	<c:when test="${contentPage == 'saldo'}">
 				<tags:saldo />

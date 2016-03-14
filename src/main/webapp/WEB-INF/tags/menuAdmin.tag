@@ -1,6 +1,6 @@
 <%@ tag%>
 <%@ attribute name="id" fragment="true"%>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked" style="color:red;">
 	<li><a href="${pageContext.request.contextPath}/sede/listar">Gestion
 			de sedes</a></li>
 	<li><a href="${pageContext.request.contextPath}/componente/listar">Administraci&oacute;n
@@ -8,7 +8,7 @@
 	<li><a href="${pageContext.request.contextPath}/menu/listar">Administraci&oacute;n
 			de Men&uacute;es</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/admin/buzonVirtual">Buzon
+		href="${pageContext.request.contextPath}/sugerencia/buzonVirtual">Buzon
 			virtual</a></li>
 	<li><a
 		href="${pageContext.request.contextPath}/admin/estadisticasMenues">Estad&iacute;sticas</a></li>
@@ -16,9 +16,9 @@
 		href="${pageContext.request.contextPath}/admin/listar">Gestion
 			de administradores</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/admin/listarResponsables">Gestion
+		href="${pageContext.request.contextPath}/responsable/listarResponsables">Gestion
 			de responsables</a></li>
-	<li><a href="${pageContext.request.contextPath}/cartilla/listar">Cartilla
+	<li><a href="${pageContext.request.contextPath}/cartilla/crear">Cartilla
 			Semanal</a></li>
 </ul>
 <script>

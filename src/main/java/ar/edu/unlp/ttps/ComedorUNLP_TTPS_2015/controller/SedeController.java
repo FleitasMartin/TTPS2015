@@ -66,6 +66,16 @@ public class SedeController {
 		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	*/	
 	}
 	
+	@RequestMapping(value = "/usuariosHabilitados", method = RequestMethod.GET)
+	public ModelAndView usuariosHabilitados() {
+		if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(2)){
+				return sedeService.usuariosHabilitados();
+			}
+			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
+		}
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+	}
 	@RequestMapping(value="/eliminar", method = RequestMethod.POST)
 	public ModelAndView eliminar(@RequestParam("id") Long id){
 		if ( SesionUtil.checkLogin() ){

@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 import javax.persistence.Table;
@@ -42,6 +43,15 @@ public class Usuario extends Persona {
 	@OneToMany(mappedBy="usuario")//, cascade=CascadeType.ALL)
 	private List<Sugerencia> sugerencias;
 	
+	@ManyToOne(optional = false) 
+	private Sede sede;
+	
+	public Sede getSede() {
+		return sede;
+	}
+	public void setSede(Sede sede) {
+		this.sede = sede;
+	}
 	public List<Compra> getCompras() {
 		return compras;
 	}

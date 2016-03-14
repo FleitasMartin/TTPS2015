@@ -28,6 +28,8 @@ public class Compra {
 	
 	@ManyToOne(optional = false)
 	private Usuario usuario;
+	
+	
 		
 	public Double getMonto() {
 		return monto;

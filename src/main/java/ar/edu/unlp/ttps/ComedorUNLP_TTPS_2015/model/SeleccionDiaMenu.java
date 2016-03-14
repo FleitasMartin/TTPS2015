@@ -1,5 +1,7 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,16 +26,14 @@ public class SeleccionDiaMenu {
 	@ManyToOne(optional = false) 
 	private Sede sede;
 	
-	//@ManyToOne(optional = false)
-	//private Compra compra;
-	/*
-	public Compra getCompra() {
-		return compra;
+	private Date fecha;
+	
+	public Date getFecha() {
+		return fecha;
 	}
-	public void setCompra(Compra compra) {
-		this.compra = compra;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
-	*/
 	public String getNombre() {
 		return nombre;
 	}

@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
 
 @Service
 public class SedeService {
@@ -17,6 +19,9 @@ public class SedeService {
 
 	@Autowired
 	private SedeDAO sedeDAO;
+	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
 	
 	public ModelAndView listar() {
 		
@@ -29,6 +34,16 @@ public class SedeService {
 		return model;
 	}
 
+	public ModelAndView usuariosHabilitados() {
+		
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = (ArrayList<Usuario>) usuarioDAO.getAll();
+		ModelAndView model = new ModelAndView();
+		model.setViewName("indexResponsable");
+		model.addObject("usuarios", usuarios);
+		model.addObject("contentPage","usersList");
+		return model;
+	}
 	public ModelAndView crear(String nombre, int capacidad, String ubicacion) {
 
 		Sede sedeNueva = new Sede();

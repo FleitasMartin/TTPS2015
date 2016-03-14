@@ -2,6 +2,7 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
 import java.util.List;
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,15 @@ public class Sede implements Serializable{
 	@OneToMany(mappedBy="sede")
 	private List<Responsable> responsables;
 	
+	@OneToMany(mappedBy="sede")//, cascade=CascadeType.ALL)
+	private List<Usuario> usuarios;
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
 	public String getNombre() {
 		return nombre;
 	}
