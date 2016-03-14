@@ -16,7 +16,7 @@ public class UsuarioDAOImpl extends GenericDAOImpl<Usuario> implements UsuarioDA
 	}
 		
 	@Override
-	public Usuario login(int dni, String contrasena){
+	public Usuario login(String dni, String contrasena){
 		Query consulta=getEntityManager().createQuery("select e from "+Usuario.class.getSimpleName()+" e where e.dni = :dni and e.contrasena = :contrasena ").setParameter("dni", dni).setParameter("contrasena", contrasena);
 		Usuario resultado = new Usuario();
 		try{

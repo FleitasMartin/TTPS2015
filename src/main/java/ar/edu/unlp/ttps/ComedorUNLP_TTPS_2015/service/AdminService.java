@@ -1,6 +1,8 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.AdministradorDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Administrador;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.RolUsuario;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 
 @Service
@@ -23,7 +26,7 @@ public class AdminService {
 		return model;
 	}
 
-	public ModelAndView crear(String nombre, String apellido, int dni, String contrasena, Integer telefono,  String domicilio, String email ){
+	public ModelAndView crear(String nombre, String apellido, String dni, String contrasena, Integer telefono,  String domicilio, String email ){
 		
 		Administrador admin = new Administrador();
 		admin.setDni(dni);
@@ -33,6 +36,16 @@ public class AdminService {
 		admin.setEmail(email);
 		admin.setTelefono(telefono);
 		admin.setDomicilio(domicilio);
+		
+		//probando probando
+		Set<RolUsuario> roles = new HashSet<RolUsuario>(0);
+		RolUsuario rol = new RolUsuario();
+		//rol.setPersona(admin);
+		rol.setRol("ROL_ADMIN");
+		/*rol.set
+		rol.add(  )
+		admin.setRoles();
+		*/
 		administradorDAO.save(admin);
 		return listar();
 	}

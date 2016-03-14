@@ -43,14 +43,8 @@ public class ResponsableService {
 		return model;
 	}
 
-	public ModelAndView crear(@RequestParam("nombre") String nombre,
-			@RequestParam("apellido") String apellido,
-			@RequestParam("dni") int dni,
-			@RequestParam("contrasena") String contrasena,
-			@RequestParam("telefono") Integer telefono,
-			@RequestParam("email") String email,
-			@RequestParam("domicilio") String domicilio,
-			@RequestParam("sedeId") Long sedeId){
+	public ModelAndView crear(String nombre, String apellido, String dni, String contrasena, 
+			Integer telefono, String email, String domicilio, Long sedeId){
 		
 		Responsable resp = new Responsable();
 		resp.setDni(dni);

@@ -32,9 +32,9 @@ public class TestAdministrador {
 	@Before
 	public void setUp(){
 		admin1 = new Administrador();
-		admin1.setDni(1234);
+		admin1.setDni("1234");
 		admin2 = new Administrador();
-		admin2.setDni(456);
+		admin2.setDni("456");
 		
 	}
 	
@@ -48,7 +48,7 @@ public class TestAdministrador {
 		Assert.assertTrue(admin1Recuperado.getDni().equals(admin1.getDni()));
 		Assert.assertTrue(admin2Recuperado.getDni().equals(admin2.getDni()));
 		
-		admin1.setDni(789);
+		admin1.setDni("789");
 		administradorDAO.edit(admin1);
 		
 		administradorDAO.delete(admin1.getId());

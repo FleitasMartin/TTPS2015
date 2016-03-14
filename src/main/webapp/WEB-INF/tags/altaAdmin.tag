@@ -10,7 +10,7 @@
 				class="form-control" /><br>
 		</div>
 		<div class="form-group">
-			<label>DNI</label> <input type="number" name="dni"
+			<label>DNI</label> <input type="text" name="dni"
 				class="form-control" /><br>
 		</div>
 		<div class="form-group">

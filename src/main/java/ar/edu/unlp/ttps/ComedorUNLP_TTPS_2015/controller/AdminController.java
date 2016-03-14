@@ -23,30 +23,30 @@ public class AdminController {
 		
 	@RequestMapping( value = "/crear" ,method = RequestMethod.GET)
 	public ModelAndView crear(){
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
+		/*if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){*/
 				return adminService.crear();
-			}
+			/*}
 			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
 		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	*/
 	}
 
 	@RequestMapping( value = "/crear" ,method = RequestMethod.POST)
 	public ModelAndView crear(@RequestParam("nombre") String nombre,
 			@RequestParam("apellido") String apellido,
-			@RequestParam("dni") int dni,
+			@RequestParam("dni") String dni,
 			@RequestParam("contrasena") String contrasena,
 			@RequestParam("telefono") Integer telefono,
 			@RequestParam("domicilio") String domicilio,
 			@RequestParam("email") String email){
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
+		/*if ( SesionUtil.checkLogin() ){
+			if (SesionUtil.checkTipo(1)){*/
 				return adminService.crear(nombre, apellido, dni, contrasena, telefono, domicilio, email);
-			}
+		/*	}
 			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
 		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");			
+		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		*/	
 	}
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)

@@ -15,7 +15,7 @@ public class ResponsableDAOImpl extends GenericDAOImpl<Responsable> implements R
 	}
 	
 	@Override
-	public Responsable login(int dni, String contrasena){
+	public Responsable login(String dni, String contrasena){
 		Query consulta=getEntityManager().createQuery("select e from "+Responsable.class.getSimpleName()+" e where e.dni = :dni and e.contrasena = :contrasena ").setParameter("dni", dni).setParameter("contrasena", contrasena);
 		Responsable resultado = new Responsable();
 		try{

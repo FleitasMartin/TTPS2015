@@ -50,7 +50,7 @@ public class TestSugerencia{
 		sede1.setCapacidad(1500);
 		
 		responsable1 = new Responsable();
-		responsable1.setDni(34818052);
+		responsable1.setDni("34818052");
 		responsable1.setSede(sede1);
 		
 		ArrayList<Responsable> responsables1 = new ArrayList<Responsable>();
@@ -69,7 +69,7 @@ public class TestSugerencia{
 		sede2.setCapacidad(1500);
 		
 		responsable2 = new Responsable();
-		responsable2.setDni(38298166);
+		responsable2.setDni("38298166");
 		responsable2.setSede(sede2);
 		
 		ArrayList<Responsable> responsables2 = new ArrayList<Responsable>();
@@ -93,7 +93,7 @@ public class TestSugerencia{
 //		usuario.setDiabetico(false);
 //		usuario.setHipertenso(false);
 //		usuario.setIntoLactosa(false);
-		usuario.setDni(17486225);
+		usuario.setDni("17486225");
 		
 		sugerencia1 = new Sugerencia();
 		sugerencia1.setTipo("comentario");

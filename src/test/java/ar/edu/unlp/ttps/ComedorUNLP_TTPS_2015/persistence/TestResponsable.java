@@ -46,11 +46,11 @@ public class TestResponsable {
 		Assert.assertNotNull(sede2.getId());		
 		
 		responsable1 = new Responsable();
-		responsable1.setDni(34818052);
+		responsable1.setDni("34818052");
 		responsable1.setSede(sede1);
 	
 		responsable2 = new Responsable();
-		responsable2.setDni(38298166);
+		responsable2.setDni("38298166");
 		responsable2.setSede(sede2);
 		
 	}
@@ -70,7 +70,7 @@ public class TestResponsable {
 		Assert.assertTrue(responsableRecuperado1.getId().equals(responsable1.getId()));
 		
 		Long idARecuperar = responsable1.getId();
-		responsable1.setDni(36321248);		
+		responsable1.setDni("36321248");		
 		responsableDAO.edit(responsable1);
 		Responsable responsableRecuperado2 = responsableDAO.get(idARecuperar);
 		Assert.assertEquals(responsableRecuperado2.getId(), responsable1.getId());

@@ -1,29 +1,44 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)//JOINED)
+@Table(name="persona")
+@Inheritance(strategy = InheritanceType.JOINED)//TABLE_PER_CLASS)//JOINED)
 public abstract class Persona {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	protected Long id;
-	protected Integer dni;
+	protected String dni;
 	protected String contrasena;
 	protected String apellido;
 	protected String nombre;
 	protected String email;
 	protected Integer telefono;
 	protected String domicilio;
+	
+	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "persona")
+	//protected Set<RolUsuario> roles = new HashSet<RolUsuario>(0);
 
+	//@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	protected RolUsuario rol; 
+	
 	public String getEmail() {
 		return email;
 	}
@@ -48,13 +63,13 @@ public abstract class Persona {
 		this.domicilio = domicilio;
 	}
 
-	public Integer getDni() {
+	/*public Integer getDni() {
 		return dni;
 	}
 
 	public void setDni(Integer dni) {
 		this.dni = dni;
-	}
+	}*/
 	public Long getId() {
 		return id;
 	}
@@ -86,5 +101,29 @@ public abstract class Persona {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public RolUsuario getRol() {
+		return rol;
+	}
+
+	public void setRol(RolUsuario rol) {
+		this.rol = rol;
+	}
+	/*public Set<RolUsuario> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<RolUsuario> roles) {
+		this.roles = roles;
+	}*/
+
 
 }

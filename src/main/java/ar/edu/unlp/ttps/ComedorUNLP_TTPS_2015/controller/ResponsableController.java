@@ -32,30 +32,18 @@ public class ResponsableController {
 	@RequestMapping( value = "/crear" ,method = RequestMethod.POST)
 	public ModelAndView crearResponsable(@RequestParam("nombre") String nombre,
 			@RequestParam("apellido") String apellido,
-			@RequestParam("dni") int dni,
+			@RequestParam("dni") String dni,
 			@RequestParam("contrasena") String contrasena,
 			@RequestParam("telefono") Integer telefono,
 			@RequestParam("email") String email,
 			@RequestParam("domicilio") String domicilio,
 			@RequestParam("sedeId") Long sedeId){
 		
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return responsableService.crear(nombre, apellido, dni, contrasena,telefono, email, domicilio, sedeId);
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");	
+				return responsableService.crear(nombre, apellido, dni, contrasena,telefono, email, domicilio, sedeId);			
 	}
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public ModelAndView listar() {		
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(1)){
-				return responsableService.listar();
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");			
+				return responsableService.listar();			
 	}
 }
