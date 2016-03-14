@@ -7,16 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
-
 @Entity
-@Table(name="componente")
+@Table(name = "componente")
 public class Componente {
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	protected Long id;
-	
+
 	protected String nombre;
 	protected String tipo;
 

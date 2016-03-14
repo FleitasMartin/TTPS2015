@@ -7,24 +7,44 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
 
-
 @Repository
-public class UsuarioDAOImpl extends GenericDAOImpl<Usuario> implements UsuarioDAO{
-	
-	public UsuarioDAOImpl(){
+public class UsuarioDAOImpl extends GenericDAOImpl<Usuario> implements
+		UsuarioDAO {
+
+	public UsuarioDAOImpl() {
 		super(Usuario.class);
 	}
-		
+
 	@Override
-	public Usuario login(int dni, String contrasena){
-		Query consulta=getEntityManager().createQuery("select e from "+Usuario.class.getSimpleName()+" e where e.dni = :dni and e.contrasena = :contrasena ").setParameter("dni", dni).setParameter("contrasena", contrasena);
+	public Usuario login(String dni, String contrasena) {
+		Query consulta = getEntityManager()
+				.createQuery(
+						"select e from "
+								+ Usuario.class.getSimpleName()
+								+ " e where e.dni = :dni and e.contrasena = :contrasena ")
+				.setParameter("dni", dni)
+				.setParameter("contrasena", contrasena);
 		Usuario resultado = new Usuario();
-		try{
-			resultado = (Usuario)consulta.getSingleResult();
-		}catch(Exception e){
+		try {
+			resultado = (Usuario) consulta.getSingleResult();
+		} catch (Exception e) {
 			resultado = null;
 		}
 		return resultado;
 	}
-	
+
+	@Override
+	public Usuario findByDNI(String dni) {
+		try {
+			Query consulta = getEntityManager().createQuery(
+					"select p from " + Usuario.class.getSimpleName()
+							+ " p where p.dni = :dni ")
+					.setParameter("dni", dni);
+			Usuario usuario = (Usuario) consulta.getSingleResult();
+			return usuario;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

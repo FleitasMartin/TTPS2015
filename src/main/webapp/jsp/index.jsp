@@ -52,5 +52,18 @@
 </div>
 </c:if>
 </div>
+<div>
+<c:if test="${not empty mensaje}">
+<div class="row">
+<div class="col-sm-offset-3 col-sm-6">
+<div class="alert alert-success">
+							<h3 class="text-center">
+								<strong><c:out value="${mensaje}"></c:out></strong>
+							</h3>
+						</div>
+</div>
+</div>
+</c:if>
+</div>
 </jsp:attribute>
 </tags:template>
