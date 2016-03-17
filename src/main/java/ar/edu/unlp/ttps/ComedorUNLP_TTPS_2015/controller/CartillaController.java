@@ -48,7 +48,7 @@ public class CartillaController {
 	}
 
 	@RequestMapping(value = "/editar", method = RequestMethod.POST)
-	public ModelAndView editar(@RequestParam(value = "id") Long id,
+	public ModelAndView editar(@RequestParam(value = "idCartilla") Long id,
 			@RequestParam(value = "desde") String fechaDesde,
 			@RequestParam(value = "hasta") String fechaHasta,
 			@RequestParam(value = "lunes") Long[] lunesMenues,

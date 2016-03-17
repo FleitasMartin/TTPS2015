@@ -28,6 +28,9 @@
 		</div>
 		<div class="col-md-9 col-xs-12">
         	<c:choose>
+        	<c:when test="${contentPage == 'listarCompras'}">
+				<tags:listarCompras />
+        	</c:when>
         	<c:when test="${contentPage == 'adminUsers'}">
 				<tags:adminUsers />
         	</c:when>

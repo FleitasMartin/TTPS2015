@@ -2,8 +2,8 @@
 <%@ attribute name="id" fragment="true"%>
 <ul class="nav nav-pills nav-stacked">
 	<li><a href="${pageContext.request.contextPath}/user/perfil">Perfil</a></li>
-	<li><a href="${pageContext.request.contextPath}/compra/compraDeTickets">Compra
-			de tickets</a></li>
+	<li><a href="${pageContext.request.contextPath}/compra/listar">Mis compras
+			</a></li>
 	<li><a href="${pageContext.request.contextPath}/sugerencia/comentar">Comentar
 			y sugerir</a></li>
 	<li><a href="${pageContext.request.contextPath}/user/saldo">Saldo</a></li>

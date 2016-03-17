@@ -63,7 +63,7 @@
 		</table>
 		<label>Precio</label>
 		<input type="number" value="${cartilla.precio }" name="precio">
-		<input type="hidden" value="${cartilla.id }" name="id">
+		<input type="hidden" value="${cartilla.id }" name="idCartilla">
 		<input type="submit" value="Modificar Cartilla"
 			class="form-control btn btn-primary">
 		

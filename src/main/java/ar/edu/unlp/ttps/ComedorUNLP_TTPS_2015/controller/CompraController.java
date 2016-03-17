@@ -31,16 +31,16 @@ public class CompraController {
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public ModelAndView crear(
-			@RequestParam(value = "lunes") Long lunesMenu,
-			@RequestParam(value = "martes") Long martesMenu,
-			@RequestParam(value = "miercoles") Long miercolesMenu,
-			@RequestParam(value = "jueves") Long juevesMenu,
-			@RequestParam(value = "viernes") Long viernesMenu,
-			@RequestParam(value = "fechaLunes") Date fechaLunes,
-			@RequestParam(value = "fechaMartes") Date fechaMartes,
-			@RequestParam(value = "fechaMiercoles") Date fechaMiercoles,
-			@RequestParam(value = "fechaJueves") Date fechaJueves,
-			@RequestParam(value = "fechaViernes") Date fechaViernes,
+			@RequestParam(value = "Lunes") Long lunesMenuId,
+			@RequestParam(value = "Martes") Long martesMenuId,
+			@RequestParam(value = "Miercoles") Long miercolesMenuId,
+			@RequestParam(value = "Jueves") Long juevesMenuId,
+			@RequestParam(value = "Viernes") Long viernesMenuId,
+			@RequestParam(value = "fechaLunes") String fechaLunes,
+			@RequestParam(value = "fechaMartes") String fechaMartes,
+			@RequestParam(value = "fechaMiercoles") String fechaMiercoles,
+			@RequestParam(value = "fechaJueves") String fechaJueves,
+			@RequestParam(value = "fechaViernes") String fechaViernes,
 			@RequestParam(value = "seleccionViandaLunes") Boolean seleccionViandaLunes,
 			@RequestParam(value = "seleccionViandaMartes") Boolean seleccionViandaMartes,
 			@RequestParam(value = "seleccionViandaMiercoles") Boolean seleccionViandaMiercoles,
@@ -51,15 +51,25 @@ public class CompraController {
 			@RequestParam(value = "cantidadSemanas") Integer cantidadSemanas)
 			throws ParseException {
 
-		if ( SesionUtil.checkLogin() ){
-			if (SesionUtil.checkTipo(3)){
-				return compraService.crear( lunesMenu, martesMenu, 
-						miercolesMenu, juevesMenu, viernesMenu, fechaLunes, fechaMartes,fechaMiercoles,fechaJueves,fechaViernes,
-						seleccionViandaLunes,seleccionViandaMartes,seleccionViandaMiercoles, seleccionViandaJueves, seleccionViandaViernes,
-						precio,sede, cantidadSemanas );
-			}
-			return ErrorHelper.generarErrorIndex("No posee los permisos necesarios.");
-		}
-		return ErrorHelper.generarErrorIndex("No hay sesión activa.");		
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		String dniUsuario = (String) user.getUsername();
+		
+		return compraService.crear(lunesMenuId, martesMenuId, miercolesMenuId,
+				juevesMenuId, viernesMenuId, fechaLunes, fechaMartes,
+				fechaMiercoles, fechaJueves, fechaViernes,
+				seleccionViandaLunes, seleccionViandaMartes,
+				seleccionViandaMiercoles, seleccionViandaJueves,
+				seleccionViandaViernes, precio, sede, cantidadSemanas, dniUsuario);
+		
 	}
+
+	@RequestMapping(value = "/listar", method = RequestMethod.GET)
+	public ModelAndView listar(){
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		String dniUsuario = (String) user.getUsername();
+		return compraService.listar(dniUsuario);
+	}
+
 }

@@ -13,21 +13,23 @@
 			<tr>
 				<td><c:out value="${menu.nombre }" /></td>
 				<td>
-					<button type="button" class="btn btn-default dropdown-toggle"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Detalle <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li class="dropdown-header">Componentes</li>
-						<c:forEach var="componente" items="${menu.componentes}">
-							<li><c:out value="${componente.nombre }" /></li>
-						</c:forEach>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Detalle <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li class="dropdown-header">Componentes</li>
+							<c:forEach var="componente" items="${menu.componentes}">
+								<li><c:out value="${componente.nombre }" /></li>
+							</c:forEach>
 
-						<li class="dropdown-header">Caracteristicas</li>
-						<c:forEach var="carac" items="${menu.caracteristica}">
-							<li><c:out value="${carac.nombre }" /></li>
-						</c:forEach>
-					</ul>
+							<li class="dropdown-header">Caracteristicas</li>
+							<c:forEach var="carac" items="${menu.caracteristica}">
+								<li><c:out value="${carac.nombre }" /></li>
+							</c:forEach>
+						</ul>
+					</div>
 				</td>
 				<td><form
 						action="${pageContext.request.contextPath}/menu/editar"
@@ -36,8 +38,7 @@
 							type="submit" class="btn btn-warning" value="Modificar" />
 					</form></td>
 				<td>
-					<form
-						action="${pageContext.request.contextPath}/menu/eliminar"
+					<form action="${pageContext.request.contextPath}/menu/eliminar"
 						method="POST">
 						<input type="hidden" value="${menu.id }" name="id"> <input
 							type="submit" class="btn btn-danger botondelete" value="Eliminar" />
@@ -45,7 +46,7 @@
 				</td>
 			</tr>
 		</c:forEach>
-		
+
 	</table>
 
 	<a href="${pageContext.request.contextPath}/menu/crear"
