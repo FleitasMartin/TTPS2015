@@ -1,18 +1,19 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<h2>Tu saldo es: $0</h2>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<h2>Tu saldo es: $<c:out value="${saldo }" /></h2>
 <br>
 <br>
 <h4>Cargar saldo</h4>
-<form>
+<form method="post" action="${pageContext.request.contextPath}/user/saldo">
 	<div class="form-group">
-		<label>Monto</label> <input type="text" name="name"
+		<label>Monto</label> <input type="text" name="saldo"
 			class="form-control" /><br>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label>Forma de pago</label> <select class="form-control">
 			<option>Mercado pago</option>
 			<option>Pago facil</option>
 		</select>
-	</div>
+	</div> -->
 	<input type="submit" value="Cargar saldo" class=" btn btn-success">
 </form>

@@ -47,6 +47,9 @@
 			center : myLatLng,
 			zoom : 13
 		});
+		/*map.addListener('click', function(e) {
+			placeMarkerAndPanTo(e.latLng, map);
+		});*/
 		var bosqueOeste = {
 			lat : -34.90757,
 			lng : -57.94190
@@ -84,6 +87,14 @@
 			title : 'Comedor universitario. Centro ATULP.'
 		});
 	}
+	/*function placeMarkerAndPanTo(latLng, map){
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: map
+		});
+		map.panTo(latLng);
+	}*/
+	
 </script>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALdnqGLwYolrMF5GK9cLQVPBu8iBDV4Ck&callback=initMap">

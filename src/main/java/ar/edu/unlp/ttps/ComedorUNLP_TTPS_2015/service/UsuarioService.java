@@ -65,5 +65,25 @@ public class UsuarioService {
 		
 		return perfil(dniUsuario);
 	}
+	
+	public ModelAndView obtenerSaldo(String dni){
+		Usuario usuario = usuarioDAO.findByDNI(dni);
+		ModelAndView model = new ModelAndView();
+		model.setViewName("indexUsuario");
+		model.addObject("saldo", usuario.getSaldo());
+		model.addObject("contentPage","saldo");
+		return model;
+	}
 
+	public ModelAndView modificarSaldo(Double saldo, String dni){
+		Usuario usuario = usuarioDAO.findByDNI(dni);
+		usuario.setSaldo(usuario.getSaldo()+saldo);
+		usuarioDAO.edit(usuario);
+		ModelAndView model = new ModelAndView();
+		model.setViewName("indexUsuario");
+		model.addObject("usuario", usuario);
+		model.addObject("contentPage","userPerfil");
+		return model;
+	}
+	
 }

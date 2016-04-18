@@ -25,8 +25,8 @@ public class Sugerencia {
 	private String tipo;
 	private String mensaje;
 	
-	@OneToOne
-	private Sede sede = null; // así pongo que es opcional?
+	@OneToOne(optional=true)
+	private Sede sede;// = null; // así pongo que es opcional?
 	
 	public String getTipo() {
 		return tipo;

@@ -18,7 +18,7 @@ public class SugerenciaDAOImpl extends GenericDAOImpl<Sugerencia> implements Sug
 	
 	public List<Sugerencia> getAllBySede(Long idSede) {
 		Query consulta = getEntityManager().createQuery(
-				"select e from " + getPersistentClass().getSimpleName() +  " e where e.sede.id = " + idSede);
+				"select e from " + getPersistentClass().getSimpleName() +  " e where e.sede.id = NULL OR e.sede.id = " + idSede);
 		@SuppressWarnings("unchecked")
 		List<Sugerencia> resultado = (List<Sugerencia>) consulta.getResultList();
 		return resultado;

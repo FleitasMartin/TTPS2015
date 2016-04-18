@@ -188,5 +188,5 @@
 		</div>
 	</div>
 	<div class="col-xs-6 col-md-1"></div>-->
-<a href="${pageContext.request.contextPath}/admin/altaCartilla"
+<a href="${pageContext.request.contextPath}/cartilla/crear"
 	class="btn btn-primary" role="button">Alta Cartilla</a>

@@ -44,4 +44,20 @@ public class UsuarioController {
 		return usuarioService.editar(caracteristicas, dniUsuario);
 
 	}
+	
+	@RequestMapping(value = "/saldo", method = RequestMethod.GET)
+	public ModelAndView saldo() {
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		String dniUsuario = (String) user.getUsername();
+		return usuarioService.obtenerSaldo(dniUsuario);
+	}
+	
+	@RequestMapping(value = "/saldo", method = RequestMethod.POST)
+	public ModelAndView saldo(@RequestParam("saldo") Double saldo) {
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		String dniUsuario = (String) user.getUsername();
+		return usuarioService.modificarSaldo(saldo, dniUsuario);
+	}
 }

@@ -31,6 +31,11 @@ public class Sede {
 	// , cascade=CascadeType.ALL)
 	private List<Usuario> usuarios;
 
+	// TODO
+	// @Type(type='text')
+	// private String latLng;
+	
+	
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}

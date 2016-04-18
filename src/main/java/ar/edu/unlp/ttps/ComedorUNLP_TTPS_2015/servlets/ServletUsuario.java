@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ServletUsuario
  */
 @WebServlet(urlPatterns = {"/user", "/user/home", "/user/login", "/user/comentarios", 
-		"/user/saldo", "/user/mapa"  })
+		"/user/mapa"  })
 public class ServletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -19,6 +19,8 @@ public class Usuario extends Persona {
 	private String facultad;
 	private String tipo;
 	private String pathFoto;
+	private Double saldo;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_caracteristicas", joinColumns = @JoinColumn(name = "idUsuario", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idCaracteristicas", referencedColumnName = "id"))
 	private List<Caracteristica> caracteristica;
@@ -97,6 +99,14 @@ public class Usuario extends Persona {
 
 	public void setCaracteristica(List<Caracteristica> caracteristica) {
 		this.caracteristica = caracteristica;
+	}
+
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
 }

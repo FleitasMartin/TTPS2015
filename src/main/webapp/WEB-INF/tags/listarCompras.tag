@@ -18,19 +18,19 @@
 					<td><c:out value="${compra.monto }" /></td>
 					<td>
 					<div class="btn-group">
-					<button type="button"
-							class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
-							Detalle <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li class="dropdown-header">Menues</li>
-							<c:forEach var="seleccionDiaMenu" items="${compra.selecciones}">
-								<li><c:out value="${seleccionDiaMenu.nombre }" /></li>
-							</c:forEach>
-						</ul>
+							<button type="button" class="btn btn-default dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
+								Detalle <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Menues</li>
+								<c:forEach var="seleccionDiaMenu" items="${compra.selecciones}">
+									<li><c:out value="${seleccionDiaMenu.nombre }" /></li>
+								</c:forEach>
+							</ul>
 						</div>
-						</td>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

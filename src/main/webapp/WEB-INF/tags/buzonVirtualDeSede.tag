@@ -9,21 +9,26 @@
 			<td>Detalle</td>
 		</tr>
 		<c:forEach var="sugerencia" items="${sugerencias}">
-		<tr>
-			<td><c:out value="${sugerencia.usuario.nombre }" /></td>
-			<td><c:out value="${sugerencia.tipo }" /></td>
-			<td><c:out value="${sugerencia.sede.nombre }" /></td>
-			<td>
-					<button type="button" class="btn btn-default dropdown-toggle"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Detalle <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li class="dropdown-header">Detalle</li>
+			<tr>
+				<td><c:out value="${sugerencia.usuario.nombre }" /></td>
+				<td><c:out value="${sugerencia.tipo }" /></td>
+				<td><c:out value="${sugerencia.sede.nombre }" /> <c:if
+						test="${empty sugerencia.sede}">
+				General
+				</c:if></td>
+				<td>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Detalle <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li class="dropdown-header">Detalle</li>
 							<li><c:out value="${sugerencia.mensaje}" /></li>
-					</ul>
+						</ul>
+					</div>
 				</td>
-		</tr>
+			</tr>
 		</c:forEach>
 
 	</table>
