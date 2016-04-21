@@ -7,7 +7,7 @@
 				<th>Fecha Efectuada</th>
 				<th>Monto</th>
 				<th>Detalles</th>
-				<th>Email</th>
+				<th>Pago</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -17,7 +17,7 @@
 					<td><c:out value="${compra.fechaEfectuada }" /></td>
 					<td><c:out value="${compra.monto }" /></td>
 					<td>
-					<div class="btn-group">
+						<div class="btn-group">
 							<button type="button" class="btn btn-default dropdown-toggle"
 								data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false">
@@ -30,6 +30,19 @@
 								</c:forEach>
 							</ul>
 						</div>
+					</td>
+					<td><c:choose>
+							<c:when test="${compra.pagado}">
+							Pagado
+ 							 </c:when>
+							<c:otherwise>
+							<form action="${pageContext.request.contextPath}/compra/pagar"
+								method="POST">
+								<input type="hidden" value="${compra.id }" name="id"> <input
+									type="submit" class="btn btn-danger " value="Pagar" />
+							</form>
+  							</c:otherwise>
+						</c:choose> 
 					</td>
 				</tr>
 			</c:forEach>

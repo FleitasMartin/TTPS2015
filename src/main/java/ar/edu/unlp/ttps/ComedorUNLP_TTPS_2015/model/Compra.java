@@ -25,10 +25,17 @@ public class Compra {
 	private Date fechaEfectuada;
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<SeleccionDiaMenu> selecciones;	
+	private Boolean pagado;
 	
 	@ManyToOne(optional = false)
 	private Usuario usuario;
 		
+	public Boolean getPagado() {
+		return pagado;
+	}
+	public void setPagado(Boolean pagado) {
+		this.pagado = pagado;
+	}
 	public Double getMonto() {
 		return monto;
 	}

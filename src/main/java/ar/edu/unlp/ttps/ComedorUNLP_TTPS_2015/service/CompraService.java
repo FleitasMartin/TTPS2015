@@ -154,6 +154,8 @@ public class CompraService {
 			compraNueva.setSelecciones(seleccionesDeDiaMenu);
 
 		}
+		
+		compraNueva.setPagado(false);
 		compraDAO.save(compraNueva);
 		return listar(dniUsuario);
 	}
@@ -171,5 +173,21 @@ public class CompraService {
 		seleccionDiaMenu.setPrecio(precio);
 		return seleccionDiaMenu;
 
+	}
+	
+	public ModelAndView pagar(Long id,String dniUsuario) {
+
+		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
+		Compra compra = compraDAO.get(id);
+		usuario.setSaldo(usuario.getSaldo()-compra.getMonto());
+		usuarioDAO.edit(usuario);
+		compra.setPagado(true);
+		compraDAO.edit(compra);
+		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
+		ModelAndView model = new ModelAndView();
+		model.setViewName("indexUsuario");
+		model.addObject("compras", compras);
+		model.addObject("contentPage", "listarCompras");
+		return model;
 	}
 }

@@ -82,7 +82,8 @@ public class UsuarioService {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexUsuario");
 		model.addObject("usuario", usuario);
-		model.addObject("contentPage","userPerfil");
+		model.addObject("saldo", usuario.getSaldo());
+		model.addObject("contentPage","saldo");
 		return model;
 	}
 	

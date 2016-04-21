@@ -72,4 +72,12 @@ public class CompraController {
 		return compraService.listar(dniUsuario);
 	}
 
+	@RequestMapping(value = "/pagar", method = RequestMethod.POST)
+	public ModelAndView pagar(@RequestParam(value = "id") Long id){
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		String dniUsuario = (String) user.getUsername();
+		return compraService.pagar(id, dniUsuario);
+	}
+
 }
