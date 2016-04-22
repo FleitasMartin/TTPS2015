@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.CartillaDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.CompraDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.MenuDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.PagoDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SeleccionDiaMenuDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SemanaDAO;
@@ -20,6 +21,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Cartilla;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Compra;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Menu;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Pago;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.SeleccionDiaMenu;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Semana;
@@ -44,6 +46,9 @@ public class CompraService {
 
 	@Autowired
 	CompraDAO compraDAO;
+	
+	@Autowired
+	PagoDAO pagoDAO;
 
 	@Autowired
 	SeleccionDiaMenuDAO seleccionDiaMenuDAO;
@@ -183,6 +188,13 @@ public class CompraService {
 		usuarioDAO.edit(usuario);
 		compra.setPagado(true);
 		compraDAO.edit(compra);
+		Pago pago = new Pago();
+		pago.setCompra(compra);
+		java.util.Date fechaPago = new Date();
+		pago.setFechaPago(fechaPago);
+		pago.setUsuario(usuario);
+		pago.setSede(compra.getSelecciones().get(0).getSede());
+		pagoDAO.save(pago);
 		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexUsuario");
