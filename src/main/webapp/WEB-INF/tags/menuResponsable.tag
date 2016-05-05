@@ -5,8 +5,8 @@
 		href="${pageContext.request.contextPath}/sede/usuariosHabilitados">Usuarios
 			habilitados</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/responsable/pagosTickets">Compra
-			de tickets</a></li>
+		href="${pageContext.request.contextPath}/pago/listadoSemanal">Compras
+			semanales</a></li>
 	<li><a
 		href="${pageContext.request.contextPath}/responsable/registroTickets">Registro
 			tickets</a></li>
@@ -17,7 +17,7 @@
 <script>
 	$(function() {
 		//$('ul a[href^="/' + location.pathname.split("/")[1] + '"]').parent()
-		$('ul a[href^="' + location.pathname+ '"]').parent()
+		$('ul a[href^="' + location.pathname + '"]').parent()
 				.addClass('active');
 	});
 </script>

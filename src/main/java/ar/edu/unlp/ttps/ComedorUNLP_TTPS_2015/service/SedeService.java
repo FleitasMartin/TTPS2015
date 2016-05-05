@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
 
@@ -20,6 +22,9 @@ public class SedeService {
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 
+	@Autowired
+	private ResponsableDAO responsableDAO;
+	
 	public ModelAndView listar() {
 
 		ArrayList<Sede> sedes = new ArrayList<Sede>();
@@ -31,10 +36,11 @@ public class SedeService {
 		return model;
 	}
 
-	public ModelAndView usuariosHabilitados() {
+	public ModelAndView usuariosHabilitados(String dni) {
 
+		Responsable responsable = responsableDAO.findByDNI(dni);
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios = (ArrayList<Usuario>) usuarioDAO.getAll();
+		usuarios = (ArrayList<Usuario>) usuarioDAO.getAllBySede(responsable.getSede());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexResponsable");
 		model.addObject("usuarios", usuarios);

@@ -1,6 +1,8 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +38,10 @@ public class SedeController {
 
 	@RequestMapping(value = "/usuariosHabilitados", method = RequestMethod.GET)
 	public ModelAndView usuariosHabilitados() {
-
-		return sedeService.usuariosHabilitados();
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		String dni = (String) user.getUsername();
+		return sedeService.usuariosHabilitados(dni);
 
 	}
 

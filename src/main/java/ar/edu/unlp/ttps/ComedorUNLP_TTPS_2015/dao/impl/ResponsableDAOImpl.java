@@ -16,24 +16,6 @@ public class ResponsableDAOImpl extends GenericDAOImpl<Responsable> implements
 	}
 
 	@Override
-	public Responsable login(String dni, String contrasena) {
-		Query consulta = getEntityManager()
-				.createQuery(
-						"select e from "
-								+ Responsable.class.getSimpleName()
-								+ " e where e.dni = :dni and e.contrasena = :contrasena ")
-				.setParameter("dni", dni)
-				.setParameter("contrasena", contrasena);
-		Responsable resultado = new Responsable();
-		try {
-			resultado = (Responsable) consulta.getSingleResult();
-		} catch (Exception e) {
-			resultado = null;
-		}
-		return resultado;
-	}
-
-	@Override
 	public Responsable findByDNI(String dni) {
 		try {
 			Query consulta = getEntityManager().createQuery(
