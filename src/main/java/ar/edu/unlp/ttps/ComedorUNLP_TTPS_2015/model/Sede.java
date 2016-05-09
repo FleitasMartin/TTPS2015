@@ -1,5 +1,6 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,8 +21,8 @@ public class Sede {
 	private Long id;
 	private String nombre;
 	private String ubicacion;
-	private Double latitud;
-	private Double longitud;
+	private String latitud;
+	private String longitud;
 	private Integer capacidad;
 
 	@OneToMany(mappedBy = "sede")
@@ -34,6 +35,21 @@ public class Sede {
 	// TODO
 	// @Type(type='text')
 	// private String latLng;
+	
+	public Sede(){
+		super();
+	}
+	
+	public Sede(String nombre, int capacidad, String ubicacion, String latitud, String longitud){
+		super();
+		setNombre(nombre);
+		setCapacidad(capacidad);
+		setUbicacion(ubicacion);
+		setLatitud(latitud);
+		setLongitud(longitud);
+		setResponsables(new ArrayList<Responsable>());
+		setUsuarios(new ArrayList<Usuario>());
+	}
 	
 	
 	public List<Usuario> getUsuarios() {
@@ -60,19 +76,19 @@ public class Sede {
 		this.ubicacion = ubicacion;
 	}
 
-	public Double getLatitud() {
+	public String getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(Double latitud) {
+	public void setLatitud(String latitud) {
 		this.latitud = latitud;
 	}
 
-	public Double getLongitud() {
+	public String getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(Double longitud) {
+	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
 

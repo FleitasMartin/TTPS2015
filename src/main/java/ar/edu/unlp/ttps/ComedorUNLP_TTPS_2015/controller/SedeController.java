@@ -21,8 +21,10 @@ public class SedeController {
 	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public ModelAndView crear(@RequestParam("nombre") String nombre,
 			@RequestParam("capacidad") int capacidad,
-			@RequestParam("ubicacion") String ubicacion) {
-		return sedeService.crear(nombre, capacidad, ubicacion);
+			@RequestParam("ubicacion") String ubicacion,
+			@RequestParam("latitud") String latitud,
+			@RequestParam("longitud") String longitud) {
+		return sedeService.crear(nombre, capacidad, ubicacion, latitud, longitud);
 
 	}
 
@@ -61,9 +63,11 @@ public class SedeController {
 	public ModelAndView editar(@RequestParam("id") Long id,
 			@RequestParam("nombre") String nombre,
 			@RequestParam("capacidad") int capacidad,
-			@RequestParam("ubicacion") String ubicacion) {
+			@RequestParam("ubicacion") String ubicacion,
+			@RequestParam("latitud") String latitud,
+			@RequestParam("longitud") String longitud) {
 
-		return sedeService.editar(id, nombre, capacidad, ubicacion);
+		return sedeService.editar(id, nombre, capacidad, ubicacion, latitud, longitud);
 	}
 
 }

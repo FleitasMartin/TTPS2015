@@ -29,3 +29,10 @@
 	rel="stylesheet" />
 
 <title>UNLP Comedor Universitario</title>
+
+<style>
+#map {
+	width: 600px;
+	height: 500px;
+}
+</style>

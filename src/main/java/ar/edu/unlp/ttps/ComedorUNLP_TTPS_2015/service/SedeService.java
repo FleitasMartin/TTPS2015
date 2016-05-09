@@ -48,12 +48,13 @@ public class SedeService {
 		return model;
 	}
 
-	public ModelAndView crear(String nombre, int capacidad, String ubicacion) {
+	public ModelAndView crear(String nombre, int capacidad, String ubicacion, String latitud, String longitud) {
 
-		Sede sedeNueva = new Sede();
+		Sede sedeNueva = new Sede(nombre, capacidad, ubicacion, latitud, longitud);
+		/*Sede sedeNueva = new Sede();
 		sedeNueva.setNombre(nombre);
 		sedeNueva.setCapacidad(capacidad);
-		sedeNueva.setUbicacion(ubicacion);
+		sedeNueva.setUbicacion(ubicacion);*/
 		sedeDAO.save(sedeNueva);
 		return listar();
 	}
@@ -66,11 +67,13 @@ public class SedeService {
 	}
 
 	public ModelAndView editar(Long id, String nombre, int capacidad,
-			String ubicacion) {
+			String ubicacion, String latitud, String longitud) {
 		Sede sede = sedeDAO.get(id);
 		sede.setNombre(nombre);
 		sede.setCapacidad(capacidad);
 		sede.setUbicacion(ubicacion);
+		sede.setLatitud(latitud);
+		sede.setLongitud(longitud);
 		sedeDAO.edit(sede);
 		return listar();
 	}

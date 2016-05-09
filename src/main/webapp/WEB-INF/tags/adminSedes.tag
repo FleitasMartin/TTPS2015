@@ -1,6 +1,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ tag%>
+
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/confiGMapListar.js"></script>
+
 <table class="table">
 	<thead>
 		<tr>
@@ -19,16 +23,17 @@
 						action="${pageContext.request.contextPath}/sede/editar"
 						method="GET">
 						<input type="hidden" value="${sede.id }" name="id"> <input
-							type="submit" class="btn btn-warning" value="Modificar" />
+							type="submit" class="btn btn-warning" value="Editar" />
 					</form></td>
 				<td>
-					<form action="${pageContext.request.contextPath}/sede/eliminar" method="POST">
+					<form action="${pageContext.request.contextPath}/sede/eliminar"
+						method="POST">
 						<input type="hidden" value="${sede.id }" name="id"> <input
 							type="submit" class="btn btn-danger botondelete" value="Eliminar" />
 					</form>
 				</td>
-				<td><a class="btn btn-warning" href="#">Editar</a></td>
 			</tr>
+			<script type="text/javascript">crearMarcador('${sede.nombre }', ${sede.latitud } , ${sede.longitud } );</script>
 		</c:forEach>
 	</tbody>
 </table>
@@ -36,67 +41,6 @@
 	class="btn btn-primary" role="button">Alta Sede</a>
 <div id="map"></div>
 
-<script type="text/javascript">
-	var map;
-	function initMap() {
-		var myLatLng = {
-			lat : -34.920421,
-			lng : -57.9525343
-		};
-		map = new google.maps.Map(document.getElementById('map'), {
-			center : myLatLng,
-			zoom : 13
-		});
-		/*map.addListener('click', function(e) {
-			placeMarkerAndPanTo(e.latLng, map);
-		});*/
-		var bosqueOeste = {
-			lat : -34.90757,
-			lng : -57.94190
-		};
-		var bosqueEste = {
-			lat : -34.90945,
-			lng : -57.925642
-		};
-		var clubEverton = {
-			lat : -34.93040,
-			lng : -57.94457
-		};
-		var centroATULP = {
-			lat : -34.9131241,
-			lng : -57.9582042
-		};
-		var marker = new google.maps.Marker({
-			position : bosqueOeste,
-			map : map,
-			title : 'Comedor universitario. Sede bosque oeste.'
-		});
-		var marker2 = new google.maps.Marker({
-			position : bosqueEste,
-			map : map,
-			title : 'Comedor universitario. Sede bosque este.'
-		});
-		var marker3 = new google.maps.Marker({
-			position : clubEverton,
-			map : map,
-			title : 'Comedor universitario. Club Everton.'
-		});
-		var marker4 = new google.maps.Marker({
-			position : centroATULP,
-			map : map,
-			title : 'Comedor universitario. Centro ATULP.'
-		});
-	}
-	/*function placeMarkerAndPanTo(latLng, map){
-		var marker = new google.maps.Marker({
-			position: latLng,
-			map: map
-		});
-		map.panTo(latLng);
-	}*/
-	
-</script>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALdnqGLwYolrMF5GK9cLQVPBu8iBDV4Ck&callback=initMap">
-	
 </script>
