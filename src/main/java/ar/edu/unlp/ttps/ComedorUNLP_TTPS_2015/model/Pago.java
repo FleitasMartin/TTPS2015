@@ -28,6 +28,17 @@ public class Pago {
 	@ManyToOne(optional = false)
 	private Usuario usuario;
 	
+	public Pago(){
+		super();
+	}
+	public Pago(Compra compra, Date fechaPago, Usuario usuario){
+		super();
+		setCompra(compra);
+		setFechaPago(fechaPago);
+		setUsuario(usuario);
+		setSede(compra.getSelecciones().get(0).getSede());
+	}
+	
 	public Date getFechaPago() {
 		return fechaPago;
 	}

@@ -124,7 +124,7 @@ public class CompraService {
 		ArrayList<SeleccionDiaMenu> seleccionesDeDiaMenu = new ArrayList<SeleccionDiaMenu>();
 		for (int i = 0; i < cantidadSemanas; i++) {
 			if (lunesMenuId != null) {
-				seleccionesDeDiaMenu.add(this.agregarSeleccion(lunesMenuId,/* fechaLunes */
+				seleccionesDeDiaMenu.add(this.agregarSeleccion(lunesMenuId,
 						lunes, sede, seleccionViandaLunes, precio));
 				montoTotal += precio;
 
@@ -167,17 +167,18 @@ public class CompraService {
 
 	private SeleccionDiaMenu agregarSeleccion(Long menuId, Date fecha,
 			Sede sede, Boolean seleccionVianda, Double precio) {
-		SeleccionDiaMenu seleccionDiaMenu = new SeleccionDiaMenu();
 		Menu menu = new Menu();
 		menu = menuDAO.get(menuId);
+		/*** TODO BORRAR
+		SeleccionDiaMenu seleccionDiaMenu = new SeleccionDiaMenu();
 		seleccionDiaMenu.setFecha(fecha);
 		seleccionDiaMenu.setMenu(menu);
 		seleccionDiaMenu.setNombre(menu.getNombre());
 		seleccionDiaMenu.setSede(sede);
 		seleccionDiaMenu.setVianda(seleccionVianda);
 		seleccionDiaMenu.setPrecio(precio);
-		return seleccionDiaMenu;
-
+		return seleccionDiaMenu;*/
+		return new SeleccionDiaMenu(fecha, menu, sede, seleccionVianda, precio);
 	}
 	
 	public ModelAndView pagar(Long id,String dniUsuario) {
@@ -188,12 +189,15 @@ public class CompraService {
 		usuarioDAO.edit(usuario);
 		compra.setPagado(true);
 		compraDAO.edit(compra);
+		java.util.Date fechaPago = new Date();
+		Pago pago = new Pago(compra, fechaPago, usuario);
+		/*** TODO BORRAR
 		Pago pago = new Pago();
 		pago.setCompra(compra);
 		java.util.Date fechaPago = new Date();
 		pago.setFechaPago(fechaPago);
 		pago.setUsuario(usuario);
-		pago.setSede(compra.getSelecciones().get(0).getSede());
+		pago.setSede(compra.getSelecciones().get(0).getSede());*/
 		pagoDAO.save(pago);
 		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
 		ModelAndView model = new ModelAndView();

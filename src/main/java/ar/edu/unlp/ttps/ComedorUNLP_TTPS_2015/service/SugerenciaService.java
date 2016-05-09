@@ -39,16 +39,17 @@ public class SugerenciaService {
 		return model;
 	}
 
-	public ModelAndView comentar(String tipoSugerencia, Long sedeId,
-			String message, String dniUsuario) {
+	public ModelAndView comentar(String tipo, Long sedeId,
+			String mensaje, String dniUsuario) {
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
-		Sugerencia sugerencia = new Sugerencia();
+		/*Sugerencia sugerencia = new Sugerencia();
 		Sede sede = sedeDAO.get(sedeId);
 		sugerencia.setSede(sede);
 		sugerencia.setTipo(tipoSugerencia);
 		sugerencia.setMensaje(message);
-		sugerencia.setUsuario(usuario);
-
+		sugerencia.setUsuario(usuario);*/
+		Sede sede = sedeDAO.get(sedeId);
+		Sugerencia sugerencia = new Sugerencia(usuario, tipo, mensaje, sede);
 		sugerenciaDAO.save(sugerencia);
 		return comentar(dniUsuario);
 	}

@@ -27,6 +27,17 @@ public class Cartilla {
 	@ManyToMany(cascade=CascadeType.ALL , fetch=FetchType.EAGER)
 	private List<Semana> semanas;
 	
+	public Cartilla(){
+		super();
+	}
+	public Cartilla(Double precio, Date fechaInicio, Date fechaFin, List<Semana> semanas){
+		super();
+		setPrecio(precio);
+		setFechaInicio(fechaInicio);
+		setFechaFin(fechaFin);
+		setSemanas(semanas);
+	}
+	
 	public Double getPrecio() {
 		return precio;
 	}

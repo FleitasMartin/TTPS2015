@@ -28,14 +28,15 @@ public class AdminService {
 	public ModelAndView crear(String nombre, String apellido, String dni,
 			String contrasena, Integer telefono, String domicilio, String email) {
 
-		Administrador admin = new Administrador();
+		Administrador admin = new Administrador(nombre, apellido, dni, contrasena, telefono, domicilio, email);
+		/*Administrador admin = new Administrador();
 		admin.setDni(dni);
 		admin.setContrasena(contrasena);
 		admin.setApellido(apellido);
 		admin.setNombre(nombre);
 		admin.setEmail(email);
 		admin.setTelefono(telefono);
-		admin.setDomicilio(domicilio);
+		admin.setDomicilio(domicilio);*/
 		admin.setRol(rolUsuarioDAO.getRol("ROLE_ADMIN"));
 		administradorDAO.save(admin);
 		return listar();

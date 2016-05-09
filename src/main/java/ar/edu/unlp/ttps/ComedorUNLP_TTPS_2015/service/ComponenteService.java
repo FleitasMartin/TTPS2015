@@ -16,14 +16,9 @@ public class ComponenteService {
 	private ComponenteDAO componenteDAO;
 	
 	public ModelAndView crear(String nombre, String tipo){		
-		Componente componente = new Componente();
-		componente.setTipo(tipo);
-		componente.setNombre(nombre);
-		componenteDAO.save(componente);		
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("contentPage","altaComponente");
-		return model;
+		Componente componente = new Componente(nombre, tipo);
+		componenteDAO.save(componente);
+		return listar();
 	}
 	
 	public ModelAndView listar() {		

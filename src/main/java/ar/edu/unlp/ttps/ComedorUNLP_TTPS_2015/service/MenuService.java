@@ -39,16 +39,11 @@ public class MenuService {
 	public ModelAndView crear(String nombre, ArrayList<Long> caracteristicas, ArrayList<Long> bebidas, 
 			ArrayList<Long> entradas, ArrayList<Long> platos, ArrayList<Long> postres){
 		
-		Menu menu = new Menu();
-		
-		menu.setNombre(nombre);
-
 		ArrayList<Caracteristica> caracteristicasA = new ArrayList<Caracteristica>();
 		for (Long id : caracteristicas) {
 			caracteristicasA.add(caracteristicaDAO.get(id));
 		}
-		menu.setCaracteristica(caracteristicasA);
-		
+	
 		ArrayList<Componente> componentes = new ArrayList<Componente>();
 		for (Long idComponente : bebidas) {
 			componentes.add(componenteDAO.get(idComponente));
@@ -66,9 +61,7 @@ public class MenuService {
 			componentes.add(componenteDAO.get(idComponente));
 		}
 		
-		menu.setComponentes(componentes);
-		
-		menu.setVisible(true); //TODO POR DEFECTO O A ELEGIR EN EL FORM? O LO DESCARTAMOS??
+		Menu menu = new Menu(nombre, componentes, caracteristicasA, true);
 		
 		menuDAO.save(menu);
 		
@@ -147,7 +140,7 @@ public class MenuService {
 		
 		menu.setComponentes(componentes);
 		
-		menu.setVisible(true); //TODO ; POR DEFECTO O A ELEGIR EN EL FORM? O LO DESCARTAMOS??
+		menu.setVisible(true); 
 		
 		menuDAO.edit(menu);
 		

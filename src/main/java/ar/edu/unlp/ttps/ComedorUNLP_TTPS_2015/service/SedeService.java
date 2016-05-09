@@ -51,10 +51,6 @@ public class SedeService {
 	public ModelAndView crear(String nombre, int capacidad, String ubicacion, String latitud, String longitud) {
 
 		Sede sedeNueva = new Sede(nombre, capacidad, ubicacion, latitud, longitud);
-		/*Sede sedeNueva = new Sede();
-		sedeNueva.setNombre(nombre);
-		sedeNueva.setCapacidad(capacidad);
-		sedeNueva.setUbicacion(ubicacion);*/
 		sedeDAO.save(sedeNueva);
 		return listar();
 	}

@@ -19,6 +19,15 @@ public class Componente {
 	protected String nombre;
 	protected String tipo;
 
+	public Componente(){
+		super();
+	}
+	public Componente(String nombre, String tipo){
+		super();
+		setNombre(nombre);
+		setTipo(tipo);
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

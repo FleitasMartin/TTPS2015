@@ -29,18 +29,14 @@ public class Sede {
 	private List<Responsable> responsables;
 
 	@OneToMany(mappedBy = "sede")
-	// , cascade=CascadeType.ALL)
 	private List<Usuario> usuarios;
 
-	// TODO
-	// @Type(type='text')
-	// private String latLng;
-	
-	public Sede(){
+	public Sede() {
 		super();
 	}
-	
-	public Sede(String nombre, int capacidad, String ubicacion, String latitud, String longitud){
+
+	public Sede(String nombre, int capacidad, String ubicacion, String latitud,
+			String longitud) {
 		super();
 		setNombre(nombre);
 		setCapacidad(capacidad);
@@ -50,8 +46,7 @@ public class Sede {
 		setResponsables(new ArrayList<Responsable>());
 		setUsuarios(new ArrayList<Usuario>());
 	}
-	
-	
+
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}

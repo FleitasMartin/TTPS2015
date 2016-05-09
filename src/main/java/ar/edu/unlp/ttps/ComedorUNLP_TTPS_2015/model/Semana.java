@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "semana")
 public class Semana {
 	
-	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY)//@GeneratedValue(strategy=GenerationType.AUTO)//
+	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;	
 	
@@ -25,6 +25,15 @@ public class Semana {
 	@OneToMany(fetch=FetchType.EAGER)
 	private List<DiaMenu> dias;
 
+	public Semana(){
+		super();
+	}
+	public Semana(Date fechaDesde, List<DiaMenu> dias){
+		super();
+		setFechaDesde(fechaDesde);
+		setDias(dias);
+	}
+	
 	public Long getId() {
 		return id;
 	}

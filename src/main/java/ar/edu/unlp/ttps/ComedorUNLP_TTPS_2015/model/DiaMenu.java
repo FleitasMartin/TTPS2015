@@ -29,6 +29,16 @@ public class DiaMenu implements Comparable<DiaMenu>{
 	@ManyToOne
 	private Semana semana;
 	
+	public DiaMenu(){
+		super();
+	}
+	public DiaMenu(String nombre, Date fecha, List<Menu> menues){
+		super();
+		setNombre(nombre);
+		setFecha(fecha);
+		setMenues(menues);
+	}
+	
 	public List<Menu> getMenues() {
 		return menues;
 	}

@@ -36,13 +36,6 @@ public class ResponsableController {
 				telefono, email, domicilio, sedeId);
 	}
 
-	@RequestMapping(value = "/listarResponsables", method = RequestMethod.GET)
-	public ModelAndView listarResponsables() {
-
-		return responsableService.listarResponsables();
-
-	}
-
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public ModelAndView listar() {
 		return responsableService.listar();

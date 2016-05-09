@@ -34,7 +34,7 @@ public class ResponsableService {
 		return model;
 	}
 
-	public ModelAndView listarResponsables() {
+	public ModelAndView listar() {
 
 		ArrayList<Responsable> responsables = new ArrayList<Responsable>();
 		responsables = (ArrayList<Responsable>) responsableDAO.getAll();
@@ -49,17 +49,10 @@ public class ResponsableService {
 			String contrasena, Integer telefono, String email,
 			String domicilio, Long sedeId) {
 
-		Responsable resp = new Responsable();
-		resp.setDni(dni);
-		resp.setContrasena(contrasena);
-		resp.setApellido(apellido);
-		resp.setNombre(nombre);
-		resp.setDomicilio(domicilio);
-		resp.setEmail(email);
-		resp.setTelefono(telefono);
 		Sede sede = sedeDAO.get(sedeId);
-		resp.setSede(sede);
-		resp.setRol(rolUsuarioDAO.getRol("ROLE_RESPONSABLE"));
+		Responsable resp = new Responsable(dni, contrasena, apellido, nombre,
+				domicilio, email, telefono, sede,
+				rolUsuarioDAO.getRol("ROLE_RESPONSABLE"));
 		responsableDAO.save(resp);
 		return listar();
 	}
@@ -76,16 +69,6 @@ public class ResponsableService {
 		return model;
 	}
 
-	public ModelAndView listar() {
-		ArrayList<Responsable> resps = new ArrayList<Responsable>();
-		resps = (ArrayList<Responsable>) responsableDAO.getAll();
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("resps", resps);
-		model.addObject("contentPage", "listarResponsables");
-		return model;
-	}
-
 	public ModelAndView editarResponsable(Long id, String nombre,
 			String apellido, Integer telefono, String email, String domicilio,
 			Long sede) {
@@ -96,11 +79,11 @@ public class ResponsableService {
 		responsable.setTelefono(telefono);
 		responsable.setDomicilio(domicilio);
 		responsableDAO.edit(responsable);
-		return listarResponsables();
+		return listar();
 	}
 
 	public ModelAndView eliminar(Long id) {
 		responsableDAO.delete(id);
-		return listarResponsables();
+		return listar();
 	}
 }

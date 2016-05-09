@@ -30,6 +30,19 @@ public class SeleccionDiaMenu {
 
 	private Date fecha;
 	
+	public SeleccionDiaMenu(){
+		super();
+	}
+	public SeleccionDiaMenu(Date fecha, Menu menu, Sede sede, Boolean seleccionVianda, Double precio){
+		super();
+		setFecha(fecha);
+		setMenu(menu);
+		setNombre(menu.getNombre());
+		setSede(sede);
+		setVianda(seleccionVianda);
+		setPrecio(precio);
+	}
+	
 	public Double getPrecio() {
 		return precio;
 	}

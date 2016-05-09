@@ -148,11 +148,11 @@ public class CartillaService {
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
-		Date inicioDate = simpleDateFormat.parse(fechaDesde);
-		Date finDate = simpleDateFormat.parse(fechaHasta);
+		Date fechaInicio = simpleDateFormat.parse(fechaDesde);
+		Date fechaFin = simpleDateFormat.parse(fechaHasta);
 
-		DateTime inicio = new DateTime(inicioDate);
-		DateTime fin = new DateTime(finDate);
+		DateTime inicio = new DateTime(fechaInicio);
+		DateTime fin = new DateTime(fechaFin);
 
 		ArrayList<Long[]> diasMenues = new ArrayList<Long[]>();
 		diasMenues.add(0, lunesMenues);
@@ -161,13 +161,9 @@ public class CartillaService {
 		diasMenues.add(3, juevesMenues);
 		diasMenues.add(4, viernesMenues);
 
-		Cartilla cartilla = new Cartilla();
 		ArrayList<Semana> semanas = this.armadorDiasSemanas(inicio, fin,
 				diasMenues);
-		cartilla.setFechaInicio(inicioDate);
-		cartilla.setFechaFin(finDate);
-		cartilla.setSemanas(semanas);
-		cartilla.setPrecio(precio);
+		Cartilla cartilla = new Cartilla(precio, fechaInicio, fechaFin, semanas);
 
 		cartillaDAO.save(cartilla);
 
@@ -246,29 +242,18 @@ public class CartillaService {
 					diaActual.plusDays(3).toDate()));
 			dias.add(this.armarYGuardarDia(atributos.get(4), "Viernes",
 					diaActual.plusDays(4).toDate()));
-			semanas.add(this.armarYGuardarSemana(dias, diaActual.toDate()));
+			semanas.add( new Semana(diaActual.toDate(), dias));
 			diaActual = diaActual.plusDays(7);
 		}
 		return semanas;
 	}
 
-	private Semana armarYGuardarSemana(ArrayList<DiaMenu> dias, Date fechaInicio) {
-		Semana semana = new Semana();
-		semana.setDias(dias);
-		semana.setFechaDesde(fechaInicio);
-		// semanaDAO.save(semana);
-		return semana;
-	}
-
 	private DiaMenu armarYGuardarDia(Long[] menues, String nombre, Date fecha) {
-		DiaMenu diaMenu = new DiaMenu();
-		diaMenu.setFecha(fecha);
-		diaMenu.setNombre(nombre);
-		ArrayList<Menu> menus = new ArrayList<Menu>();
-		for (Long id : menues) {
-			menus.add(menuDAO.get(id));
+		ArrayList<Menu> menuses = new ArrayList<Menu>();
+		for (Long idMenu : menues) {
+			menuses.add(menuDAO.get(idMenu));
 		}
-		diaMenu.setMenues(menus);
+		DiaMenu diaMenu = new DiaMenu(nombre, fecha, menuses);
 		diaMenuDAO.save(diaMenu);
 		return diaMenu;
 	}

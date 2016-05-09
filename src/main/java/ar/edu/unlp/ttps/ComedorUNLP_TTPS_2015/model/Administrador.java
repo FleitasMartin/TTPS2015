@@ -7,4 +7,19 @@ import javax.persistence.Table;
 @Table(name = "administrador")
 public class Administrador extends Persona {
 
+	public Administrador(){
+		
+	}
+	
+	public Administrador(String nombre, String apellido, String dni,
+			String contrasena, Integer telefono, String domicilio, String email){
+		super();
+		setNombre(nombre);
+		setApellido(apellido);
+		setDni(dni);
+		setContrasena(contrasena);
+		setTelefono(telefono);
+		setDomicilio(domicilio);
+		setEmail(email);
+	}
 }

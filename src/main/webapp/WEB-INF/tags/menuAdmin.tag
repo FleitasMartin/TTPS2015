@@ -1,25 +1,24 @@
 <%@ tag%>
 <%@ attribute name="id" fragment="true"%>
-<ul class="nav nav-pills nav-stacked" style="color:red;">
-	<li><a href="${pageContext.request.contextPath}/sede/listar">Gestion
-			de sedes</a></li>
-	<li><a href="${pageContext.request.contextPath}/componente/listar">Administraci&oacute;n
+<ul class="nav nav-pills nav-stacked" style="color: red;">
+	<li><a href="${pageContext.request.contextPath}/sede/listar">Gesti&oacute;n
+			de Sedes</a></li>
+	<li><a href="${pageContext.request.contextPath}/componente/listar">Gesti&oacute;n
 			de Componentes</a></li>
-	<li><a href="${pageContext.request.contextPath}/menu/listar">Administraci&oacute;n
+	<li><a href="${pageContext.request.contextPath}/menu/listar">Gesti&oacute;n
 			de Men&uacute;es</a></li>
+	<li><a href="${pageContext.request.contextPath}/cartilla/listar">Gesti&oacute;n
+			de Cartilla Semanal</a></li>
+	<li><a href="${pageContext.request.contextPath}/admin/listar">Gesti&oacute;n
+			de Administradores</a></li>
+	<li><a
+		href="${pageContext.request.contextPath}/responsable/listar">Gesti&oacute;n
+			de Responsables</a></li>
 	<li><a
 		href="${pageContext.request.contextPath}/sugerencia/buzonVirtual">Buzon
-			virtual</a></li>
+			Virtual</a></li>
 	<li><a
 		href="${pageContext.request.contextPath}/admin/estadisticasMenues">Estad&iacute;sticas</a></li>
-	<li><a
-		href="${pageContext.request.contextPath}/admin/listar">Gestion
-			de administradores</a></li>
-	<li><a
-		href="${pageContext.request.contextPath}/responsable/listarResponsables">Gestion
-			de responsables</a></li>
-	<li><a href="${pageContext.request.contextPath}/cartilla/listar">Cartilla
-			Semanal</a></li>
 </ul>
 <script>
 	$(function() {

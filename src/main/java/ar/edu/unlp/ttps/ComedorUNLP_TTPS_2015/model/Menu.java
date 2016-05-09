@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.joda.time.DateTime;
+
 @Entity
 @Table(name = "menu")
 public class Menu {
@@ -32,8 +34,20 @@ public class Menu {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "menu_caracteristicas", joinColumns = @JoinColumn(name = "idMenu", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idCaracteristicas", referencedColumnName = "id"))
-	private List<Caracteristica> caracteristica;
+	private List<Caracteristica> caracteristicas;
 
+	public Menu(){
+		super();
+	}
+	public Menu(String nombre, List<Componente> componentes, List<Caracteristica> caracteristicas, boolean visible){
+		super();
+		setNombre(nombre);
+		setComponentes(componentes);
+		setCaracteristica(caracteristicas);
+		setVisible(visible);
+		setFechaAlta(new DateTime().toDate());
+	}
+	
 	public List<Componente> getComponentes() {
 		return componentes;
 	}
@@ -43,11 +57,11 @@ public class Menu {
 	}
 
 	public List<Caracteristica> getCaracteristica() {
-		return caracteristica;
+		return caracteristicas;
 	}
 
-	public void setCaracteristica(List<Caracteristica> caracteristica) {
-		this.caracteristica = caracteristica;
+	public void setCaracteristica(List<Caracteristica> caracteristicas) {
+		this.caracteristicas = caracteristicas;
 	}
 
 	public String getNombre() {
