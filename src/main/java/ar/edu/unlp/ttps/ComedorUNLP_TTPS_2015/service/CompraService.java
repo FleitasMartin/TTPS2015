@@ -234,4 +234,8 @@ public class CompraService {
 		model.addObject("contentPage", "listarCompras");
 		return model;
 	}
+	public ModelAndView borrar(Long id,String dniUsuario) {
+		compraDAO.delete(id);
+		return listar(dniUsuario);
+	}
 }

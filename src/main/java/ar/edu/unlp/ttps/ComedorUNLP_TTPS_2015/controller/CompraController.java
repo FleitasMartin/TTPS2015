@@ -80,5 +80,14 @@ public class CompraController {
 		String dniUsuario = (String) user.getUsername();
 		return compraService.pagar(id, dniUsuario);
 	}
+	
+	@RequestMapping(value = "/borrar", method = RequestMethod.POST)
+	public ModelAndView borrar(@RequestParam("id") Long id) {
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		String dniUsuario = (String) user.getUsername();
+		return compraService.borrar(id, dniUsuario);
+
+	}
 
 }
