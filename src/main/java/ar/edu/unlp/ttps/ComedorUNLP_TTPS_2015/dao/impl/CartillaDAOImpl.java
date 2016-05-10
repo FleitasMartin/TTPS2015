@@ -16,11 +16,24 @@ public class CartillaDAOImpl extends GenericDAOImpl<Cartilla> implements
 	}
 
 	public Cartilla getFirstCartilla(Object fechaActual) {
-		Query consulta = getEntityManager().createQuery(
-				"select e from " + getPersistentClass().getSimpleName()
-						+ " e where e.fechaInicio >   :fechaActual"
-						+ " ORDER BY fechaInicio DESC")
-						.setParameter("fechaActual", fechaActual);
+		/*
+		 * Query consulta = getEntityManager().createQuery( "select e from " +
+		 * getPersistentClass().getSimpleName() +
+		 * " e where e.fechaInicio >   :fechaActual" +
+		 * " ORDER BY fechaInicio DESC") .setParameter("fechaActual",
+		 * fechaActual);
+		 */
+		/**
+		 * TODO corregir 
+		 */
+		Query consulta = getEntityManager()
+				.createQuery(
+						"select e from "
+								+ getPersistentClass().getSimpleName()
+								//+ " e where  e.fechaInicio <= :fechaActual and e.fechaFin > :fechaActual"
+								+ " e where  :fechaActual BETWEEN e.fechaInicio AND e.fechaFin ").setParameter(
+								//+ " ORDER BY fechaInicio DESC").setParameter(								
+						"fechaActual", fechaActual);
 		Cartilla resultado = new Cartilla();
 		try {
 			resultado = (Cartilla) consulta.getSingleResult();
