@@ -23,7 +23,7 @@
 								<tr>
 									<td>
 									<!-- <input type="checkbox" name="${dia.nombre}">-->
-									<input type="radio" name="${dia.nombre}" value="${menu.id }">
+									<input type="checkbox" name="${dia.nombre}" value="${menu.id }">
 									<c:out value="${menu.nombre}" /> 
 									<input type="hidden" value="<fmt:formatDate value="${dia.fecha}" pattern="MM/dd/yyyy"/>" name="fecha${dia.nombre }" /> </td>
 									<!-- <input type="hidden" value="${dia.fecha }" name="fecha${dia.nombre}"></td>-->

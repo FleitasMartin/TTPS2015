@@ -31,24 +31,24 @@ public class CompraController {
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public ModelAndView crear(
-			@RequestParam(value = "Lunes") Long lunesMenuId,
-			@RequestParam(value = "Martes") Long martesMenuId,
-			@RequestParam(value = "Miercoles") Long miercolesMenuId,
-			@RequestParam(value = "Jueves") Long juevesMenuId,
-			@RequestParam(value = "Viernes") Long viernesMenuId,
-			@RequestParam(value = "fechaLunes") String fechaLunes,
-			@RequestParam(value = "fechaMartes") String fechaMartes,
-			@RequestParam(value = "fechaMiercoles") String fechaMiercoles,
-			@RequestParam(value = "fechaJueves") String fechaJueves,
-			@RequestParam(value = "fechaViernes") String fechaViernes,
-			@RequestParam(value = "seleccionViandaLunes") Boolean seleccionViandaLunes,
-			@RequestParam(value = "seleccionViandaMartes") Boolean seleccionViandaMartes,
-			@RequestParam(value = "seleccionViandaMiercoles") Boolean seleccionViandaMiercoles,
-			@RequestParam(value = "seleccionViandaJueves") Boolean seleccionViandaJueves,
-			@RequestParam(value = "seleccionViandaViernes") Boolean seleccionViandaViernes,
-			@RequestParam(value = "precio") Double precio,
-			@RequestParam(value = "sede") Long sede,
-			@RequestParam(value = "cantidadSemanas") Integer cantidadSemanas)
+			@RequestParam(value = "Lunes", required=false) Long lunesMenuId,
+			@RequestParam(value = "Martes", required=false) Long martesMenuId,
+			@RequestParam(value = "Miercoles", required=false) Long miercolesMenuId,
+			@RequestParam(value = "Jueves", required=false) Long juevesMenuId,
+			@RequestParam(value = "Viernes", required=false) Long viernesMenuId,
+			@RequestParam(value = "fechaLunes", required=false) String fechaLunes,
+			@RequestParam(value = "fechaMartes", required=false) String fechaMartes,
+			@RequestParam(value = "fechaMiercoles", required=false) String fechaMiercoles,
+			@RequestParam(value = "fechaJueves", required=false) String fechaJueves,
+			@RequestParam(value = "fechaViernes", required=false) String fechaViernes,
+			@RequestParam(value = "seleccionViandaLunes", required=false) Boolean seleccionViandaLunes,
+			@RequestParam(value = "seleccionViandaMartes", required=false) Boolean seleccionViandaMartes,
+			@RequestParam(value = "seleccionViandaMiercoles", required=false) Boolean seleccionViandaMiercoles,
+			@RequestParam(value = "seleccionViandaJueves", required=false) Boolean seleccionViandaJueves,
+			@RequestParam(value = "seleccionViandaViernes", required=false) Boolean seleccionViandaViernes,
+			@RequestParam(value = "precio", required=false) Double precio,
+			@RequestParam(value = "sede", required=false) Long sede,
+			@RequestParam(value = "cantidadSemanas", required=false) Integer cantidadSemanas)
 			throws ParseException {
 
 		User user = (User) SecurityContextHolder.getContext()
