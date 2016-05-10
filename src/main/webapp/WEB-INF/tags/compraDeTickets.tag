@@ -56,16 +56,18 @@
 				</div>
 			</c:forEach>
 		</div>
-		<label>Precio</label> <input type="hidden" value="${cartilla.precio }"
-			name="precio">
+		<label>Precio</label> 
+			<input type="hidden" value="${cartilla.precio }" name="precio">
 		<p>
 			<c:out value="${cartilla.precio }" />
 		</p>
+		<input type="hidden" value="${semana.fechaDesde }" name="fechaDesde">
 		<label>Sede</label>
 		<p>
 			<c:out value="${sede.nombre }" />
 			<input type="hidden" value="${sede.id }" name="sede">
 		</p>
+		
 		<input type="submit" value="Comprar"
 			class="form-control btn btn-primary">
 	</form>

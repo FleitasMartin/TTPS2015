@@ -48,7 +48,8 @@ public class CompraController {
 			@RequestParam(value = "seleccionViandaViernes", required=false) Boolean seleccionViandaViernes,
 			@RequestParam(value = "precio", required=false) Double precio,
 			@RequestParam(value = "sede", required=false) Long sede,
-			@RequestParam(value = "cantidadSemanas", required=false) Integer cantidadSemanas)
+			@RequestParam(value = "cantidadSemanas", required=false) Integer cantidadSemanas,
+			@RequestParam(value = "fechaDesde") Date fechaDesde)
 			throws ParseException {
 
 		User user = (User) SecurityContextHolder.getContext()
@@ -60,7 +61,7 @@ public class CompraController {
 				fechaMiercoles, fechaJueves, fechaViernes,
 				seleccionViandaLunes, seleccionViandaMartes,
 				seleccionViandaMiercoles, seleccionViandaJueves,
-				seleccionViandaViernes, precio, sede, cantidadSemanas, dniUsuario);
+				seleccionViandaViernes, precio, sede, cantidadSemanas, dniUsuario, fechaDesde);
 		
 	}
 

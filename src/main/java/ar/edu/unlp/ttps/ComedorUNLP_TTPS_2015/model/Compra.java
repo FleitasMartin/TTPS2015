@@ -21,6 +21,7 @@ public class Compra {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
+	private Date fechaDeSemanaComprada;
 	private Double monto;
 	private Date fechaEfectuada;
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
@@ -65,5 +66,11 @@ public class Compra {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	public Date getFechaDeSemanaComprada() {
+		return fechaDeSemanaComprada;
+	}
+	public void setFechaDeSemanaComprada(Date fechaDeSemanaComprada) {
+		this.fechaDeSemanaComprada = fechaDeSemanaComprada;
 	}
 }

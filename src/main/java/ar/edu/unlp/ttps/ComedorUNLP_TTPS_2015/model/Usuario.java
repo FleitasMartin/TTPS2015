@@ -25,7 +25,7 @@ public class Usuario extends Persona {
 	@JoinTable(name = "usuario_caracteristicas", joinColumns = @JoinColumn(name = "idUsuario", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idCaracteristicas", referencedColumnName = "id"))
 	private List<Caracteristica> caracteristica;
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", fetch=FetchType.EAGER)
 	private List<Compra> compras;
 
 	@OneToMany(mappedBy = "usuario")

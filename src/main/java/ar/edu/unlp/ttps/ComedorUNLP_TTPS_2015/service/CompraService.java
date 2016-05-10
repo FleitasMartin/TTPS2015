@@ -65,23 +65,43 @@ public class CompraService {
 		cartilla = cartillaDAO.getFirstCartilla(param);
 		if (cartilla != null) {
 
-			Semana semana = new Semana();
-			semana = semanaDAO.get(cartilla.getSemanas().get(0).getId());
+			Semana semana;
+			semana = semanaDAO.get(cartilla.getSemanas().get(0).getId());			
 			Integer cantidad = cartilla.getSemanas().size();
 
 			Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
-
-			Sede sede = new Sede();
-			sede = sedeDAO.get(usuario.getSede().getId());
-
-			model.addObject("usuario", usuario);
-			model.addObject("sede", sede);
-			model.addObject("cartilla", cartilla);
-			model.addObject("semana", semana);
-			model.addObject("cantidad", cantidad);
+			List<Compra> compras = usuario.getCompras();
+			boolean encontre =false;
+		
+			for(Compra compra : compras){
+				if(compra.getFechaDeSemanaComprada().equals(semana.getFechaDesde())){
+					encontre=true;
+					break;
+				}
+			}
+			if(!encontre)
+			{
+				Sede sede;
+				sede = sedeDAO.get(usuario.getSede().getId());
+	
+				model.addObject("usuario", usuario);
+				model.addObject("sede", sede);
+				model.addObject("cartilla", cartilla);
+				model.addObject("semana", semana);
+				model.addObject("cantidad", cantidad);
+				model.addObject("contentPage", "compraDeTickets");
+			}
+			else
+			{ 
+				String mensaje="usted ya tiene resevada esta cartilla";
+				model.addObject("mensaje", mensaje);
+				List<Compra> compras2 = compraDAO.getAllByUsuario(usuario.getId());
+				model.addObject("compras", compras2);
+				model.addObject("contentPage", "listarCompras");
+			}
 		}
-		model.addObject("contentPage", "compraDeTickets");
 		return model;
+		
 	}
 
 	public ModelAndView listar(String dniUsuario) {
@@ -102,7 +122,7 @@ public class CompraService {
 			Boolean seleccionViandaLunes, Boolean seleccionViandaMartes,
 			Boolean seleccionViandaMiercoles, Boolean seleccionViandaJueves,
 			Boolean seleccionViandaViernes, Double precio, Long sedeID,
-			Integer cantidadSemanas, String dniUsuario) throws ParseException {
+			Integer cantidadSemanas, String dniUsuario, Date fechaDesde) throws ParseException {
 
 		Usuario usuarioComprador = usuarioDAO.findByDNI(dniUsuario);
 
@@ -121,6 +141,7 @@ public class CompraService {
 
 		Compra compraNueva = new Compra();
 		compraNueva.setUsuario(usuarioComprador);
+		compraNueva.setFechaDeSemanaComprada(fechaDesde);
 		ArrayList<SeleccionDiaMenu> seleccionesDeDiaMenu = new ArrayList<SeleccionDiaMenu>();
 		for (int i = 0; i < cantidadSemanas; i++) {
 			if (lunesMenuId != null) {
