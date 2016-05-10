@@ -61,7 +61,7 @@ public class CompraService {
 		java.util.Date date = new Date();
 		Object param = new java.sql.Date(date.getTime());
 
-		Cartilla cartilla = new Cartilla();
+		Cartilla cartilla;
 		cartilla = cartillaDAO.getFirstCartilla(param);
 		if (cartilla != null) {
 
@@ -182,27 +182,34 @@ public class CompraService {
 	}
 	
 	public ModelAndView pagar(Long id,String dniUsuario) {
-
+		String mensaje;
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
 		Compra compra = compraDAO.get(id);
-		usuario.setSaldo(usuario.getSaldo()-compra.getMonto());
-		usuarioDAO.edit(usuario);
-		compra.setPagado(true);
-		compraDAO.edit(compra);
-		java.util.Date fechaPago = new Date();
-		Pago pago = new Pago(compra, fechaPago, usuario);
-		/*** TODO BORRAR
-		Pago pago = new Pago();
-		pago.setCompra(compra);
-		java.util.Date fechaPago = new Date();
-		pago.setFechaPago(fechaPago);
-		pago.setUsuario(usuario);
-		pago.setSede(compra.getSelecciones().get(0).getSede());*/
-		pagoDAO.save(pago);
+		if (usuario.getSaldo() >= compra.getMonto())
+		{
+			usuario.setSaldo(usuario.getSaldo()-compra.getMonto());
+			usuarioDAO.edit(usuario);
+			compra.setPagado(true);
+			compraDAO.edit(compra);
+			java.util.Date fechaPago = new Date();
+			Pago pago = new Pago(compra, fechaPago, usuario);
+			/*** TODO BORRAR
+			Pago pago = new Pago();
+			pago.setCompra(compra);
+			java.util.Date fechaPago = new Date();
+			pago.setFechaPago(fechaPago);
+			pago.setUsuario(usuario);
+			pago.setSede(compra.getSelecciones().get(0).getSede());*/
+			pagoDAO.save(pago);
+			mensaje = "Su compra ha sido realizada correctamente";
+		}else{
+			mensaje = "Su compra no ha sido realizada correctamente por falta de dinero en la cuenta";
+		}
 		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexUsuario");
 		model.addObject("compras", compras);
+		model.addObject("mensaje", mensaje);
 		model.addObject("contentPage", "listarCompras");
 		return model;
 	}

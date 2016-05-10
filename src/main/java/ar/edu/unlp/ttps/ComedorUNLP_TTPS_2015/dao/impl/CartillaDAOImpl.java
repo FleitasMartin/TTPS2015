@@ -18,8 +18,9 @@ public class CartillaDAOImpl extends GenericDAOImpl<Cartilla> implements
 	public Cartilla getFirstCartilla(Object fechaActual) {
 		Query consulta = getEntityManager().createQuery(
 				"select e from " + getPersistentClass().getSimpleName()
-						+ " e where e.fechaInicio > " + fechaActual
-						+ " ORDER BY fechaInicio DESC");
+						+ " e where e.fechaInicio >   :fechaActual"
+						+ " ORDER BY fechaInicio DESC")
+						.setParameter("fechaActual", fechaActual);
 		Cartilla resultado = new Cartilla();
 		try {
 			resultado = (Cartilla) consulta.getSingleResult();
