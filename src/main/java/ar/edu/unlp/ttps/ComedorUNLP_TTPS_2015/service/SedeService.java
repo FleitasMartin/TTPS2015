@@ -25,14 +25,25 @@ public class SedeService {
 	@Autowired
 	private ResponsableDAO responsableDAO;
 	
-	public ModelAndView listar() {
+	public ModelAndView listarAdmin() {
 
 		ArrayList<Sede> sedes = new ArrayList<Sede>();
 		sedes = (ArrayList<Sede>) sedeDAO.getAll();
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexAdmin");
 		model.addObject("sedes", sedes);
-		model.addObject("contentPage", "adminSedes");
+		model.addObject("contentPage", "listarSedesAdmin");
+		return model;
+	}
+	
+	public ModelAndView listar() {
+
+		ArrayList<Sede> sedes = new ArrayList<Sede>();
+		sedes = (ArrayList<Sede>) sedeDAO.getAll();
+		ModelAndView model = new ModelAndView();
+		model.setViewName("indexUsuario");
+		model.addObject("sedes", sedes);
+		model.addObject("contentPage", "listarSedes");
 		return model;
 	}
 
@@ -44,7 +55,7 @@ public class SedeService {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexResponsable");
 		model.addObject("usuarios", usuarios);
-		model.addObject("contentPage", "usersList");
+		model.addObject("contentPage", "listarUsuariosHabilitados");
 		return model;
 	}
 
@@ -52,7 +63,7 @@ public class SedeService {
 
 		Sede sedeNueva = new Sede(nombre, capacidad, ubicacion, latitud, longitud);
 		sedeDAO.save(sedeNueva);
-		return listar();
+		return listarAdmin();
 	}
 
 	public ModelAndView crear() {
@@ -71,7 +82,7 @@ public class SedeService {
 		sede.setLatitud(latitud);
 		sede.setLongitud(longitud);
 		sedeDAO.edit(sede);
-		return listar();
+		return listarAdmin();
 	}
 
 	public ModelAndView editar(Long id) {
@@ -85,6 +96,6 @@ public class SedeService {
 
 	public ModelAndView eliminar(Long id) {
 		sedeDAO.delete(id);
-		return listar();
+		return listarAdmin();
 	}
 }

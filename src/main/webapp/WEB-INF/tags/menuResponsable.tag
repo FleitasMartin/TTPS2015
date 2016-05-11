@@ -8,11 +8,11 @@
 		href="${pageContext.request.contextPath}/sugerencia/buzonVirtualDeSede">Buz&oacute;n
 			virtual</a></li>
 	<li><a
-		href="${pageContext.request.contextPath}/pago/listadoSemanal">Compras
-			de men&uacute;es semanales</a></li>
-	<li><a
+		href="${pageContext.request.contextPath}/pago/listadoSemanal">Pagos
+			semanales</a></li>
+	<!-- <li><a
 		href="${pageContext.request.contextPath}/responsable/registroTickets">Registro
-			tickets</a></li>
+			tickets</a></li>-->
 </ul>
 <script>
 	$(function() {

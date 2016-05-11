@@ -154,7 +154,7 @@ public class MenuService {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexAdmin");
 		model.addObject("menues", menues);
-		model.addObject("contentPage","adminMenues");
+		model.addObject("contentPage","listarMenues");
 		return model;
 	}
 	

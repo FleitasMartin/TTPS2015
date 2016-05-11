@@ -11,8 +11,8 @@
 				<th>Fecha Efectuada</th>
 				<th>Monto</th>
 				<th>Detalles</th>
-				<th>Borrar</th>
 				<th>Pago</th>
+				<th>Borrar</th>
 			</tr>
 		</thead>
 		<tbody>

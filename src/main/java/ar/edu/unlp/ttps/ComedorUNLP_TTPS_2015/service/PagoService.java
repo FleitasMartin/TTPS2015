@@ -70,7 +70,7 @@ public class PagoService {
 		ModelAndView model = new ModelAndView();
 		model.addObject("map", diasMenuesCantidades);
 		model.setViewName("indexResponsable");
-		model.addObject("contentPage", "pagosTickets");
+		model.addObject("contentPage", "listarPagosSemanal");
 		return model;
 	}
 

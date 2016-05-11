@@ -27,7 +27,7 @@ public class ComponenteService {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexAdmin");
 		model.addObject("componentes", componentes);
-		model.addObject("contentPage","adminComponentes");
+		model.addObject("contentPage","listarComponentes");
 		return model;
 	}
 	

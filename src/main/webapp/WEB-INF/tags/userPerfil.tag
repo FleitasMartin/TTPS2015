@@ -21,8 +21,8 @@
 			<td><c:out value="${usuario.facultad }" /></td>
 			<td><c:out value="${usuario.telefono }" /></td>
 			<td><c:out value="${usuario.email }" /></td>
-			<td><c:out value="${admin.domicilio }" /></td>
-			<td><c:out value="${admin.tipo }" /></td>
+			<td><c:out value="${usuario.domicilio }" /></td>
+			<td><c:out value="${usuario.tipo }" /></td>
 		</tr>
 	</tbody>
 </table>
@@ -40,14 +40,6 @@
 		</tr>
 		</c:forEach>
 	</thead>
-<!-- 	<tbody> -->
-<%--  	<c:forEach var="caracteristica" items="${usuario.caracteristica}">  --%>
-<!--  		<tr> -->
-<!--  			<td><span class="glyphicon glyphicon-ok"></span></td> --> 
-<!--  			<td><span class="glyphicon glyphicon-remove"></span></td>  -->
-<!-- 		</tr> -->
-<%--  	</c:forEach> --%> 
-<!-- 	</tbody> -->
 </table>
 <a href="${pageContext.request.contextPath}/user/editarPreferencias" class="btn btn-primary" role="button">Modificar
 	preferencias</a>

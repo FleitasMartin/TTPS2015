@@ -22,25 +22,19 @@
 		</div>
 		<div class="row">
 		<div class="col-md-3 col-xs-6">
-		<c:if test="${!(contentPage == 'loginResponsable')}">
 			<tags:menuResponsable />
-		</c:if>
 		</div>
 		<div class="col-md-9 col-xs-12">
 			
         	<c:choose>
-        	<c:when test="${contentPage == 'loginResponsable'}">
-				<tags:loginResponsable />
-        	</c:when>
-        	<c:when test="${contentPage == 'usersList'}">
-				<tags:usersList />
+        	<c:when test="${contentPage == 'listarUsuariosHabilitados'}">
+				<tags:listarUsuariosHabilitados />
         	</c:when>
         	<c:when test="${contentPage == 'buzonVirtualDeSede'}">
 				<tags:buzonVirtualDeSede />
-        	</c:when>
-        	    
-        	<c:when test="${contentPage == 'pagosTickets'}">
-				<tags:pagosTickets />
+        	</c:when>        	    
+        	<c:when test="${contentPage == 'listarPagosSemanal'}">
+				<tags:listarPagosSemanal />
         	</c:when>
         	<c:when test="${contentPage == 'registroTickets'}">
 				<tags:registroTickets />

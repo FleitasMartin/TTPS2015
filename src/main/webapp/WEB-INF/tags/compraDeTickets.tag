@@ -61,7 +61,7 @@
 		<p>
 			<c:out value="${cartilla.precio }" />
 		</p>
-		<input type="hidden" value="${semana.fechaDesde }" name="fechaDesde">
+		<input type="hidden" value="<fmt:formatDate value="${semana.fechaDesde }" pattern="MM/dd/yyyy"/>" name="fechaDesde">
 		<label>Sede</label>
 		<p>
 			<c:out value="${sede.nombre }" />

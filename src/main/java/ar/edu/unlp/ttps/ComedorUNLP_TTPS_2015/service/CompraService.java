@@ -72,7 +72,7 @@ public class CompraService {
 			Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
 			List<Compra> compras = usuario.getCompras();
 			boolean encontre =false;
-		
+			
 			for(Compra compra : compras){
 				if(compra.getFechaDeSemanaComprada().equals(semana.getFechaDesde())){
 					encontre=true;
@@ -190,15 +190,6 @@ public class CompraService {
 			Sede sede, Boolean seleccionVianda, Double precio) {
 		Menu menu = new Menu();
 		menu = menuDAO.get(menuId);
-		/*** TODO BORRAR
-		SeleccionDiaMenu seleccionDiaMenu = new SeleccionDiaMenu();
-		seleccionDiaMenu.setFecha(fecha);
-		seleccionDiaMenu.setMenu(menu);
-		seleccionDiaMenu.setNombre(menu.getNombre());
-		seleccionDiaMenu.setSede(sede);
-		seleccionDiaMenu.setVianda(seleccionVianda);
-		seleccionDiaMenu.setPrecio(precio);
-		return seleccionDiaMenu;*/
 		return new SeleccionDiaMenu(fecha, menu, sede, seleccionVianda, precio);
 	}
 	
@@ -214,13 +205,6 @@ public class CompraService {
 			compraDAO.edit(compra);
 			java.util.Date fechaPago = new Date();
 			Pago pago = new Pago(compra, fechaPago, usuario);
-			/*** TODO BORRAR
-			Pago pago = new Pago();
-			pago.setCompra(compra);
-			java.util.Date fechaPago = new Date();
-			pago.setFechaPago(fechaPago);
-			pago.setUsuario(usuario);
-			pago.setSede(compra.getSelecciones().get(0).getSede());*/
 			pagoDAO.save(pago);
 			mensaje = "Su compra ha sido realizada correctamente";
 		}else{

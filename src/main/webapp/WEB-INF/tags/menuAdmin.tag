@@ -1,7 +1,7 @@
 <%@ tag%>
 <%@ attribute name="id" fragment="true"%>
 <ul class="nav nav-pills nav-stacked" style="color: red;">
-	<li><a href="${pageContext.request.contextPath}/sede/listar">Gesti&oacute;n
+	<li><a href="${pageContext.request.contextPath}/sede/listarAdmin">Gesti&oacute;n
 			de Sedes</a></li>
 	<li><a href="${pageContext.request.contextPath}/componente/listar">Gesti&oacute;n
 			de Componentes</a></li>
@@ -17,8 +17,8 @@
 	<li><a
 		href="${pageContext.request.contextPath}/sugerencia/buzonVirtual">Buzon
 			Virtual</a></li>
-	<li><a
-		href="${pageContext.request.contextPath}/admin/estadisticasMenues">Estad&iacute;sticas</a></li>
+	<!-- <li><a
+		href="${pageContext.request.contextPath}/admin/estadisticasMenues">Estad&iacute;sticas</a></li> -->
 </ul>
 <script>
 	$(function() {

@@ -22,17 +22,12 @@
 		</div>
 		<div class="row">
 		<div class="col-md-3 col-xs-6">
-		<c:if test="${!(contentPage == 'loginUsuario')}">
 			<tags:menuUser />
-		</c:if>
 		</div>
 		<div class="col-md-9 col-xs-12">
         	<c:choose>
         	<c:when test="${contentPage == 'listarCompras'}">
 				<tags:listarCompras />
-        	</c:when>
-        	<c:when test="${contentPage == 'adminUsers'}">
-				<tags:adminUsers />
         	</c:when>
          	<c:when test="${contentPage == 'editarPreferencias'}">
 				<tags:editarPreferencias />
@@ -43,17 +38,14 @@
         	<c:when test="${contentPage == 'compraDeTickets'}">
 				<tags:compraDeTickets />
         	</c:when>
-        	<c:when test="${contentPage == 'loginUsuario'}">
-				<tags:loginUsuario />
-        	</c:when>        	
         	<c:when test="${contentPage == 'comentar'}">
 				<tags:comentar />
         	</c:when>  
         	<c:when test="${contentPage == 'saldo'}">
 				<tags:saldo />
         	</c:when>
-        	<c:when test="${contentPage == 'mapa'}">
-				<tags:mapa />
+        	<c:when test="${contentPage == 'listarSedes'}">
+				<tags:listarSedes />
         	</c:when>    
 		</c:choose>
 		</div>

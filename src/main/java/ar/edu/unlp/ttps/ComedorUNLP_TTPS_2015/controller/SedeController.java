@@ -33,6 +33,11 @@ public class SedeController {
 		return sedeService.crear();
 	}
 
+	@RequestMapping(value = "/listarAdmin", method = RequestMethod.GET)
+	public ModelAndView listarAdmin() {
+		return sedeService.listarAdmin();
+	}
+	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public ModelAndView listar() {
 		return sedeService.listar();

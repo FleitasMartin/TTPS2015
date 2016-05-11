@@ -53,7 +53,7 @@ public class CartillaService {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexAdmin");
 		model.addObject("cartillas", cartillas);
-		model.addObject("contentPage", "cartillaSemanal");
+		model.addObject("contentPage", "listarCartillas");
 		return model;
 	}
 	
