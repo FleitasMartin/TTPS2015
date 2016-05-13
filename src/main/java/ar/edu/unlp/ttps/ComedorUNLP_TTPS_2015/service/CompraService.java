@@ -142,6 +142,10 @@ public class CompraService {
 		Compra compraNueva = new Compra();
 		compraNueva.setUsuario(usuarioComprador);
 		compraNueva.setFechaDeSemanaComprada(fechaDesde);
+		/**
+		 * TODO validar que no exista una compra con fechaDeSemanaComprada 
+		 */
+		
 		ArrayList<SeleccionDiaMenu> seleccionesDeDiaMenu = new ArrayList<SeleccionDiaMenu>();
 		for (int i = 0; i < cantidadSemanas; i++) {
 			if (lunesMenuId != null) {
