@@ -21,10 +21,10 @@
 			</div>
 		</div>
 		<div class="row">
-		<div class="col-md-3 col-xs-6">
+		<div class="col-md-2 ">
 			<tags:menuUser />
 		</div>
-		<div class="col-md-9 col-xs-12">
+		<div class="col-md-10 ">
         	<c:choose>
         	<c:when test="${contentPage == 'listarCompras'}">
 				<tags:listarCompras />

@@ -15,14 +15,17 @@
 		<intercept-url pattern="/componente/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/responsable/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/menu/**" access="ROLE_ADMIN" />
-		<intercept-url pattern="/sede/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/sede/listarAdmin" access="ROLE_ADMIN" />
+		<intercept-url pattern="/sede/crear" access="ROLE_ADMIN" />
+		<intercept-url pattern="/sede/editar" access="ROLE_ADMIN" />
+		<intercept-url pattern="/sede/eliminar" access="ROLE_ADMIN" />
 		<intercept-url pattern="/sugerencia/buzonVirtual" access="ROLE_ADMIN" />
 		<intercept-url pattern="/pago/listadoSemanal" access="ROLE_RESPONSABLE" />
 		<!--<intercept-url pattern="/responsable/registroTickets" access="ROLE_RESPONSABLE" />-->	
 		<intercept-url pattern="/sede/usuariosHabilitados" access="ROLE_RESPONSABLE" />		
 		<intercept-url pattern="/sugerencia/buzonVirtualDeSede" access="ROLE_RESPONSABLE" />
-		<intercept-url pattern="/sugerencia/comentar" access="ROLE_USUARIO" />
 		<intercept-url pattern="/sede/listar" access="ROLE_USUARIO" />
+		<intercept-url pattern="/sugerencia/comentar" access="ROLE_USUARIO" />		
 		<intercept-url pattern="/compra/**" access="ROLE_USUARIO" />
 		<intercept-url pattern="/user/**" access="ROLE_USUARIO" />
 

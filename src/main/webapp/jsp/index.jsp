@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
@@ -30,7 +31,8 @@
 		</div>  
 		<div class="form-group">
     		<div class="col-sm-offset-3 col-sm-3">
-		<input type="submit" value="Ingresar"
+    		<!-- spring:message code='login.boton'  -->
+		<input type="submit" value="Login"
 									class="form-control btn btn-primary ">
 							</div>
 							</div>

@@ -11,14 +11,44 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 		base-package="ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.controller " />
 
 	<mvc:annotation-driven />
-	<!-- Especificando la ubicación de los recursos JS, CSS, Images etc -->
+	<!-- Especificamos la ubicación de los recursos JS, CSS, Images etc -->
 	<mvc:resources mapping="/**" location="/" />
 
+	
+	<!-- Definicion de beans relacionados a la internacionalizacion -->
+	<!-- ResourceBundleMessageSource , ReloadableResourceBundleMessageSource -->
+	<!-- <property name="basename" value="WEB-INF/i18n/i18n" />	 -->
+	
+	<!-- 
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basename" value="webapp/WEB-INF/i18n/i18n" />		
+	</bean>
+	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="es-419"/>
+	</bean>
+	
+
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+	
+	<bean id="handlerMapping"
+	    class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	    <property name="interceptors">
+	        <ref bean="localeChangeInterceptor" />
+	    </property>
+	</bean>
+	-->
+	
 	<!-- View Resolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<!-- Definiciones de otros beans relacionados con al frontend -->
+
 </beans>

@@ -1,33 +1,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ tag%>
 <div class="row">
-	<div>
-		<div class='col-sm-7 col-sm-offset-1'>
-			<h2>
-				<strong>Cantidad de tickets vendidos</strong>
-			</h2>
-			<form method="GET"
-				action="${pageContext.request.contextPath}/pago/listadoSemanal"
-				class="col-sm-offset-1 form-inline">
-				<div class="form-group ">
-					<div class='date'>
-						<label for='fechaInicio'>Semana</label> <input type='text'
-							id='fechaInicio' name='fechaInicio' class="form-control" />
-					</div>
+	<div class='col-sm-7 col-sm-offset-1'>
+		<h2>
+			<strong>Cantidad de tickets vendidos</strong>
+		</h2>
+		<form method="GET"
+			action="${pageContext.request.contextPath}/pago/listadoSemanal"
+			class="col-sm-offset-1 form-inline">
+			<div class="form-group ">
+				<div class='date'>
+					<label for='fechaInicio'>Semana</label> <input type='text'
+						id='fechaInicio' name='fechaInicio' class="form-control" />
 				</div>
-				<div class="form-group">
-					<input type="submit" value="Buscar"
-						class="form-control btn btn-default">
-				</div>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Buscar"
+					class="form-control btn btn-default">
+			</div>
 
-			</form>
-		</div>
-		<script type="text/javascript">
-			$(function() {
-				$('#fechaInicio').datepicker();
-			});
-		</script>
+		</form>
 	</div>
+	<script type="text/javascript">
+		$(function() {
+			$('#fechaInicio').datepicker();
+		});
+	</script>
 </div>
 <br>
 <c:forEach var="diaMenu" items="${map}">
