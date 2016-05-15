@@ -16,7 +16,7 @@ public class Responsable extends Persona {
 	}
 
 	public Responsable(String dni, String contrasena, String apellido,
-			String nombre, String domicilio, String email, Integer telefono,
+			String nombre, String domicilio, String email, Long telefono,
 			Sede sede, RolUsuario rol) {
 		super();
 		setDni(dni);

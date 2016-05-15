@@ -27,7 +27,7 @@ public class ResponsableController {
 			@RequestParam("apellido") String apellido,
 			@RequestParam("dni") String dni,
 			@RequestParam("contrasena") String contrasena,
-			@RequestParam("telefono") Integer telefono,
+			@RequestParam("telefono") Long telefono,
 			@RequestParam("email") String email,
 			@RequestParam("domicilio") String domicilio,
 			@RequestParam("sedeId") Long sedeId) {
@@ -51,7 +51,7 @@ public class ResponsableController {
 	public ModelAndView editarResponsable(@RequestParam("id") Long id,
 			@RequestParam("nombre") String nombre,
 			@RequestParam("apellido") String apellido,
-			@RequestParam("telefono") Integer telefono,
+			@RequestParam("telefono") Long telefono,
 			@RequestParam("email") String email,
 			@RequestParam("telefono") String domicilio,
 			@RequestParam("sedeId") Long sede) {

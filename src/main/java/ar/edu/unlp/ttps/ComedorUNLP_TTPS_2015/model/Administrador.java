@@ -12,7 +12,7 @@ public class Administrador extends Persona {
 	}
 	
 	public Administrador(String nombre, String apellido, String dni,
-			String contrasena, Integer telefono, String domicilio, String email){
+			String contrasena, Long telefono, String domicilio, String email){
 		super();
 		setNombre(nombre);
 		setApellido(apellido);

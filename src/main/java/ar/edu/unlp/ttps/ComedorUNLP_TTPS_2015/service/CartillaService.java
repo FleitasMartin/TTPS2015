@@ -19,7 +19,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Cartilla;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.DiaMenu;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Menu;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Semana;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.ModelAndViewResolverCartilla;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver.ModelAndViewResolverCartilla;
 
 /**
  * 
@@ -118,16 +118,12 @@ public class CartillaService {
 
 		ArrayList<Menu> menues = (ArrayList<Menu>) menuDAO.getAll();
 		Cartilla cartilla = cartillaDAO.get(id);
-		Semana semana = cartilla.getSemanas().get(0);
-		List<Menu> menuesLunes = semana.getDias().get(0).getMenues();
-		List<Menu> menuesMartes = semana.getDias().get(1).getMenues();
-		List<Menu> menuesMiercoles = semana.getDias().get(2).getMenues();
-		List<Menu> menuesJueves = semana.getDias().get(3).getMenues();
-		List<Menu> menuesViernes = semana.getDias().get(4).getMenues();
+
+		List<List<Menu>> menuesSemana = crearSemana(cartilla);
 
 		ArrayList<MenuChecked> menuesChecked = this.seleccionarMenues(menues,
-				menuesLunes, menuesMartes, menuesMiercoles, menuesJueves,
-				menuesViernes);
+				menuesSemana.get(0), menuesSemana.get(1), menuesSemana.get(2),
+				menuesSemana.get(3), menuesSemana.get(4));
 
 		return ModelAndViewResolverCartilla.editarCartilla(cartilla,
 				menuesChecked);
@@ -176,35 +172,28 @@ public class CartillaService {
 			Long[] juevesMenues, Long[] viernesMenues, Double precio)
 			throws ParseException {
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-
-		Date fechaInicio = simpleDateFormat.parse(fechaDesde);
-		Date fechaFin = simpleDateFormat.parse(fechaHasta);
+		Date fechaInicio = convertirFecha(fechaDesde);
+		Date fechaFin = convertirFecha(fechaHasta);
 
 		DateTime inicio = new DateTime(fechaInicio);
 		DateTime fin = new DateTime(fechaFin);
 
-		if (existeCartillaEditar(fechaInicio, id) || existeCartillaEditar(fechaFin, id)) {
+		if (existeCartillaEditar(fechaInicio, id)
+				|| existeCartillaEditar(fechaFin, id)) {
 			return editar(
 					id,
 					"Las fechas de inicio y/o fin para la cartilla ingresada se solapan con una existente.");
 		} else {
-			ArrayList<Long[]> diasMenues = new ArrayList<Long[]>();
-			diasMenues.add(0, lunesMenues);
-			diasMenues.add(1, martesMenues);
-			diasMenues.add(2, miercolesMenues);
-			diasMenues.add(3, juevesMenues);
-			diasMenues.add(4, viernesMenues);
+
+			ArrayList<Long[]> diasMenues = construirDiasMenues(lunesMenues,
+					martesMenues, miercolesMenues, juevesMenues, viernesMenues);
 
 			Cartilla cartilla = cartillaDAO.get(id);
 
 			ArrayList<Semana> semanas = this.armadorDiasSemanas(inicio, fin,
 					diasMenues);
 
-			cartilla.setFechaInicio(fechaInicio);
-			cartilla.setFechaFin(fechaFin);
-			cartilla.setSemanas(semanas);
-			cartilla.setPrecio(precio);
+			cartilla.editar(precio, fechaInicio, fechaFin, semanas);
 
 			cartillaDAO.edit(cartilla);
 
@@ -250,13 +239,10 @@ public class CartillaService {
 	 */
 	public ModelAndView crear(String fechaDesde, String fechaHasta,
 			Long[] lunesMenues, Long[] martesMenues, Long[] miercolesMenues,
-			Long[] juevesMenues, Long[] viernesMenues, Double precio)
-			throws ParseException {
+			Long[] juevesMenues, Long[] viernesMenues, Double precio) {
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-
-		Date fechaInicio = simpleDateFormat.parse(fechaDesde);
-		Date fechaFin = simpleDateFormat.parse(fechaHasta);
+		Date fechaInicio = convertirFecha(fechaDesde);
+		Date fechaFin = convertirFecha(fechaHasta);
 
 		DateTime inicio = new DateTime(fechaInicio);
 		DateTime fin = new DateTime(fechaFin);
@@ -280,21 +266,27 @@ public class CartillaService {
 
 	/** Metodos privados que ayudan a resolver las peticiones. */
 
+	private Date convertirFecha(String fecha) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Date fechaParseada;
+		try {
+			fechaParseada = simpleDateFormat.parse(fecha);
+		} catch (ParseException e) {
+			fechaParseada = null;
+		}
+		return fechaParseada;
+	}
+
 	private ModelAndView editar(Long id, String error) {
 
 		ArrayList<Menu> menues = (ArrayList<Menu>) menuDAO.getAll();
 		Cartilla cartilla = cartillaDAO.get(id);
-		Semana semana = cartilla.getSemanas().get(0);
-		List<Menu> menuesLunes = semana.getDias().get(0).getMenues();
-		List<Menu> menuesMartes = semana.getDias().get(1).getMenues();
-		List<Menu> menuesMiercoles = semana.getDias().get(2).getMenues();
-		List<Menu> menuesJueves = semana.getDias().get(3).getMenues();
-		List<Menu> menuesViernes = semana.getDias().get(4).getMenues();
+
+		List<List<Menu>> menuesSemana = crearSemana(cartilla);
 
 		ArrayList<MenuChecked> menuesChecked = this.seleccionarMenues(menues,
-				menuesLunes, menuesMartes, menuesMiercoles, menuesJueves,
-				menuesViernes);
-
+				menuesSemana.get(0), menuesSemana.get(1), menuesSemana.get(2),
+				menuesSemana.get(3), menuesSemana.get(4));
 		return ModelAndViewResolverCartilla.editarCartilla(cartilla,
 				menuesChecked, error);
 
@@ -311,11 +303,8 @@ public class CartillaService {
 			Long[] martesMenues, Long[] miercolesMenues, Long[] juevesMenues,
 			Long[] viernesMenues) {
 		ArrayList<Long[]> diasMenues = new ArrayList<Long[]>();
-		diasMenues.add(0, lunesMenues);
-		diasMenues.add(1, martesMenues);
-		diasMenues.add(2, miercolesMenues);
-		diasMenues.add(3, juevesMenues);
-		diasMenues.add(4, viernesMenues);
+		for (int i = 0; i < 5; i++)
+			diasMenues.add(i, lunesMenues);
 		return diasMenues;
 	}
 
@@ -323,18 +312,17 @@ public class CartillaService {
 		Object param = new java.sql.Date(fechaConsultada.getTime());
 		return (cartillaDAO.getFirstCartilla(param) == null) ? false : true;
 	}
-	
+
 	private boolean existeCartillaEditar(Date fechaConsultada, Long id) {
 		Object param = new java.sql.Date(fechaConsultada.getTime());
-		return (cartillaDAO.getCartillaExistente(param, id) == null) ? false : true;
+		return (cartillaDAO.getCartillaExistente(param, id) == null) ? false
+				: true;
 	}
 
 	private boolean existe(Menu menu, List<Menu> menues) {
-		for (Menu menu2 : menues) {
-			if (menu.getId() == menu2.getId()) {
+		for (Menu menu2 : menues)
+			if (menu.getId() == menu2.getId())
 				return true;
-			}
-		}
 		return false;
 	}
 
@@ -343,34 +331,36 @@ public class CartillaService {
 			List<Menu> jueves, List<Menu> viernes) {
 
 		ArrayList<MenuChecked> menuesChecked = new ArrayList<MenuChecked>();
-		for (Menu menu : menues) {
-			MenuChecked menuChecked = new MenuChecked(menu.getId(),
-					menu.getNombre(), (existe(menu, lunes)) ? "checked" : " ",
-					(existe(menu, martes)) ? "checked" : " ", (existe(menu,
-							miercoles)) ? "checked" : " ",
-					(existe(menu, jueves)) ? "checked" : " ", (existe(menu,
-							viernes)) ? "checked" : " ");
-
-			menuesChecked.add(menuChecked);
-		}
+		for (Menu menu : menues)
+			menuesChecked.add(new MenuChecked(menu.getId(), menu.getNombre(),
+					(existe(menu, lunes)) ? "checked" : " ", (existe(menu,
+							martes)) ? "checked" : " ",
+					(existe(menu, miercoles)) ? "checked" : " ", (existe(menu,
+							jueves)) ? "checked" : " ",
+					(existe(menu, viernes)) ? "checked" : " "));
 		return menuesChecked;
+	}
+
+	private List<List<Menu>> crearSemana(Cartilla cartilla) {
+		List<List<Menu>> menuesSemana = new ArrayList<List<Menu>>();
+		Semana semana = cartilla.getSemanas().get(0);
+		for (int i = 0; i < 5; i++)
+			menuesSemana.add(semana.getDias().get(i).getMenues());
+		return menuesSemana;
 	}
 
 	private ArrayList<Semana> armadorDiasSemanas(DateTime diaActual,
 			DateTime diaFin, ArrayList<Long[]> atributos) {
 		ArrayList<Semana> semanas = new ArrayList<Semana>();
+		String[] diasNombre = { "Lunes", "Martes", "Miercoles", "Jueves",
+				"Viernes" };
+
 		while (diaActual.isBefore(diaFin.getMillis())) {
 			ArrayList<DiaMenu> dias = new ArrayList<DiaMenu>();
-			dias.add(this.armarYGuardarDia(atributos.get(0), "Lunes", diaActual
-					.plusDays(0).toDate()));
-			dias.add(this.armarYGuardarDia(atributos.get(1), "Martes",
-					diaActual.plusDays(1).toDate()));
-			dias.add(this.armarYGuardarDia(atributos.get(2), "Miercoles",
-					diaActual.plusDays(2).toDate()));
-			dias.add(this.armarYGuardarDia(atributos.get(3), "Jueves",
-					diaActual.plusDays(3).toDate()));
-			dias.add(this.armarYGuardarDia(atributos.get(4), "Viernes",
-					diaActual.plusDays(4).toDate()));
+			for (int i = 0; i < 5; i++) {
+				dias.add(armarYGuardarDia(atributos.get(i), diasNombre[i],
+						diaActual.plusDays(i).toDate()));
+			}
 			semanas.add(new Semana(diaActual.toDate(), dias));
 			diaActual = diaActual.plusDays(7);
 		}

@@ -17,12 +17,11 @@ public class Sugerencia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	protected Long id;
-
-	@ManyToOne(optional = false)
-	private Usuario usuario;
-
 	private String tipo;
 	private String mensaje;
+	
+	@ManyToOne(optional = false)
+	private Usuario usuario;
 
 	@OneToOne(optional = true)
 	private Sede sede;

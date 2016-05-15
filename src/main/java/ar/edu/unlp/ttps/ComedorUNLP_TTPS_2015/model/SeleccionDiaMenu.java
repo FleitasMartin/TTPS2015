@@ -18,17 +18,14 @@ public class SeleccionDiaMenu {
 	@Column(name = "id")
 	private Long id;
 	private String nombre;
-	private boolean vianda;
-
+	private Boolean vianda;
 	private Double precio;
+	private Date fecha;
 	
-	@ManyToOne(optional = false) 
-
+	@ManyToOne(optional = false)
 	private Menu menu;
 	@ManyToOne(optional = false)
 	private Sede sede;
-
-	private Date fecha;
 	
 	public SeleccionDiaMenu(){
 		super();

@@ -26,6 +26,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.SeleccionDiaMenu;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Semana;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver.ModelAndViewResolverCompra;
 
 @Service
 public class CompraService {
@@ -46,73 +47,67 @@ public class CompraService {
 
 	@Autowired
 	CompraDAO compraDAO;
-	
+
 	@Autowired
 	PagoDAO pagoDAO;
 
 	@Autowired
 	SeleccionDiaMenuDAO seleccionDiaMenuDAO;
 
-	public ModelAndView compraDeTickets(String dniUsuario)
-			throws ParseException {
-
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		java.util.Date date = new Date();
-		Object param = new java.sql.Date(date.getTime());
-
-		Cartilla cartilla;
-		cartilla = cartillaDAO.getFirstCartilla(param);
-		if (cartilla != null) {
-
-			Semana semana;
-			semana = semanaDAO.get(cartilla.getSemanas().get(0).getId());			
-			Integer cantidad = cartilla.getSemanas().size();
-
-			Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
-			List<Compra> compras = usuario.getCompras();
-			boolean encontre =false;
-			
-			for(Compra compra : compras){
-				if(compra.getFechaDeSemanaComprada().equals(semana.getFechaDesde())){
-					encontre=true;
-					break;
-				}
-			}
-			if(!encontre)
-			{
-				Sede sede;
-				sede = sedeDAO.get(usuario.getSede().getId());
-	
-				model.addObject("usuario", usuario);
-				model.addObject("sede", sede);
-				model.addObject("cartilla", cartilla);
-				model.addObject("semana", semana);
-				model.addObject("cantidad", cantidad);
-				model.addObject("contentPage", "compraDeTickets");
-			}
-			else
-			{ 
-				String mensaje="usted ya tiene resevada esta cartilla";
-				model.addObject("mensaje", mensaje);
-				List<Compra> compras2 = compraDAO.getAllByUsuario(usuario.getId());
-				model.addObject("compras", compras2);
-				model.addObject("contentPage", "listarCompras");
-			}
-		}
-		return model;
-		
-	}
-
 	public ModelAndView listar(String dniUsuario) {
 
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
 		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("compras", compras);
-		model.addObject("contentPage", "listarCompras");
-		return model;
+		return ModelAndViewResolverCompra.listarCompras(compras);
+	}
+
+	public ModelAndView borrar(Long id, String dniUsuario) {
+		compraDAO.delete(id);
+		return listar(dniUsuario);
+	}
+
+	public ModelAndView compraDeTickets(String dniUsuario)
+			throws ParseException {
+
+		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
+		Sede sede = sedeDAO.get(usuario.getSede().getId());
+		java.util.Date date = new Date();
+		Object param = new java.sql.Date(date.getTime());
+
+		Cartilla cartilla = cartillaDAO.getFirstCartilla(param);
+		if (cartilla != null) {
+
+			List<Semana> semanas = cartilla.getSemanas();
+			Integer cantidadSemanas = semanas.size();
+			Integer numeroDeSemana = 0;
+			List<Compra> compras = usuario.getCompras();
+
+			for (int i = 0; i < semanas.size(); i++) {
+				for (Compra compra : compras){
+					if (compra.getFechaDeSemanaComprada().equals(
+							semanas.get(i).getFechaDesde())) {
+						cantidadSemanas -= compra.getCantidadDeSemanas();
+						numeroDeSemana += compra.getCantidadDeSemanas();
+						compras.remove(compra);
+						break;
+					}			
+				}
+			}
+			
+			if ( cantidadSemanas <= 0 ) {
+				return ModelAndViewResolverCompra.listarCompras(
+						compraDAO.getAllByUsuario(usuario.getId()),
+						"Ya realizaste compraste lo habilitado hasta el dia de hoy");
+			}else{
+				Semana semana = semanaDAO.get(cartilla.getSemanas().get(numeroDeSemana).getId());
+				return ModelAndViewResolverCompra.crearCompra(usuario, sede,
+						cartilla, semana, cantidadSemanas);
+			}
+
+		}
+		return ModelAndViewResolverCompra.listarCompras(
+				compraDAO.getAllByUsuario(usuario.getId()),
+				"No existen cartillas vigentes!");
 	}
 
 	public ModelAndView crear(Long lunesMenuId, Long martesMenuId,
@@ -122,72 +117,106 @@ public class CompraService {
 			Boolean seleccionViandaLunes, Boolean seleccionViandaMartes,
 			Boolean seleccionViandaMiercoles, Boolean seleccionViandaJueves,
 			Boolean seleccionViandaViernes, Double precio, Long sedeID,
-			Integer cantidadSemanas, String dniUsuario, Date fechaDesde) throws ParseException {
+			Integer cantidadDeSemanas, String dniUsuario, Date fechaDesde)
+			throws ParseException {
 
 		Usuario usuarioComprador = usuarioDAO.findByDNI(dniUsuario);
 
-		Sede sede = new Sede();
-		sede = sedeDAO.get(sedeID);
+		Sede sede = sedeDAO.get(sedeID);
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		List<Date> dias = convertirDias(fechaLunes, fechaMartes,
+				fechaMiercoles, fechaJueves, fechaViernes);
 
-		Date lunes = simpleDateFormat.parse(fechaLunes);
-		Date martes = simpleDateFormat.parse(fechaMartes);
-		Date miercoles = simpleDateFormat.parse(fechaMiercoles);
-		Date jueves = simpleDateFormat.parse(fechaJueves);
-		Date viernes = simpleDateFormat.parse(fechaViernes);
+/**		List<Long> diasMenuIds = agruparDiaMenuIds(lunesMenuId, martesMenuId,
+				miercolesMenuId, juevesMenuId, viernesMenuId);
+
+		List<Boolean> seleccionViandas = agruparSeleccionVianda(
+				seleccionViandaLunes, seleccionViandaMartes,
+				seleccionViandaMiercoles, seleccionViandaJueves,
+				seleccionViandaViernes);
+*/
 
 		Double montoTotal = 0.0;
 
-		Compra compraNueva = new Compra();
-		compraNueva.setUsuario(usuarioComprador);
-		compraNueva.setFechaDeSemanaComprada(fechaDesde);
-		/**
-		 * TODO validar que no exista una compra con fechaDeSemanaComprada 
-		 */
-		
 		ArrayList<SeleccionDiaMenu> seleccionesDeDiaMenu = new ArrayList<SeleccionDiaMenu>();
-		for (int i = 0; i < cantidadSemanas; i++) {
+		for (int i = 0; i < cantidadDeSemanas; i++) {
+
+			/**
+			 * for (int j = 0; j < 5; j++) { if (diasMenuIds.get(j) != null) {
+			 * seleccionesDeDiaMenu.add(this.agregarSeleccion(lunesMenuId,
+			 * dias.get(j), sede, seleccionViandas.get(j), precio)); montoTotal
+			 * += precio; } } java.util.Date fechaActual = new Date();
+			 * compraNueva.setFechaEfectuada(fechaActual);
+			 * compraNueva.setMonto(montoTotal);
+			 * compraNueva.setSelecciones(seleccionesDeDiaMenu);
+			 */
+
 			if (lunesMenuId != null) {
 				seleccionesDeDiaMenu.add(this.agregarSeleccion(lunesMenuId,
-						lunes, sede, seleccionViandaLunes, precio));
+						dias.get(0), sede, seleccionViandaLunes, precio));
 				montoTotal += precio;
 
 			}
 
 			if (martesMenuId != null) {
 				seleccionesDeDiaMenu.add(this.agregarSeleccion(martesMenuId,
-						martes, sede, seleccionViandaMartes, precio));
+						dias.get(1), sede, seleccionViandaMartes, precio));
 				montoTotal += precio;
 			}
 
 			if (miercolesMenuId != null) {
 				seleccionesDeDiaMenu.add(this.agregarSeleccion(miercolesMenuId,
-						miercoles, sede, seleccionViandaMiercoles, precio));
+						dias.get(2), sede, seleccionViandaMiercoles, precio));
 				montoTotal += precio;
 			}
 
 			if (juevesMenuId != null) {
 				seleccionesDeDiaMenu.add(this.agregarSeleccion(juevesMenuId,
-						jueves, sede, seleccionViandaJueves, precio));
+						dias.get(3), sede, seleccionViandaJueves, precio));
 				montoTotal += precio;
 			}
 
 			if (viernesMenuId != null) {
 				seleccionesDeDiaMenu.add(this.agregarSeleccion(viernesMenuId,
-						viernes, sede, seleccionViandaViernes, precio));
+						dias.get(4), sede, seleccionViandaViernes, precio));
 				montoTotal += precio;
-			}
-			java.util.Date fechaActual = new Date();
+			}			
+						
+		}
+		
+		Compra compraNueva = new Compra(usuarioComprador, fechaDesde,cantidadDeSemanas, montoTotal, seleccionesDeDiaMenu );
+		compraDAO.save(compraNueva);
+		return listar(dniUsuario);
+
+			/**java.util.Date fechaActual = new Date();
 			compraNueva.setFechaEfectuada(fechaActual);
 			compraNueva.setMonto(montoTotal);
 			compraNueva.setSelecciones(seleccionesDeDiaMenu);
 
 		}
-		
-		compraNueva.setPagado(false);
+
 		compraDAO.save(compraNueva);
-		return listar(dniUsuario);
+		return listar(dniUsuario);*/
+	}
+
+	public ModelAndView pagar(Long id, String dniUsuario) {
+		String mensaje;
+		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
+		Compra compra = compraDAO.get(id);
+		if (usuario.getSaldo() >= compra.getMonto()) {
+			usuario.setSaldo(usuario.getSaldo() - compra.getMonto());
+			usuarioDAO.edit(usuario);
+			compra.setPagado(true);
+			compraDAO.edit(compra);
+			java.util.Date fechaPago = new Date();
+			Pago pago = new Pago(compra, fechaPago, usuario);
+			pagoDAO.save(pago);
+			mensaje = "Su compra ha sido realizada correctamente";
+		} else {
+			mensaje = "Su compra no ha sido realizada correctamente por falta de dinero en la cuenta";
+		}
+		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
+		return ModelAndViewResolverCompra.pagarCompra(compras, mensaje);
 	}
 
 	private SeleccionDiaMenu agregarSeleccion(Long menuId, Date fecha,
@@ -196,34 +225,46 @@ public class CompraService {
 		menu = menuDAO.get(menuId);
 		return new SeleccionDiaMenu(fecha, menu, sede, seleccionVianda, precio);
 	}
-	
-	public ModelAndView pagar(Long id,String dniUsuario) {
-		String mensaje;
-		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
-		Compra compra = compraDAO.get(id);
-		if (usuario.getSaldo() >= compra.getMonto())
-		{
-			usuario.setSaldo(usuario.getSaldo()-compra.getMonto());
-			usuarioDAO.edit(usuario);
-			compra.setPagado(true);
-			compraDAO.edit(compra);
-			java.util.Date fechaPago = new Date();
-			Pago pago = new Pago(compra, fechaPago, usuario);
-			pagoDAO.save(pago);
-			mensaje = "Su compra ha sido realizada correctamente";
-		}else{
-			mensaje = "Su compra no ha sido realizada correctamente por falta de dinero en la cuenta";
+
+	private List<Date> convertirDias(String fechaLunes, String fechaMartes,
+			String fechaMiercoles, String fechaJueves, String fechaViernes) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+		ArrayList<Date> diasConvertidos = new ArrayList<Date>();
+		try {
+			diasConvertidos.add(simpleDateFormat.parse(fechaLunes));
+			diasConvertidos.add(simpleDateFormat.parse(fechaMartes));
+			diasConvertidos.add(simpleDateFormat.parse(fechaMiercoles));
+			diasConvertidos.add(simpleDateFormat.parse(fechaJueves));
+			diasConvertidos.add(simpleDateFormat.parse(fechaViernes));
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("compras", compras);
-		model.addObject("mensaje", mensaje);
-		model.addObject("contentPage", "listarCompras");
-		return model;
+
+		return diasConvertidos;
 	}
-	public ModelAndView borrar(Long id,String dniUsuario) {
-		compraDAO.delete(id);
-		return listar(dniUsuario);
+/**
+	private List<Long> agruparDiaMenuIds(Long lunesMenuId, Long martesMenuId,
+			Long miercolesMenuId, Long juevesMenuId, Long viernesMenuId) {
+		List<Long> diasMenuIds = new ArrayList<Long>();
+		diasMenuIds.add(lunesMenuId);
+		diasMenuIds.add(martesMenuId);
+		diasMenuIds.add(miercolesMenuId);
+		diasMenuIds.add(juevesMenuId);
+		diasMenuIds.add(viernesMenuId);
+		return diasMenuIds;
 	}
+
+	private List<Boolean> agruparSeleccionVianda(Boolean seleccionViandaLunes,
+			Boolean seleccionViandaMartes, Boolean seleccionViandaMiercoles,
+			Boolean seleccionViandaJueves, Boolean seleccionViandaViernes) {
+		List<Boolean> seleccionesVianda = new ArrayList<Boolean>();
+		seleccionesVianda.add(seleccionViandaLunes);
+		seleccionesVianda.add(seleccionViandaMartes);
+		seleccionesVianda.add(seleccionViandaMiercoles);
+		seleccionesVianda.add(seleccionViandaJueves);
+		seleccionesVianda.add(seleccionViandaViernes);
+		return seleccionesVianda;
+	}
+*/
 }

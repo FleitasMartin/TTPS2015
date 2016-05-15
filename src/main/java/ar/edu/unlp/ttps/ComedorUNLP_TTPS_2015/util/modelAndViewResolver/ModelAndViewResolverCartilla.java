@@ -1,4 +1,4 @@
-package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util;
+package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver;
 
 import org.springframework.web.servlet.ModelAndView;
 

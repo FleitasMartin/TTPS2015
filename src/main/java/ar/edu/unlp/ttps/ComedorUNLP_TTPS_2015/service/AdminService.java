@@ -26,7 +26,7 @@ public class AdminService {
 	}
 
 	public ModelAndView crear(String nombre, String apellido, String dni,
-			String contrasena, Integer telefono, String domicilio, String email) {
+			String contrasena, Long telefono, String domicilio, String email) {
 
 		Administrador admin = new Administrador(nombre, apellido, dni, contrasena, telefono, domicilio, email);
 		/*Administrador admin = new Administrador();
@@ -63,7 +63,7 @@ public class AdminService {
 	}
 
 	public ModelAndView editarAdmin(Long id, String nombre, String apellido,
-			Integer telefono, String email, String domicilio) {
+			Long telefono, String email, String domicilio) {
 		Administrador admin = administradorDAO.get(id);
 		admin.setApellido(apellido);
 		admin.setNombre(nombre);

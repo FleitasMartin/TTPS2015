@@ -58,7 +58,7 @@
 									<button type="button"
 										id="idBotonMostrarPanelBody${dia.nombre }"
 										class="btn btn-default"
-										onclick="$('#idPanelBody${dia.nombre}').toggle();$('#idIconoDia${dia.nombre }').toggleClass('glyphicon-chevron-down').toggleClass('glyphicon-chevron-up')">
+										onclick="$('#idPanelBody${dia.nombre}').toggle();$('#idIconoDia${dia.nombre }').toggleClass('glyphicon-collapse-down').toggleClass('glyphicon-collapse-up')">
 										<span id="idIconoDia${dia.nombre }"
 											class="glyphicon glyphicon-collapse-down"></span>
 									</button>
@@ -84,19 +84,20 @@
 													<button type="button"
 														id="idBotonLimpio${dia.nombre }${menu.id }"
 														class="btn btn-default"
-														onclick="chequearBoton('idBotonLimpio${dia.nombre }${menu.id }','idBotonChequeado${dia.nombre }${menu.id }')">
+														onclick="chequearBoton('${dia.nombre }','${menu.id }', true)">
 														<span id="idIconoCheckMenu${dia.nombre }${menu.id}"
 															class="glyphicon glyphicon-unchecked"></span>
 													</button>
 													<button type="button" style="display:none"
 														id="idBotonChequeado${dia.nombre }${menu.id }"
 														class="btn btn-default"
-														onclick="limpiarBoton('idBotonChequeado${dia.nombre }${menu.id }','idBotonLimpio${dia.nombre }${menu.id }')">
+														onclick="chequearBoton('${dia.nombre }','${menu.id }', false)">
 														<span id="idIconoCheckMenu${dia.nombre }${menu.id}"
 															class="glyphicon glyphicon-check"></span>
 													</button>
-												<input type="hidden" name="${dia.nombre}"
-													value="${menu.id }"></td>
+												<input type="checkbox" id="idCheckButton${dia.nombre}${menu.id}" name="${dia.nombre}" value="${menu.id }" style="display:none">
+												<!--<input type="hidden" name="${dia.nombre}"
+													value="${menu.id }">--></td>
 												<td><c:out value="${menu.nombre}" /> <input
 													type="hidden"
 													value="<fmt:formatDate value="${dia.fecha}" pattern="MM/dd/yyyy"/>"
@@ -197,28 +198,21 @@
 		ultimoIdDiaDiv = -1;
 	}
 	
-	function incrementarPrecio(){
-		precio += Number($('#precioDeCartilla').val());
+	function chequearBoton(diaNombre, menuId, checkBoolean){
+		$('#idBotonLimpio' + diaNombre + menuId ).toggle();
+		$('#idBotonChequeado' + diaNombre + menuId ).toggle();
+		$('#idCheckButton' + diaNombre + menuId ).prop('checked', checkBoolean);
+		( checkBoolean ) ? incrementarPrecio() : reducirPrecio();
 		$('#precio').empty();
 		$('#precio').append(precio);
 	}
 	
-	function chequearBoton(idBotonLimpio, idBotonChequeado){
-		$('#' + idBotonLimpio).toggle();
-		$('#' + idBotonChequeado).toggle();
-		incrementarPrecio();
-	}
+	function incrementarPrecio(){
+		precio += Number($('#precioDeCartilla').val());
+	}	
 
 	function reducirPrecio(){
 		precio -= Number($('#precioDeCartilla').val());
-		$('#precio').empty();
-		$('#precio').append(precio);
-	}
-	
-	function limpiarBoton(idBotonChequeado, idBotonLimpio){
-		$('#' + idBotonLimpio).toggle();
-		$('#' + idBotonChequeado).toggle();
-		reducirPrecio();
 	}
 	
 	

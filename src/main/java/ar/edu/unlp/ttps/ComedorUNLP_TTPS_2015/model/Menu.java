@@ -26,7 +26,7 @@ public class Menu {
 	private Long id;
 
 	private String nombre;
-	private boolean visible;
+	private Boolean visible;
 	private Date fechaAlta;
 
 	@ManyToMany(fetch = FetchType.EAGER)

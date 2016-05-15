@@ -46,7 +46,7 @@ public class ResponsableService {
 	}
 
 	public ModelAndView crear(String nombre, String apellido, String dni,
-			String contrasena, Integer telefono, String email,
+			String contrasena, Long telefono, String email,
 			String domicilio, Long sedeId) {
 
 		Sede sede = sedeDAO.get(sedeId);
@@ -70,7 +70,7 @@ public class ResponsableService {
 	}
 
 	public ModelAndView editarResponsable(Long id, String nombre,
-			String apellido, Integer telefono, String email, String domicilio,
+			String apellido, Long telefono, String email, String domicilio,
 			Long sede) {
 		Responsable responsable = responsableDAO.get(id);
 		responsable.setApellido(apellido);

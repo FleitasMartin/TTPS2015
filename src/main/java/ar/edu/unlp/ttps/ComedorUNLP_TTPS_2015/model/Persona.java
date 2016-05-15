@@ -25,7 +25,7 @@ public abstract class Persona {
 	protected String apellido;
 	protected String nombre;
 	protected String email;
-	protected Integer telefono;
+	protected Long telefono;
 	protected String domicilio;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -39,11 +39,11 @@ public abstract class Persona {
 		this.email = email;
 	}
 
-	public Integer getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

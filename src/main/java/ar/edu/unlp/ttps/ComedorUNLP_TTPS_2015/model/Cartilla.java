@@ -38,6 +38,13 @@ public class Cartilla {
 		setSemanas(semanas);
 	}
 	
+	public void editar(Double precio, Date fechaInicio, Date fechaFin, List<Semana> semanas){
+		setPrecio(precio);
+		setFechaInicio(fechaInicio);
+		setFechaFin(fechaFin);
+		setSemanas(semanas);
+	}
+	
 	public Double getPrecio() {
 		return precio;
 	}
