@@ -1,15 +1,10 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service.DetalleUsuarioService.CustomUserDetails;
 
 public class ModelAndViewResolverCartilla {
 
-	private static ModelAndViewWrapperBase model = new ModelAndViewWrapperBase(
-			"indexAdmin",
-			((CustomUserDetails) SecurityContextHolder.getContext()
-					.getAuthentication().getPrincipal()).getNombreUsuario());
+	private static ModelAndViewWrapperBase model = new ModelAndViewWrapperBaseAdmin();
 
 	public static ModelAndView listarCartilla(Object cartillas) {
 		return getModel().addContentPage("listarCartillas")
@@ -27,9 +22,7 @@ public class ModelAndViewResolverCartilla {
 	}
 
 	public static ModelAndView crearCartilla(Object menues, String error) {
-		return getModel().addContentPage("altaCartilla")
-				.addObject("menues", menues).addObject("error", error)
-				.getModelAndView();
+		return crearCartilla(menues).addObject("error", error);
 	}
 
 	public static ModelAndView editarCartilla(Object cartilla,

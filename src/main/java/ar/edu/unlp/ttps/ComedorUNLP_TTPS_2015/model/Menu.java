@@ -36,10 +36,12 @@ public class Menu {
 	@JoinTable(name = "menu_caracteristicas", joinColumns = @JoinColumn(name = "idMenu", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idCaracteristicas", referencedColumnName = "id"))
 	private List<Caracteristica> caracteristicas;
 
-	public Menu(){
+	public Menu() {
 		super();
 	}
-	public Menu(String nombre, List<Componente> componentes, List<Caracteristica> caracteristicas, boolean visible){
+
+	public Menu(String nombre, List<Componente> componentes,
+			List<Caracteristica> caracteristicas, Boolean visible) {
 		super();
 		setNombre(nombre);
 		setComponentes(componentes);
@@ -47,7 +49,15 @@ public class Menu {
 		setVisible(visible);
 		setFechaAlta(new DateTime().toDate());
 	}
-	
+
+	public void editar(String nombre, List<Caracteristica> caracteristicas,
+			List<Componente> componentes, Boolean visible) {
+		setNombre(nombre);
+		setCaracteristica(caracteristicas);
+		setComponentes(componentes);
+		setVisible(true);
+	}
+
 	public List<Componente> getComponentes() {
 		return componentes;
 	}

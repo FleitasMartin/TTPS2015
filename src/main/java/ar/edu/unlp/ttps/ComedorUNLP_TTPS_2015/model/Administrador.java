@@ -22,4 +22,13 @@ public class Administrador extends Persona {
 		setDomicilio(domicilio);
 		setEmail(email);
 	}
+	
+	public void editarDatos(String apellido, String nombre, String email, Long telefono, String domicilio){
+		setApellido(apellido);
+		setNombre(nombre);
+		setEmail(email);
+		setTelefono(telefono);
+		setDomicilio(domicilio);
+	}
+	
 }

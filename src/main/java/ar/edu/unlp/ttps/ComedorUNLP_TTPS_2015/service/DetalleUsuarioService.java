@@ -37,9 +37,6 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.RolUsuario;
 @Service("userDetailsService")
 public class DetalleUsuarioService implements UserDetailsService, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9185323001786331360L;
 	
 	@Autowired
@@ -79,8 +76,6 @@ public class DetalleUsuarioService implements UserDetailsService, Serializable {
 			List<GrantedAuthority> authorities) {
 		return new CustomUserDetails(persona.getDni(), persona.getContrasena(), true, true,
 				true, true, authorities, persona.getNombre() + " " + persona.getApellido());
-		//return new User(persona.getDni(), persona.getContrasena(), true, true,
-			//	true, true, authorities);
 	}
 
 	/**
@@ -103,9 +98,6 @@ public class DetalleUsuarioService implements UserDetailsService, Serializable {
 	
 	public class CustomUserDetails extends User{
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 3741482280045503127L;
 
 		public CustomUserDetails(String username, String password,

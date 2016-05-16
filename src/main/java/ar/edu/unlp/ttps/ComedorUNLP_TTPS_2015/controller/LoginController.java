@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.AdministradorDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
-import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service.DetalleUsuarioService.CustomUserDetails;
 
 @Controller
 public class LoginController {
@@ -50,7 +49,7 @@ public class LoginController {
 	public ModelAndView loginDone() {
 		ModelAndView model = new ModelAndView();
 
-		User user = (User) SecurityContextHolder.getContext()
+		CustomUserDetails user = (CustomUserDetails) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 
 		SimpleGrantedAuthority permisoSimple = (SimpleGrantedAuthority) user
@@ -59,14 +58,15 @@ public class LoginController {
 		switch (permisoSimple.toString()) {
 		case "ROLE_ADMIN":
 			model.setViewName("indexAdmin");
+			model.addObject("nombreUsuario", user.getNombreUsuario());
 			break;
 		case "ROLE_RESPONSABLE":
 			model.setViewName("indexResponsable");
+			model.addObject("nombreUsuario", user.getNombreUsuario());
 			break;
 		case "ROLE_USUARIO":
 			model.setViewName("indexUsuario");
-			Usuario usuario = usuarioDAO.findByDNI( user.getUsername() );
-			model.addObject("nombreUsuario", usuario.getNombre());
+			model.addObject("nombreUsuario", user.getNombreUsuario());
 			break;
 		default:
 			break;

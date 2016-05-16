@@ -1,16 +1,28 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service.DetalleUsuarioService.CustomUserDetails;
 
 public class ModelAndViewWrapperBase {
 
-	private ModelAndView modelAndView;
+	protected ModelAndView modelAndView;
 
-	public ModelAndViewWrapperBase(String indexView, String nombreUsuario) {
+	protected ModelAndViewWrapperBase(String indexView) {
 		super();
 		setModelAndView(new ModelAndView());
 		setIndexView(indexView);
-		getModelAndView().addObject("nombreUsuario", nombreUsuario);
+		getModelAndView()
+				.addObject(
+						"nombreUsuario",
+						((CustomUserDetails) SecurityContextHolder.getContext()
+								.getAuthentication().getPrincipal())
+								.getNombreUsuario());
+	}
+	
+	protected ModelAndViewWrapperBase(){
+		super();
 	}
 
 	public ModelAndViewWrapperBase addObject(String attributeName,
