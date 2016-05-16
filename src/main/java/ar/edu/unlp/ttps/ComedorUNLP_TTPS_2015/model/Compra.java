@@ -1,6 +1,5 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +37,9 @@ public class Compra {
 		super();
 	}
 
-	public Compra(Usuario usuarioComprador, Date fechaDeSemanaComprada, Integer cantidadDeSemanas, Double montoTotal, List<SeleccionDiaMenu> selecciones) {
+	public Compra(Usuario usuarioComprador, Date fechaDeSemanaComprada,
+			Integer cantidadDeSemanas, Double montoTotal,
+			List<SeleccionDiaMenu> selecciones) {
 		super();
 		setUsuario(usuarioComprador);
 		setFechaDeSemanaComprada(fechaDeSemanaComprada);
@@ -46,7 +47,7 @@ public class Compra {
 		setMonto(montoTotal);
 		setSelecciones(selecciones);
 		setFechaEfectuada(new Date());
-		setPagado(false);		
+		setPagado(false);
 	}
 
 	public Boolean getPagado() {

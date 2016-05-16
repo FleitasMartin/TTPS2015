@@ -30,6 +30,16 @@ public class Responsable extends Persona {
 		setRol(rol);
 	}
 
+	public void editar(String apellido, String nombre, String email,
+			Long telefono, String domicilio, Sede sede) {
+		setApellido(apellido);
+		setNombre(nombre);
+		setEmail(email);
+		setTelefono(telefono);
+		setDomicilio(domicilio);
+		setSede(sede);
+	}
+
 	public Sede getSede() {
 		return sede;
 	}

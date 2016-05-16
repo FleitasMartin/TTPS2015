@@ -8,23 +8,20 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Componente;
 
 public class ModelAndViewResolverComponente {
 
-	private static ModelAndViewWrapperBase model = new ModelAndViewWrapperBaseAdmin();
-
-	private static ModelAndViewWrapperBase getModel() {
-		return model;
-	}
-
 	public static ModelAndView crear() {
-		return getModel().addContentPage("altaComponente").getModelAndView();
+		return new ModelAndViewWrapperBaseAdmin().addContentPage(
+				"altaComponente").getModelAndView();
 	}
 
 	public static ModelAndView listar(List<Componente> componentes) {
-		return getModel().addContentPage("listarComponentes")
+		return new ModelAndViewWrapperBaseAdmin()
+				.addContentPage("listarComponentes")
 				.addObject("componentes", componentes).getModelAndView();
 	}
 
 	public static ModelAndView editar(Componente componente) {
-		return getModel().addContentPage("editarComponente")
+		return new ModelAndViewWrapperBaseAdmin()
+				.addContentPage("editarComponente")
 				.addObject("componente", componente).getModelAndView();
 	}
 }

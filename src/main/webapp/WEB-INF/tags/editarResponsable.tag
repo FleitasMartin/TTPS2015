@@ -1,4 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="form">
 	<form method="post" action="${pageContext.request.contextPath}/responsable/editarResponsable">
 	<input type="hidden" value="${responsable.id }" name="id">
@@ -24,7 +25,7 @@
 		</div>
 		<div class="form-group">
 		<label>Sede</label> <select class="form-control" name="sedeId">
-			<option value="${sede.id }">${responsable.nombre }</option>
+			<option value="${responsable.sede.id }">${responsable.sede.nombre }</option>
 			<c:forEach var="sede" items="${sedes}">
 				<option value="${sede.id }">${sede.nombre }</option>
 			</c:forEach>

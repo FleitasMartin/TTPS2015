@@ -10,7 +10,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.CaracteristicaDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Caracteristica;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
-
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver.ModelAndViewResolverUsuario;
 
 @Service
 public class UsuarioService {
@@ -19,42 +19,37 @@ public class UsuarioService {
 	private UsuarioDAO usuarioDAO;
 	@Autowired
 	private CaracteristicaDAO caracteristicasDAO;
-	
-	public ModelAndView perfil(String dni){
+
+	public ModelAndView perfil(String dni) {
 		Usuario usuario = usuarioDAO.findByDNI(dni);
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("usuario", usuario);
-		model.addObject("contentPage","userPerfil");
-		return model;
+		return ModelAndViewResolverUsuario.perfil(usuario);
 	}
-	
-	
-	public ModelAndView editarPreferencias(String dniUsuario){
+
+	public ModelAndView editarPreferencias(String dniUsuario) {
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
 		ArrayList<Caracteristica> caracteristicas = new ArrayList<Caracteristica>();
 		ArrayList<Caracteristica> lasCaracteristicas = new ArrayList<Caracteristica>();
-		caracteristicas = (ArrayList<Caracteristica>) caracteristicasDAO.getAll();
+		caracteristicas = (ArrayList<Caracteristica>) caracteristicasDAO
+				.getAll();
 		for (int i = 0; i < caracteristicas.size(); i++) {
 			boolean existe = false;
-			for (Caracteristica caracteristicasUsuario : usuario.getCaracteristica()) {
-				if( caracteristicasUsuario.getId() == caracteristicas.get(i).getId() ){
+			for (Caracteristica caracteristicasUsuario : usuario
+					.getCaracteristica()) {
+				if (caracteristicasUsuario.getId() == caracteristicas.get(i)
+						.getId()) {
 					existe = true;
 				}
 			}
-			if (!existe){
+			if (!existe) {
 				lasCaracteristicas.add(caracteristicas.get(i));
 			}
 		}
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("usuario", usuario);
-		model.addObject("caracteristicas", lasCaracteristicas);
-		model.addObject("contentPage","editarPreferencias");
-		return model;
+		return ModelAndViewResolverUsuario.editarPreferencias(usuario,
+				lasCaracteristicas);
 	}
-	
-	public ModelAndView editar(ArrayList<Long> caracteristicas, String dniUsuario){		
+
+	public ModelAndView editar(ArrayList<Long> caracteristicas,
+			String dniUsuario) {
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
 		ArrayList<Caracteristica> caracteristicasA = new ArrayList<Caracteristica>();
 		for (Long idC : caracteristicas) {
@@ -62,29 +57,19 @@ public class UsuarioService {
 		}
 		usuario.setCaracteristica(caracteristicasA);
 		usuarioDAO.edit(usuario);
-		
 		return perfil(dniUsuario);
 	}
-	
-	public ModelAndView obtenerSaldo(String dni){
+
+	public ModelAndView obtenerSaldo(String dni) {
 		Usuario usuario = usuarioDAO.findByDNI(dni);
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("saldo", usuario.getSaldo());
-		model.addObject("contentPage","saldo");
-		return model;
+		return ModelAndViewResolverUsuario.saldo(usuario.getSaldo());
 	}
 
-	public ModelAndView modificarSaldo(Double saldo, String dni){
+	public ModelAndView modificarSaldo(Double saldo, String dni) {
 		Usuario usuario = usuarioDAO.findByDNI(dni);
-		usuario.setSaldo(usuario.getSaldo()+saldo);
+		usuario.setSaldo(usuario.getSaldo() + saldo);
 		usuarioDAO.edit(usuario);
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("usuario", usuario);
-		model.addObject("saldo", usuario.getSaldo());
-		model.addObject("contentPage","saldo");
-		return model;
+		return ModelAndViewResolverUsuario.saldo(usuario.getSaldo());
 	}
-	
+
 }

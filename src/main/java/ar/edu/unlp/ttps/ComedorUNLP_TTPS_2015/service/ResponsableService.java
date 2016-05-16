@@ -11,6 +11,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.RolUsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.SedeDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver.ModelAndViewResolverResponsable;
 
 @Service
 public class ResponsableService {
@@ -25,29 +26,19 @@ public class ResponsableService {
 	private RolUsuarioDAO rolUsuarioDAO;
 
 	public ModelAndView crear() {
-		ArrayList<Sede> sedes = new ArrayList<Sede>();
-		sedes = (ArrayList<Sede>) sedeDAO.getAll();
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("contentPage", "altaResponsable");
-		model.addObject("sedes", sedes);
-		return model;
+		ArrayList<Sede> sedes = (ArrayList<Sede>) sedeDAO.getAll();
+		return ModelAndViewResolverResponsable.crear(sedes);
 	}
 
 	public ModelAndView listar() {
-
-		ArrayList<Responsable> responsables = new ArrayList<Responsable>();
-		responsables = (ArrayList<Responsable>) responsableDAO.getAll();
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("responsables", responsables);
-		model.addObject("contentPage", "listarResponsables");
-		return model;
+		ArrayList<Responsable> responsables = (ArrayList<Responsable>) responsableDAO
+				.getAll();
+		return ModelAndViewResolverResponsable.listar(responsables);
 	}
 
 	public ModelAndView crear(String nombre, String apellido, String dni,
-			String contrasena, Long telefono, String email,
-			String domicilio, Long sedeId) {
+			String contrasena, Long telefono, String email, String domicilio,
+			Long sedeId) {
 
 		Sede sede = sedeDAO.get(sedeId);
 		Responsable resp = new Responsable(dni, contrasena, apellido, nombre,
@@ -58,26 +49,17 @@ public class ResponsableService {
 	}
 
 	public ModelAndView editarResponsable(Long id) {
-		ArrayList<Sede> sedes = new ArrayList<Sede>();
-		sedes = (ArrayList<Sede>) sedeDAO.getAll();
+		ArrayList<Sede> sedes = (ArrayList<Sede>) sedeDAO.getAll();
 		Responsable responsable = responsableDAO.get(id);
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("responsable", responsable);
-		model.addObject("sedes", sedes);
-		model.addObject("contentPage", "editarResponsable");
-		return model;
+		return ModelAndViewResolverResponsable.editar(responsable, sedes);
 	}
 
 	public ModelAndView editarResponsable(Long id, String nombre,
 			String apellido, Long telefono, String email, String domicilio,
-			Long sede) {
+			Long sedeId) {
 		Responsable responsable = responsableDAO.get(id);
-		responsable.setApellido(apellido);
-		responsable.setNombre(nombre);
-		responsable.setEmail(email);
-		responsable.setTelefono(telefono);
-		responsable.setDomicilio(domicilio);
+		Sede sede = sedeDAO.get(sedeId);
+		responsable.editar(apellido, nombre, email, telefono, domicilio, sede);
 		responsableDAO.edit(responsable);
 		return listar();
 	}

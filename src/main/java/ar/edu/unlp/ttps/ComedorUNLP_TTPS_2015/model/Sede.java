@@ -47,6 +47,15 @@ public class Sede {
 		setUsuarios(new ArrayList<Usuario>());
 	}
 
+	public void editar(String nombre, Integer capacidad, String ubicacion,
+			String latitud, String longitud) {
+		setNombre(nombre);
+		setCapacidad(capacidad);
+		setUbicacion(ubicacion);
+		setLatitud(latitud);
+		setLongitud(longitud);
+	}
+
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}

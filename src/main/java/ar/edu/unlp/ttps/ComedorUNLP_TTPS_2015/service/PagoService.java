@@ -23,6 +23,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Pago;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.SeleccionDiaMenu;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver.ModelAndViewResolverPago;
 
 @Service
 public class PagoService {
@@ -67,11 +68,7 @@ public class PagoService {
 		 */
 		Map<String, Map<String, Integer>> diasMenuesCantidades = calcularCantidades(seleccionesFiltradas);
 
-		ModelAndView model = new ModelAndView();
-		model.addObject("map", diasMenuesCantidades);
-		model.setViewName("indexResponsable");
-		model.addObject("contentPage", "listarPagosSemanal");
-		return model;
+		return ModelAndViewResolverPago.listadoSemanal(diasMenuesCantidades);
 	}
 
 	private Map<String, Date> calcularInicioFinSemanaCompra(String fechaInicio)

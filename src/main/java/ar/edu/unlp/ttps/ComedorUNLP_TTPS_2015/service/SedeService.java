@@ -12,6 +12,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver.ModelAndViewResolverSede;
 
 @Service
 public class SedeService {
@@ -24,74 +25,47 @@ public class SedeService {
 
 	@Autowired
 	private ResponsableDAO responsableDAO;
-	
+
 	public ModelAndView listarAdmin() {
-
-		ArrayList<Sede> sedes = new ArrayList<Sede>();
-		sedes = (ArrayList<Sede>) sedeDAO.getAll();
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("sedes", sedes);
-		model.addObject("contentPage", "listarSedesAdmin");
-		return model;
+		ArrayList<Sede> sedes = (ArrayList<Sede>) sedeDAO.getAll();
+		return ModelAndViewResolverSede.listarAdmin(sedes);
 	}
-	
-	public ModelAndView listar() {
 
-		ArrayList<Sede> sedes = new ArrayList<Sede>();
-		sedes = (ArrayList<Sede>) sedeDAO.getAll();
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("sedes", sedes);
-		model.addObject("contentPage", "listarSedes");
-		return model;
+	public ModelAndView listar() {
+		ArrayList<Sede> sedes = (ArrayList<Sede>) sedeDAO.getAll();
+		return ModelAndViewResolverSede.listarUsuario(sedes);
 	}
 
 	public ModelAndView usuariosHabilitados(String dni) {
-
 		Responsable responsable = responsableDAO.findByDNI(dni);
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		usuarios = (ArrayList<Usuario>) usuarioDAO.getAllBySede(responsable.getSede());
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexResponsable");
-		model.addObject("usuarios", usuarios);
-		model.addObject("contentPage", "listarUsuariosHabilitados");
-		return model;
+		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) usuarioDAO
+				.getAllBySede(responsable.getSede());
+		return ModelAndViewResolverSede.listarResponsable(usuarios);
 	}
 
-	public ModelAndView crear(String nombre, int capacidad, String ubicacion, String latitud, String longitud) {
-
-		Sede sedeNueva = new Sede(nombre, capacidad, ubicacion, latitud, longitud);
+	public ModelAndView crear(String nombre, int capacidad, String ubicacion,
+			String latitud, String longitud) {
+		Sede sedeNueva = new Sede(nombre, capacidad, ubicacion, latitud,
+				longitud);
 		sedeDAO.save(sedeNueva);
 		return listarAdmin();
 	}
 
 	public ModelAndView crear() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("contentPage", "altaSede");
-		return model;
+		return ModelAndViewResolverSede.crear();
 	}
 
 	public ModelAndView editar(Long id, String nombre, int capacidad,
 			String ubicacion, String latitud, String longitud) {
 		Sede sede = sedeDAO.get(id);
-		sede.setNombre(nombre);
-		sede.setCapacidad(capacidad);
-		sede.setUbicacion(ubicacion);
-		sede.setLatitud(latitud);
-		sede.setLongitud(longitud);
+		sede.editar(nombre, capacidad, ubicacion, latitud, longitud);
 		sedeDAO.edit(sede);
 		return listarAdmin();
 	}
 
 	public ModelAndView editar(Long id) {
 		Sede sede = sedeDAO.get(id);
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("sede", sede);
-		model.addObject("contentPage", "editarSede");
-		return model;
+		return ModelAndViewResolverSede.editar(sede);
 	}
 
 	public ModelAndView eliminar(Long id) {

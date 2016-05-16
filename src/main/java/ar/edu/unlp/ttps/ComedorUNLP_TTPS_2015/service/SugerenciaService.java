@@ -14,6 +14,7 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Responsable;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sede;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Sugerencia;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.util.modelAndViewResolver.ModelAndViewResolverSugerencia;
 
 @Service
 public class SugerenciaService {
@@ -28,26 +29,14 @@ public class SugerenciaService {
 	private ResponsableDAO responsableDAO;
 
 	public ModelAndView comentar(String dniUsuario) {
-		ArrayList<Sede> sedes = new ArrayList<Sede>();
-		sedes = (ArrayList<Sede>) sedeDAO.getAll();
+		ArrayList<Sede> sedes = (ArrayList<Sede>) sedeDAO.getAll();
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexUsuario");
-		model.addObject("usuario", usuario);
-		model.addObject("sedes", sedes);
-		model.addObject("contentPage", "comentar");
-		return model;
+		return ModelAndViewResolverSugerencia.comentar(usuario, sedes);
 	}
 
-	public ModelAndView comentar(String tipo, Long sedeId,
-			String mensaje, String dniUsuario) {
+	public ModelAndView comentar(String tipo, Long sedeId, String mensaje,
+			String dniUsuario) {
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
-		/*Sugerencia sugerencia = new Sugerencia();
-		Sede sede = sedeDAO.get(sedeId);
-		sugerencia.setSede(sede);
-		sugerencia.setTipo(tipoSugerencia);
-		sugerencia.setMensaje(message);
-		sugerencia.setUsuario(usuario);*/
 		Sede sede = sedeDAO.get(sedeId);
 		Sugerencia sugerencia = new Sugerencia(usuario, tipo, mensaje, sede);
 		sugerenciaDAO.save(sugerencia);
@@ -55,26 +44,16 @@ public class SugerenciaService {
 	}
 
 	public ModelAndView buzonVirtual() {
-
-		ArrayList<Sugerencia> sugerencias = new ArrayList<Sugerencia>();
-		sugerencias = (ArrayList<Sugerencia>) sugerenciaDAO.getAll();
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexAdmin");
-		model.addObject("sugerencias", sugerencias);
-		model.addObject("contentPage", "buzonVirtual");
-		return model;
+		ArrayList<Sugerencia> sugerencias = (ArrayList<Sugerencia>) sugerenciaDAO
+				.getAll();
+		return ModelAndViewResolverSugerencia.buzonVirtual(sugerencias);
 	}
 
 	public ModelAndView buzonVirtualDeSede(String dniResponsable) {
 		Responsable responsable = responsableDAO.findByDNI(dniResponsable);
-		ArrayList<Sugerencia> sugerencias = new ArrayList<Sugerencia>();
-		sugerencias = (ArrayList<Sugerencia>) sugerenciaDAO
+		ArrayList<Sugerencia> sugerencias = (ArrayList<Sugerencia>) sugerenciaDAO
 				.getAllBySede(responsable.getSede().getId());
-		ModelAndView model = new ModelAndView();
-		model.setViewName("indexResponsable");
-		model.addObject("sugerencias", sugerencias);
-		model.addObject("contentPage", "buzonVirtualDeSede");
-		return model;
+		return ModelAndViewResolverSugerencia.buzonVirtualDeSede(sugerencias);
 	}
 
 }
