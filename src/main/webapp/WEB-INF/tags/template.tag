@@ -9,7 +9,7 @@
 
 </head>
 
-<body background="${pageContext.request.contextPath}/img/fondo2.jpg" style="background-repeat: no-repeat; 
+<body id="body" background="${pageContext.request.contextPath}/img/puerta.jpg" style="background-repeat: no-repeat; 
 		background-position: center center;background-attachment : fixed;background-size: cover; "> 
 
 	<jsp:invoke fragment="body" />

@@ -11,6 +11,7 @@
 			sedes</a></li>
 </ul>
 <script>
+	$('#body').css('background-image', 'url(${pageContext.request.contextPath}/img/salon.jpeg)');
 	$(function() {
 		$('ul a[href^="' + location.pathname+ '"]').parent()
 				.addClass('active');

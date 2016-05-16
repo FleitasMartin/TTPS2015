@@ -1,69 +1,221 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ tag language="java" pageEncoding="UTF-8"%>
 
-<h1>
-	<c:out value="${mensaje}"></c:out>
-</h1>
-<div class="table-responsive">
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Fecha Efectuada</th>
-				<th>Monto</th>
-				<th>Detalles</th>
-				<th>Pago</th>
-				<th>Borrar</th>
-			</tr>
-		</thead>
-		<tbody>
+<div class="col-md-12">
+	<div class="col-md-7">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="text-center" style="border:none" ><h3>
+								<span class="label label-default">Fecha </span>
+							</h3></th>
+						<th class="text-center" style="border:none" ><h3>
+								<span class="label label-default">Monto </span>
+							</h3></th>
+						<th class="text-center" style="border:none" ><h3>
+								<span class="label label-default">Detalle <span
+									class="glyphicon glyphicon-list-alt"> </span> </span>
+							</h3></th>
+						<th class="text-center" style="border:none" ><h3>
+								<span class="label label-default">Estado </span>
+							</h3></th>
+						<th class="text-center" style="border:none" ><h3>
+								<span class="label label-default">Borrar </span>
+							</h3></th>
+					</tr>
+				</thead>
+				<tbody>
 
-			<c:forEach var="compra" items="${compras}">
-				<tr>
-					<td><c:out value="${compra.fechaEfectuada }" /></td>
-					<td><c:out value="${compra.monto }" /></td>
-					<td>
-						<div class="btn-group">
-							<button type="button" class="btn btn-default dropdown-toggle"
-								data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">
-								Detalle <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li class="dropdown-header">Menues</li>
-								<c:forEach var="seleccionDiaMenu" items="${compra.selecciones}">
-									<li><c:out value="${seleccionDiaMenu.nombre }" /></li>
-								</c:forEach>
-							</ul>
+					<c:forEach var="compra" items="${compras}">
+						<tr>
+							<td class="text-center" style="border:none"><h4>
+									<span class="label label-default"><fmt:formatDate
+											value="${compra.fechaEfectuada }" pattern="dd/MM/yyyy" /></span>
+								</h4></td>
+							<td class="text-center" style="border:none"><h4>
+									<span class="label label-default"><span
+										class="glyphicon glyphicon-usd" aria-hidden="true"></span> <c:out
+											value="${compra.monto }" /></span>
+								</h4></td>
+							<td class="text-center" style="border:none">
+								<div class="btn-group">
+									<button type="button" id="idBotonMostrarDetalle${compra.id }"
+										class="btn btn-default"
+										onclick="mostrarDetalle('${compra.id }')">
+										Mostrar <span id="idSpanDetalle${compra.id }"
+											class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+									</button>
+									<button type="button" style="display: none"
+										id="idBotonOcultarDetalle${compra.id }"
+										class="btn btn-default"
+										onclick="ocultarDetalle('${compra.id }')">
+										Ocultar <span class="glyphicon glyphicon-eye-close"
+											aria-hidden="true"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li class="dropdown-header">Menues</li>
+										<c:forEach var="seleccionDiaMenu"
+											items="${compra.selecciones}">
+											<li><c:out value="${seleccionDiaMenu.nombre }" /></li>
+										</c:forEach>
+									</ul>
+								</div>
+							</td>
+							<td class="text-center" style="border:none"><c:choose>
+									<c:when test="${compra.pagado}">
+										<button type="button" class="btn btn-success disabled">
+											 Pago <span
+												class="glyphicon glyphicon-ok" aria-hidden="true">
+											</span>
+										</button>
+										<!-- <h4>
+											<span class="label label-success"> Pagado <span
+												class="glyphicon glyphicon-ok" aria-hidden="true"> </span>
+											</span>
+										</h4> -->
+									</c:when>
+									<c:otherwise>
+										<form action="${pageContext.request.contextPath}/compra/pagar"
+											method="POST">
+											<input type="hidden" value="${compra.id }" name="id">
+											<!-- <input type="submit" class="btn btn-warning " value="Pagar" />-->
+											<button type="submit" class="btn btn-warning ">
+												Pagar <span class="glyphicon glyphicon-save"
+													aria-hidden="true"></span>
+											</button>
+										</form>
+									</c:otherwise>
+								</c:choose></td>
+							<td class="text-center" style="border:none"><c:choose>
+									<c:when test="${compra.pagado}">
+										<button type="button" class="btn btn-danger disabled">
+											Borrar <span class="glyphicon glyphicon-ban-circle"
+												aria-hidden="true"></span>
+										</button>
+									</c:when>
+									<c:otherwise>
+										<form
+											action="${pageContext.request.contextPath}/compra/borrar"
+											method="POST">
+											<input type="hidden" value="${compra.id }" name="id">
+											<button type="submit" class="btn btn-danger ">
+												Borrar <span class="glyphicon glyphicon-trash"
+													aria-hidden="true"></span>
+											</button>
+										</form>
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
+						<div id="idDivCompraDetalle${compra.id }">
+							<div id="idCompraDetalle${compra.id }"
+								class="col-md-10 col-md-offset-2 "
+								style="display: none; position: absolute">
+								<!-- 	<div class="panel panel-primary">
+									<div class="panel-heading text-center">  -->
+								<div class=" text-center">
+									<h3>
+										<span class="label label-info">Compra del día <fmt:formatDate
+												value="${compra.fechaEfectuada }" pattern="dd/MM/yyyy" /></span>
+									</h3>
+								</div>
+								<!--</div>  -->
+								<!--<div class="panel-body"> -->
+
+								<div class="text-left">
+									<h3>
+										<span class="label label-warning">Menues</span>
+									</h3>
+								</div>
+
+								<c:if test="${ compra.cantidadDeSemanas > '1' }">
+									<c:forEach var="i" begin="1"
+										end="${fn:length(compra.selecciones) / compra.cantidadDeSemanas }">
+										<div class="text-center">
+											<h4>
+												<span class="label label-default"><c:out
+														value="${compra.selecciones.get(i-1).nombre }" /></span>
+											</h4>
+										</div>
+									</c:forEach>
+								</c:if>
+								<c:if test="${ compra.cantidadDeSemanas == '1'}">
+									<c:forEach var="seleccionDiaMenu" items="${compra.selecciones}">
+										<div class="text-center">
+											<h4>
+												<span class="label label-default"><c:out
+														value="${seleccionDiaMenu.nombre }" /></span>
+											</h4>
+										</div>
+									</c:forEach>
+
+								</c:if>
+								<div class="text-left">
+									<h3>
+										<span class="label label-warning">Cantidad de semanas</span> <span
+											class="badge"><c:out
+												value="${compra.cantidadDeSemanas }"></c:out></span>
+									</h3>
+								</div>
+							</div>
 						</div>
-					</td>
-					<td><c:choose>
-							<c:when test="${compra.pagado}">
-							Pagado
- 							 </c:when>
-							<c:otherwise>
-								<form action="${pageContext.request.contextPath}/compra/pagar"
-									method="POST">
-									<input type="hidden" value="${compra.id }" name="id"> <input
-										type="submit" class="btn btn-warning " value="Pagar" />
-								</form>
-							</c:otherwise>
-						</c:choose></td>
-					<td><c:choose>
-							<c:when test="${compra.pagado}">
-								YA FACTURADO
- 							 </c:when>
-							<c:otherwise>
-								<form action="${pageContext.request.contextPath}/compra/borrar"
-									method="POST">
-									<input type="hidden" value="${compra.id }" name="id"> <input
-										type="submit" class="btn btn-danger " value="Borrar" />
-								</form>
-							</c:otherwise>
-						</c:choose></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+						<!-- </div>
+						</div> -->
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<a href="${pageContext.request.contextPath}/compra/compraDeTickets"
+			class="btn btn-primary" role="button">Comprar Tickets</a>
+	</div>
+	<div id="idDetalleCompra" class="col-md-5">
+	
+		<div class="col-md-10 col-md-offset-2">
+			<c:if test="${not empty error}">
+				<div class="alert alert-warning">
+					<h3 class="text-center">
+						<strong>¡Atenci&oacute;n!</strong>
+					</h3>
+					<h4 class="text-center">
+						<c:out value="${error}"></c:out>
+					</h4>
+				</div>
+			</c:if>
+			<c:if test="${not empty mensaje}">
+				<div class="alert alert-success">
+					<h3 class="text-center">
+						<strong>¡Atenci&oacute;n!</strong>
+					</h3>
+					<h4 class="text-center">
+						<c:out value="${mensaje}"></c:out>
+					</h4>
+				</div>
+			</c:if>
+		</div>
+	</div>
+
 </div>
-<a href="${pageContext.request.contextPath}/compra/compraDeTickets"
-	class="btn btn-primary" role="button">Comprar Tickets</a>
+
+<script type="text/javascript">
+	var ultimoIdcompra = -1;
+
+	function mostrarDetalle(idCompra) {
+		if (ultimoIdcompra != -1)
+			ocultarDetalle(ultimoIdcompra);
+		ultimoIdcompra = idCompra;
+		$("#idDetalleCompra").append($("#idCompraDetalle" + idCompra));
+		$("#idCompraDetalle" + idCompra).show();
+		$("#idBotonMostrarDetalle" + idCompra).hide();
+		$("#idBotonOcultarDetalle" + idCompra).show();
+	}
+	function ocultarDetalle(idCompra) {
+		$("#idDivCompraDetalle" + idCompra).append(
+				$("#idCompraDetalle" + idCompra));
+		$("#idCompraDetalle" + idCompra).hide();
+		$("#idBotonOcultarDetalle" + idCompra).hide();
+		$("#idBotonMostrarDetalle" + idCompra).show();
+		ultimoIdcompra = -1;
+	}
+</script>

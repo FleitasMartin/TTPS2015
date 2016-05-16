@@ -20,12 +20,9 @@ public class ModelAndViewResolverCompra {
 		return model;
 	}
 
-	public static ModelAndView listarCompras(List<Compra> compras,
+	public static ModelAndView listarCompras(List<Compra> compras, String tipo,
 			String mensaje) {
-		// ModelAndView model = new ModelAndView();
-		// model.setViewName("indexUsuario");
-		// model.addObject("mensaje",mensaje);
-		return listarCompras(compras).addObject("mensaje", mensaje);
+		return listarCompras(compras).addObject(tipo, mensaje);
 	}
 
 	public static ModelAndView crearCompra(Usuario usuario, Sede sede,
@@ -45,13 +42,16 @@ public class ModelAndViewResolverCompra {
 		return null;
 	}
 
-	public static ModelAndView pagarCompra(List<Compra> compras, String mensaje) {
+	public static ModelAndView pagarCompra(List<Compra> compras) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("indexUsuario");
 		model.addObject("compras", compras);
-		model.addObject("mensaje", mensaje);
 		model.addObject("contentPage", "listarCompras");
 		return model;
+	}
+	
+	public static ModelAndView pagarCompraExitoError(List<Compra> compras, String tipo, String mensaje) {
+		return pagarCompra(compras).addObject(tipo, mensaje);
 	}
 
 }

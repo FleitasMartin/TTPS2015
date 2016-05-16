@@ -20,7 +20,8 @@
 	<!-- <li><a
 		href="${pageContext.request.contextPath}/admin/estadisticasMenues">Estad&iacute;sticas</a></li> -->
 </ul>
-<script>
+<script type="text/javascript">
+	$('#body').css('background-image', 'url(${pageContext.request.contextPath}/img/verduras01.jpg)');
 	$(function() {
 		$('ul a[href^="' + location.pathname + '"]').parent()
 				.addClass('active');

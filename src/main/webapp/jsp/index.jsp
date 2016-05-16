@@ -7,18 +7,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <tags:template>
 	<jsp:attribute name="body">
+	
+	<script type="text/javascript">
+//	$('#body').css('background-image', 'url(./img/fondo2.jpg)');
+	</script>
+	
 <div class="container">
 
-<div class="page-header well">
+<div class="col-md-6 page-header well text-center">
   <h1>Comedor Universitario UNLP <small> Bienvenido!</small>
 				</h1>
-<%--   <img src="${pageContext.request.contextPath}/img/header.jpg" align="center" /> --%>
 </div>
 <div class="row">
 <br>
 
 				
-				<div class="col-sm-offset-3 col-sm-8">
+				
+				<div class="col-md-8">
 	<form action="${pageContext.request.contextPath}/login" method="POST"
 						class="form-horizontal">
 		<div class="form-group">
@@ -27,12 +32,14 @@
 								<input type="text" name="dni" class="form-control">
 								
 							
+							
 							</div>
 		</div>
 		<div class="form-group"> <label
 								class="col-sm-offset-1 col-sm-2 control-label">Password</label>
 		<div class="col-sm-3">
 								<input type="password" name="contrasena" class="form-control">
+							
 							
 							
 							</div>
@@ -44,6 +51,7 @@
 									class="form-control btn btn-primary ">
 							
 							
+							
 							</div>
 							</div>
 	</form>
@@ -52,7 +60,7 @@
 <div>
 <c:if test="${not empty error}">
 <div class="row">
-<div class="col-sm-offset-3 col-sm-6">
+<div class="col-md-6">
 <div class="alert alert-danger">
 							<h3 class="text-center">
 								<strong>¡Encontramos un problema!</strong>
@@ -68,7 +76,8 @@
 <div>
 <c:if test="${not empty mensaje}">
 <div class="row">
-<div class="col-sm-offset-3 col-sm-6">
+<!-- <div class="col-sm-offset-3 col-sm-6"> -->
+<div class="col-md-6">
 <div class="alert alert-success">
 							<h3 class="text-center">
 								<strong><c:out value="${mensaje}"></c:out></strong>
@@ -77,6 +86,7 @@
 </div>
 </div>
 </c:if>
+</div>
 </div>
 
 	</jsp:attribute>

@@ -52,17 +52,17 @@
 					<div class="col-md-12">
 						<div class="panel panel-success">
 							<div class="panel-heading text-center">
-							<div class="button-group">
-								<h4>
-									<c:out value="${dia.nombre }" />									
-									<button type="button"
-										id="idBotonMostrarPanelBody${dia.nombre }"
-										class="btn btn-default"
-										onclick="$('#idPanelBody${dia.nombre}').toggle();$('#idIconoDia${dia.nombre }').toggleClass('glyphicon-collapse-down').toggleClass('glyphicon-collapse-up')">
-										<span id="idIconoDia${dia.nombre }"
-											class="glyphicon glyphicon-collapse-down"></span>
-									</button>
-								</h4>
+								<div class="button-group">
+									<h4>
+										<c:out value="${dia.nombre }" />
+										<button type="button"
+											id="idBotonMostrarPanelBody${dia.nombre }"
+											class="btn btn-default"
+											onclick="$('#idPanelBody${dia.nombre}').toggle();$('#idIconoDia${dia.nombre }').toggleClass('glyphicon-collapse-down').toggleClass('glyphicon-collapse-up')">
+											<span id="idIconoDia${dia.nombre }"
+												class="glyphicon glyphicon-collapse-down"></span>
+										</button>
+									</h4>
 								</div>
 							</div>
 							<div class="panel-body" id="idPanelBody${dia.nombre }"
@@ -88,16 +88,18 @@
 														<span id="idIconoCheckMenu${dia.nombre }${menu.id}"
 															class="glyphicon glyphicon-unchecked"></span>
 													</button>
-													<button type="button" style="display:none"
+													<button type="button" style="display: none"
 														id="idBotonChequeado${dia.nombre }${menu.id }"
 														class="btn btn-default"
 														onclick="chequearBoton('${dia.nombre }','${menu.id }', false)">
 														<span id="idIconoCheckMenu${dia.nombre }${menu.id}"
 															class="glyphicon glyphicon-check"></span>
-													</button>
-												<input type="checkbox" id="idCheckButton${dia.nombre}${menu.id}" name="${dia.nombre}" value="${menu.id }" style="display:none">
-												<!--<input type="hidden" name="${dia.nombre}"
-													value="${menu.id }">--></td>
+													</button> <input type="checkbox"
+													id="idCheckButton${dia.nombre}${menu.id}"
+													name="${dia.nombre}" value="${menu.id }"
+													style="display: none"> <!--<input type="hidden" name="${dia.nombre}"
+													value="${menu.id }">-->
+												</td>
 												<td><c:out value="${menu.nombre}" /> <input
 													type="hidden"
 													value="<fmt:formatDate value="${dia.fecha}" pattern="MM/dd/yyyy"/>"
@@ -175,7 +177,7 @@
 <script type="text/javascript">
 	var ultimoIdMenuSemana = -1;
 	var ultimoIdDiaDiv = -1;
-	
+
 	var precio = 0;
 
 	function mostrarDetalle(idMenuSemana, idDiaDiv) {
@@ -197,23 +199,21 @@
 		$("#idBotonMostrarDetalle" + idMenuSemana).show();
 		ultimoIdDiaDiv = -1;
 	}
-	
-	function chequearBoton(diaNombre, menuId, checkBoolean){
-		$('#idBotonLimpio' + diaNombre + menuId ).toggle();
-		$('#idBotonChequeado' + diaNombre + menuId ).toggle();
-		$('#idCheckButton' + diaNombre + menuId ).prop('checked', checkBoolean);
-		( checkBoolean ) ? incrementarPrecio() : reducirPrecio();
+
+	function chequearBoton(diaNombre, menuId, checkBoolean) {
+		$('#idBotonLimpio' + diaNombre + menuId).toggle();
+		$('#idBotonChequeado' + diaNombre + menuId).toggle();
+		$('#idCheckButton' + diaNombre + menuId).prop('checked', checkBoolean);
+		(checkBoolean) ? incrementarPrecio() : reducirPrecio();
 		$('#precio').empty();
 		$('#precio').append(precio);
 	}
-	
-	function incrementarPrecio(){
-		precio += Number($('#precioDeCartilla').val());
-	}	
 
-	function reducirPrecio(){
+	function incrementarPrecio() {
+		precio += Number($('#precioDeCartilla').val());
+	}
+
+	function reducirPrecio() {
 		precio -= Number($('#precioDeCartilla').val());
 	}
-	
-	
 </script>

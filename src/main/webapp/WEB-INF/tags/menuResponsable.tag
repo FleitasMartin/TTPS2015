@@ -15,6 +15,7 @@
 			tickets</a></li>-->
 </ul>
 <script>
+	$('#body').css('background-image', 'url(${pageContext.request.contextPath}/img/verduras02.jpg)');
 	$(function() {
 		$('ul a[href^="' + location.pathname + '"]').parent()
 				.addClass('active');
