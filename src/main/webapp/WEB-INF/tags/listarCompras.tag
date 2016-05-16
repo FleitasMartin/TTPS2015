@@ -6,7 +6,7 @@
 <div class="col-md-12">
 	<div class="col-md-7">
 		<div class="col-md-12">
-			<table class="table">
+			<table class="table ">
 				<thead>
 					<tr>
 						<th class="text-center" style="border:none" ><h3>

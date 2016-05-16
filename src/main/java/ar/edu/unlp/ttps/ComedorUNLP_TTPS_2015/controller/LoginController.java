@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.AdministradorDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.ResponsableDAO;
 import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.dao.UsuarioDAO;
+import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.Usuario;
 
 @Controller
 public class LoginController {
@@ -64,6 +65,8 @@ public class LoginController {
 			break;
 		case "ROLE_USUARIO":
 			model.setViewName("indexUsuario");
+			Usuario usuario = usuarioDAO.findByDNI( user.getUsername() );
+			model.addObject("nombreUsuario", usuario.getNombre());
 			break;
 		default:
 			break;

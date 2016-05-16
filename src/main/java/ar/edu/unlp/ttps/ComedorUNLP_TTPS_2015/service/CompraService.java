@@ -128,83 +128,38 @@ public class CompraService {
 		List<Date> dias = convertirDias(fechaLunes, fechaMartes,
 				fechaMiercoles, fechaJueves, fechaViernes);
 
-		/**
-		 * List<Long> diasMenuIds = agruparDiaMenuIds(lunesMenuId, martesMenuId,
-		 * miercolesMenuId, juevesMenuId, viernesMenuId);
-		 * 
-		 * List<Boolean> seleccionViandas = agruparSeleccionVianda(
-		 * seleccionViandaLunes, seleccionViandaMartes,
-		 * seleccionViandaMiercoles, seleccionViandaJueves,
-		 * seleccionViandaViernes);
-		 */
+		List<Long> diasMenuIds = agruparDiaMenuIds(lunesMenuId, martesMenuId,
+				miercolesMenuId, juevesMenuId, viernesMenuId);
+
+		List<Boolean> seleccionViandas = agruparSeleccionVianda(
+				seleccionViandaLunes, seleccionViandaMartes,
+				seleccionViandaMiercoles, seleccionViandaJueves,
+				seleccionViandaViernes);
 
 		Double montoTotal = 0.0;
 
 		ArrayList<SeleccionDiaMenu> seleccionesDeDiaMenu = new ArrayList<SeleccionDiaMenu>();
 		for (int i = 0; i < cantidadDeSemanas; i++) {
 
-			/**
-			 * for (int j = 0; j < 5; j++) { if (diasMenuIds.get(j) != null) {
-			 * seleccionesDeDiaMenu.add(this.agregarSeleccion(lunesMenuId,
-			 * dias.get(j), sede, seleccionViandas.get(j), precio)); montoTotal
-			 * += precio; } } java.util.Date fechaActual = new Date();
-			 * compraNueva.setFechaEfectuada(fechaActual);
-			 * compraNueva.setMonto(montoTotal);
-			 * compraNueva.setSelecciones(seleccionesDeDiaMenu);
-			 */
-
-			if (lunesMenuId != null) {
-				seleccionesDeDiaMenu.add(this.agregarSeleccion(lunesMenuId,
-						dias.get(0), sede, seleccionViandaLunes, precio));
-				montoTotal += precio;
-
+			for (int j = 0; j < 5; j++) {
+				if (diasMenuIds.get(j) != -1) {
+					seleccionesDeDiaMenu
+							.add(this.agregarSeleccion(lunesMenuId,
+									dias.get(j), sede, seleccionViandas.get(j),
+									precio));
+					montoTotal += precio;
+				}
 			}
-
-			if (martesMenuId != null) {
-				seleccionesDeDiaMenu.add(this.agregarSeleccion(martesMenuId,
-						dias.get(1), sede, seleccionViandaMartes, precio));
-				montoTotal += precio;
-			}
-
-			if (miercolesMenuId != null) {
-				seleccionesDeDiaMenu.add(this.agregarSeleccion(miercolesMenuId,
-						dias.get(2), sede, seleccionViandaMiercoles, precio));
-				montoTotal += precio;
-			}
-
-			if (juevesMenuId != null) {
-				seleccionesDeDiaMenu.add(this.agregarSeleccion(juevesMenuId,
-						dias.get(3), sede, seleccionViandaJueves, precio));
-				montoTotal += precio;
-			}
-
-			if (viernesMenuId != null) {
-				seleccionesDeDiaMenu.add(this.agregarSeleccion(viernesMenuId,
-						dias.get(4), sede, seleccionViandaViernes, precio));
-				montoTotal += precio;
-			}
-
 		}
-
 		Compra compraNueva = new Compra(usuarioComprador, fechaDesde,
 				cantidadDeSemanas, montoTotal, seleccionesDeDiaMenu);
+
 		compraDAO.save(compraNueva);
 		return listar(dniUsuario);
 
-		/**
-		 * java.util.Date fechaActual = new Date();
-		 * compraNueva.setFechaEfectuada(fechaActual);
-		 * compraNueva.setMonto(montoTotal);
-		 * compraNueva.setSelecciones(seleccionesDeDiaMenu);
-		 * 
-		 * }
-		 * 
-		 * compraDAO.save(compraNueva); return listar(dniUsuario);
-		 */
 	}
 
 	public ModelAndView pagar(Long id, String dniUsuario) {
-		// String mensaje;
 		Usuario usuario = usuarioDAO.findByDNI(dniUsuario);
 		Compra compra = compraDAO.get(id);
 		List<Compra> compras = compraDAO.getAllByUsuario(usuario.getId());
@@ -216,15 +171,12 @@ public class CompraService {
 			java.util.Date fechaPago = new Date();
 			Pago pago = new Pago(compra, fechaPago, usuario);
 			pagoDAO.save(pago);
-			// mensaje = "Su compra ha sido pagada correctamente!";
 			return ModelAndViewResolverCompra.pagarCompraExitoError(compras,
 					"mensaje", "Su compra ha sido pagada correctamente!");
 		} else {
-			// mensaje = "No tenes suficiente saldo!";
 			return ModelAndViewResolverCompra.pagarCompraExitoError(compras,
 					"error", "No tenes suficiente saldo!");
 		}
-		// return ModelAndViewResolverCompra.pagarCompra(compras, mensaje);
 	}
 
 	private SeleccionDiaMenu agregarSeleccion(Long menuId, Date fecha,
@@ -251,23 +203,28 @@ public class CompraService {
 
 		return diasConvertidos;
 	}
-	/**
-	 * private List<Long> agruparDiaMenuIds(Long lunesMenuId, Long martesMenuId,
-	 * Long miercolesMenuId, Long juevesMenuId, Long viernesMenuId) { List<Long>
-	 * diasMenuIds = new ArrayList<Long>(); diasMenuIds.add(lunesMenuId);
-	 * diasMenuIds.add(martesMenuId); diasMenuIds.add(miercolesMenuId);
-	 * diasMenuIds.add(juevesMenuId); diasMenuIds.add(viernesMenuId); return
-	 * diasMenuIds; }
-	 * 
-	 * private List<Boolean> agruparSeleccionVianda(Boolean
-	 * seleccionViandaLunes, Boolean seleccionViandaMartes, Boolean
-	 * seleccionViandaMiercoles, Boolean seleccionViandaJueves, Boolean
-	 * seleccionViandaViernes) { List<Boolean> seleccionesVianda = new
-	 * ArrayList<Boolean>(); seleccionesVianda.add(seleccionViandaLunes);
-	 * seleccionesVianda.add(seleccionViandaMartes);
-	 * seleccionesVianda.add(seleccionViandaMiercoles);
-	 * seleccionesVianda.add(seleccionViandaJueves);
-	 * seleccionesVianda.add(seleccionViandaViernes); return seleccionesVianda;
-	 * }
-	 */
+
+	private ArrayList<Long> agruparDiaMenuIds(Long lunesMenuId, Long martesMenuId,
+			Long miercolesMenuId, Long juevesMenuId, Long viernesMenuId) {
+		ArrayList<Long> diasMenuIds = new ArrayList<Long>();
+		diasMenuIds.add((lunesMenuId == null) ? -1 : lunesMenuId);
+		diasMenuIds.add((martesMenuId == null) ? -1 : martesMenuId);
+		diasMenuIds.add((miercolesMenuId == null) ? -1 : miercolesMenuId);
+		diasMenuIds.add((juevesMenuId == null) ? -1 : juevesMenuId);
+		diasMenuIds.add((viernesMenuId == null) ? -1 : viernesMenuId);
+		return diasMenuIds;
+	}
+
+	private ArrayList<Boolean> agruparSeleccionVianda(Boolean seleccionViandaLunes,
+			Boolean seleccionViandaMartes, Boolean seleccionViandaMiercoles,
+			Boolean seleccionViandaJueves, Boolean seleccionViandaViernes) {
+		ArrayList<Boolean> seleccionesVianda = new ArrayList<Boolean>();
+		seleccionesVianda.add((seleccionViandaLunes == null) ? false : seleccionViandaLunes);
+		seleccionesVianda.add((seleccionViandaMartes == null) ? false : seleccionViandaMartes);
+		seleccionesVianda.add((seleccionViandaMiercoles == null) ? false : seleccionViandaMiercoles);
+		seleccionesVianda.add((seleccionViandaJueves == null) ? false : seleccionViandaJueves);
+		seleccionesVianda.add((seleccionViandaViernes == null) ? false : seleccionViandaViernes);
+		return seleccionesVianda;
+	}
+
 }

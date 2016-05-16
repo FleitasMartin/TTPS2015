@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<h3>Sugerencia</h3>
+<h3> <span class="label label-default"> Sugerencia </span> </h3>
 
 <div class="form">
 	<form method="post" action="${pageContext.request.contextPath}/sugerencia/comentar">
@@ -9,7 +9,7 @@
 			
 		</div>
 		<div class="form-group">
-			<label>Tipo de Sugerencia</label> 
+			<label><span class="label label-default">Tipo de Sugerencia </span> </label> 
 			<input type="text" name="tipoSugerencia"class="form-control" /><br>
 		</div>
 		<div class="form-group">

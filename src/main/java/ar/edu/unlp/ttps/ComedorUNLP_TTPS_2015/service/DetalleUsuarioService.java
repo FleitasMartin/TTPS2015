@@ -1,6 +1,8 @@
 package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,13 @@ import ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.model.RolUsuario;
  */
 
 @Service("userDetailsService")
-public class DetalleUsuarioService implements UserDetailsService {
+public class DetalleUsuarioService implements UserDetailsService, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9185323001786331360L;
+	
 	@Autowired
 	private PersonaDAO personaDAO;
 
@@ -70,8 +77,10 @@ public class DetalleUsuarioService implements UserDetailsService {
 	 */
 	private User buildUserForAuthentication(Persona persona,
 			List<GrantedAuthority> authorities) {
-		return new User(persona.getDni(), persona.getContrasena(), true, true,
-				true, true, authorities);
+		return new CustomUserDetails(persona.getDni(), persona.getContrasena(), true, true,
+				true, true, authorities, persona.getNombre() + " " + persona.getApellido());
+		//return new User(persona.getDni(), persona.getContrasena(), true, true,
+			//	true, true, authorities);
 	}
 
 	/**
@@ -91,4 +100,33 @@ public class DetalleUsuarioService implements UserDetailsService {
 		rolesPermitidos.add(new SimpleGrantedAuthority(rolUsuario.getRol()));
 		return rolesPermitidos;
 	}
+	
+	public class CustomUserDetails extends User{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3741482280045503127L;
+
+		public CustomUserDetails(String username, String password,
+				boolean enabled, boolean accountNonExpired,
+				boolean credentialsNonExpired, boolean accountNonLocked,
+				Collection<? extends GrantedAuthority> authorities, String nombreUsuario) {
+			super(username, password, enabled, accountNonExpired, credentialsNonExpired,
+					accountNonLocked, authorities);
+			setNombreUsuario(nombreUsuario);
+		}
+		
+		private String nombreUsuario;
+
+		public String getNombreUsuario() {
+			return nombreUsuario;
+		}
+
+		public void setNombreUsuario(String nombreUsuario) {
+			this.nombreUsuario = nombreUsuario;
+		}
+		
+	}
+	
 }

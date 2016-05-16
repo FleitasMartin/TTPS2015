@@ -7,13 +7,13 @@
 <tags:template>
 	<jsp:attribute name="body">
 
-	<div class="container">
-		<div class="page-header well row">
-			<div class="col-md-10 col-xs-13">
+	<div class="container ">
+		<div class="page-header well row col-md-12">
+			<div class="col-md-4 ">
 			<h1>Bienvenido <small><c:out value="${nombreUsuario}"></c:out></small>
 				</h1>
 			</div>
-			<div class="col-md-2 col-xs-5">
+			<div class="col-md-offset-5 col-md-2">
 				<h1 class="pull-right">
 				<a href="${pageContext.request.contextPath}/salir"
 							class="btn btn-warning">Salir</a>
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="row">
-		<div class="col-md-2 ">
+		<div class="col-md-2">
 			<tags:menuUser />
 		</div>
 		<div class="col-md-10 ">
