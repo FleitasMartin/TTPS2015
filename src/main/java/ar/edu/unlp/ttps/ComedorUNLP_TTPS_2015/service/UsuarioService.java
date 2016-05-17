@@ -60,16 +60,12 @@ public class UsuarioService {
 		return perfil(dniUsuario);
 	}
 
-	public ModelAndView obtenerSaldo(String dni) {
-		Usuario usuario = usuarioDAO.findByDNI(dni);
-		return ModelAndViewResolverUsuario.saldo(usuario.getSaldo());
-	}
-
 	public ModelAndView modificarSaldo(Double saldo, String dni) {
 		Usuario usuario = usuarioDAO.findByDNI(dni);
 		usuario.setSaldo(usuario.getSaldo() + saldo);
 		usuarioDAO.edit(usuario);
-		return ModelAndViewResolverUsuario.saldo(usuario.getSaldo());
+		return perfil(usuario.getDni());
+		//return ModelAndViewResolverUsuario.saldo(usuario.getSaldo());
 	}
 
 }

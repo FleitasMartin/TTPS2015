@@ -32,12 +32,12 @@
 					<c:forEach var="compra" items="${compras}">
 						<tr>
 							<td class="text-center" style="border:none"><h4>
-									<span class="label label-default"><fmt:formatDate
+									<span class="label label-success"><fmt:formatDate
 											value="${compra.fechaEfectuada }" pattern="dd/MM/yyyy" /></span>
 								</h4></td>
 							<td class="text-center" style="border:none"><h4>
-									<span class="label label-default"><span
-										class="glyphicon glyphicon-usd" aria-hidden="true"></span> <c:out
+									<span class="label label-success"><span
+										class="glyphicon glyphicon-usd" aria-hidden="true"></span><c:out
 											value="${compra.monto }" /></span>
 								</h4></td>
 							<td class="text-center" style="border:none">
@@ -66,22 +66,16 @@
 							</td>
 							<td class="text-center" style="border:none"><c:choose>
 									<c:when test="${compra.pagado}">
-										<button type="button" class="btn btn-success disabled">
+										<button type="button" class="btn btn-warning disabled">
 											 Pago <span
 												class="glyphicon glyphicon-ok" aria-hidden="true">
 											</span>
 										</button>
-										<!-- <h4>
-											<span class="label label-success"> Pagado <span
-												class="glyphicon glyphicon-ok" aria-hidden="true"> </span>
-											</span>
-										</h4> -->
 									</c:when>
 									<c:otherwise>
 										<form action="${pageContext.request.contextPath}/compra/pagar"
 											method="POST">
 											<input type="hidden" value="${compra.id }" name="id">
-											<!-- <input type="submit" class="btn btn-warning " value="Pagar" />-->
 											<button type="submit" class="btn btn-warning ">
 												Pagar <span class="glyphicon glyphicon-save"
 													aria-hidden="true"></span>
@@ -113,29 +107,23 @@
 							<div id="idCompraDetalle${compra.id }"
 								class="col-md-10 col-md-offset-2 "
 								style="display: none; position: absolute">
-								<!-- 	<div class="panel panel-primary">
-									<div class="panel-heading text-center">  -->
 								<div class=" text-center">
 									<h3>
 										<span class="label label-info">Compra del día <fmt:formatDate
 												value="${compra.fechaEfectuada }" pattern="dd/MM/yyyy" /></span>
 									</h3>
 								</div>
-								<!--</div>  -->
-								<!--<div class="panel-body"> -->
-
 								<div class="text-left">
 									<h3>
-										<span class="label label-warning">Menues</span>
+										<span class="label label-default">Menues</span>
 									</h3>
 								</div>
-
 								<c:if test="${ compra.cantidadDeSemanas > '1' }">
 									<c:forEach var="i" begin="1"
 										end="${fn:length(compra.selecciones) / compra.cantidadDeSemanas }">
 										<div class="text-center">
 											<h4>
-												<span class="label label-default"><c:out
+												<span class="label label-success"><c:out
 														value="${compra.selecciones.get(i-1).nombre }" /></span>
 											</h4>
 										</div>
@@ -145,7 +133,7 @@
 									<c:forEach var="seleccionDiaMenu" items="${compra.selecciones}">
 										<div class="text-center">
 											<h4>
-												<span class="label label-default"><c:out
+												<span class="label label-success"><c:out
 														value="${seleccionDiaMenu.nombre }" /></span>
 											</h4>
 										</div>

@@ -24,9 +24,4 @@ public class ModelAndViewResolverUsuario {
 				.getModelAndView();
 	}
 
-	public static ModelAndView saldo(Double saldo) {
-		return new ModelAndViewWrapperBaseUsuario().addContentPage("saldo")
-				.addObject("saldo", saldo).getModelAndView();
-	}
-
 }

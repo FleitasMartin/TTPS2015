@@ -5,7 +5,6 @@
 	<li class="text-center"><a href="${pageContext.request.contextPath}/compra/listar"><strong>Compras</strong>
 			</a></li>
 	<li class="text-center"><a href="${pageContext.request.contextPath}/sugerencia/comentar"><strong>Sugerir</strong></a></li>
-	<li class="text-center"><a href="${pageContext.request.contextPath}/user/saldo"><strong>Saldo</strong></a></li>
 	<li class="text-center"><a href="${pageContext.request.contextPath}/sede/listar"><strong>Sedes</strong></a></li>
 </ul>
 <script>
