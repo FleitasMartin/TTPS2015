@@ -6,13 +6,14 @@
 		<div class="row">
 			<h2 class="col-md-offset-3 col-md-6">
 				<span class="label label-info"> <span
-					class="glyphicon glyphicon-user" aria-hidden="true"></span> Datos de <c:out
-						value="${usuario.tipo }" /> </span>
+					class="glyphicon glyphicon-user" aria-hidden="true"></span> <c:out
+						value="${usuario.tipo }" />
+				</span>
 			</h2>
 		</div>
-		<div class="col-md-6 text-right">
+		<div class="col-md-5 text-right">
 			<h3>
-				<span class="label label-default">Nombre completo</span>
+				<span class="label label-default">Nombre</span>
 			</h3>
 			<h3>
 				<span class="label label-default">D.N.I.</span>
@@ -74,8 +75,9 @@
 	<div class="col-md-offset-1 col-md-4">
 		<div class="row">
 			<h2 class="text-left col-md-12">
-				<span class="label label-info">Caracter&iacute;sticas <span
+				<span class="label label-info"> <span
 					class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+					Caracter&iacute;sticas
 				</span>
 			</h2>
 		</div>
@@ -121,3 +123,9 @@
 	</div>
 
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina').append(
+			'<span class="glyphicon glyphicon-folder-open"></span> Tus datos');
+	$('#tituloDePagina').show();
+</script>

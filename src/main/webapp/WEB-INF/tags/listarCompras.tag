@@ -45,7 +45,7 @@
 									<button type="button" id="idBotonMostrarDetalle${compra.id }"
 										class="btn btn-default"
 										onclick="mostrarDetalle('${compra.id }')">
-										Mostrar <span id="idSpanDetalle${compra.id }"
+										<strong>Mostrar</strong> <span id="idSpanDetalle${compra.id }"
 											class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 									</button>
 									<button type="button" style="display: none"
@@ -67,8 +67,8 @@
 							<td class="text-center" style="border:none"><c:choose>
 									<c:when test="${compra.pagado}">
 										<button type="button" class="btn btn-warning disabled">
-											 Pago <span
-												class="glyphicon glyphicon-ok" aria-hidden="true">
+											 <strong>Pago</strong> <span
+												class="glyphicon glyphicon-saved" aria-hidden="true">
 											</span>
 										</button>
 									</c:when>
@@ -77,7 +77,7 @@
 											method="POST">
 											<input type="hidden" value="${compra.id }" name="id">
 											<button type="submit" class="btn btn-warning ">
-												Pagar <span class="glyphicon glyphicon-save"
+												<strong>Pagar</strong> <span class="glyphicon glyphicon-save"
 													aria-hidden="true"></span>
 											</button>
 										</form>
@@ -86,7 +86,7 @@
 							<td class="text-center" style="border:none"><c:choose>
 									<c:when test="${compra.pagado}">
 										<button type="button" class="btn btn-danger disabled">
-											Borrar <span class="glyphicon glyphicon-ban-circle"
+											<span class="glyphicon glyphicon-ban-circle"
 												aria-hidden="true"></span>
 										</button>
 									</c:when>
@@ -96,7 +96,7 @@
 											method="POST">
 											<input type="hidden" value="${compra.id }" name="id">
 											<button type="submit" class="btn btn-danger ">
-												Borrar <span class="glyphicon glyphicon-trash"
+												<strong>Borrar</strong> <span class="glyphicon glyphicon-trash"
 													aria-hidden="true"></span>
 											</button>
 										</form>
@@ -156,7 +156,8 @@
 			</table>
 		</div>
 		<a href="${pageContext.request.contextPath}/compra/compraDeTickets"
-			class="btn btn-primary" role="button">Comprar Tickets</a>
+			class="btn btn-warning" role="button"><strong>Comprar Tickets</strong> <span
+				class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span></a>
 	</div>
 	<div id="idDetalleCompra" class="col-md-5">
 	
@@ -206,4 +207,7 @@
 		$("#idBotonMostrarDetalle" + idCompra).show();
 		ultimoIdcompra = -1;
 	}
+	
+	$('#tituloDePagina').append('<span class="glyphicon glyphicon-cutlery"></span> Estado de tus compras');
+	$('#tituloDePagina').show();
 </script>

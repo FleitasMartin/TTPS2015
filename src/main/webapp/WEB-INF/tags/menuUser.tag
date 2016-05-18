@@ -1,6 +1,6 @@
 <%@ tag%>
 <%@ attribute name="id" fragment="true"%>
-<ul class="nav nav-pills nav-stacked navbar navbar-default">
+<ul class="nav nav-pills nav-stacked navbar navbar-default text-center">
 	<li class="text-center"><a href="${pageContext.request.contextPath}/user/perfil"><strong>Perfil</strong></a></li>
 	<li class="text-center"><a href="${pageContext.request.contextPath}/compra/listar"><strong>Compras</strong>
 			</a></li>

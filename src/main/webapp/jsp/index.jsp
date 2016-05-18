@@ -25,18 +25,20 @@ welcome.springmvc : <spring:message code="bienvenida.springmvc" text="default te
 	</div>
 	<div class="row">
 	<br>
-		<div class="col-md-8">
+		
+				<div class="col-md-8">
 			<form action="${pageContext.request.contextPath}/login" method="POST"
-							class="form-horizontal">
+						class="form-horizontal">
 				<div class="form-group">
 					<h4>
 						<label class="col-md-offset-1 col-md-2 control-label">
-							<span class="label label-default"> DNI </span>
+							<span class="label label-default"> D.N.I. </span>
 						</label> 
 					</h4>
 					<div class="col-md-3">
 						<input type="text" name="dni" class="form-control">	
-					</div>
+					
+							</div>
 				</div>
 				<div class="form-group"> 
 					<h4>
@@ -46,12 +48,16 @@ welcome.springmvc : <spring:message code="bienvenida.springmvc" text="default te
 					</h4>
 					<div class="col-md-3">
 						<input type="password" name="contrasena" class="form-control">						
-					</div>
+					
+							</div>
 				</div>  
 				<div class="form-group">
 		    		<div class="col-md-offset-3 col-md-2">
 		    			<!-- spring:message code='login.boton'  -->
-						<input type="submit" value="Entrar" class="col-md-offset-4 col-md-12 form-control btn btn-primary ">
+<!-- 						<input type="submit" value="Entrar" class="col-md-offset-4 col-md-12 form-control btn btn-primary "> -->
+						<button type="submit"
+									class="col-md-offset-4 col-md-12 form-control btn btn-primary ">
+						<strong>Entrar</strong> <span class="glyphicon glyphicon-log-in"></span> </button>
 					</div>
 				</div>
 			</form>
