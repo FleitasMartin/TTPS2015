@@ -11,7 +11,12 @@
 <script type="text/javascript">
 	//	$('#body').css('background-image', 'url(./img/fondo2.jpg)');
 </script>
-	
+
+Language : <a href="?language=en">English</a>|<a href="?language=es">Espa&ntilde;ol</a>
+
+<h2>
+welcome.springmvc : <spring:message code="bienvenida.springmvc" text="default text" />
+</h2>
 <div class="container">
 	<div class="col-md-5 page-header well text-center">
 	 	<h2>Comedor Universitario UNLP 
