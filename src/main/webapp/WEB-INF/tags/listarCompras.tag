@@ -142,8 +142,8 @@
 								</c:if>
 								<div class="text-left">
 									<h3>
-										<span class="label label-warning">Cantidad de semanas</span> <span
-											class="badge"><c:out
+										<span class="label label-default">Cantidad de semanas</span> <span
+											class="label label-success" style="border-radius:1em;"><c:out
 												value="${compra.cantidadDeSemanas }"></c:out></span>
 									</h3>
 								</div>
