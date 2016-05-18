@@ -20,7 +20,7 @@ welcome.springmvc : <spring:message code="bienvenida.springmvc" text="default te
 <div class="container">
 	<div class="col-md-5 page-header well text-center">
 	 	<h2>Comedor Universitario UNLP 
-	 		<small> Bienvenido!</small>
+<!-- 	 		<small> Bienvenido!</small> -->
 		</h2>
 	</div>
 	<div class="row">
@@ -32,7 +32,7 @@ welcome.springmvc : <spring:message code="bienvenida.springmvc" text="default te
 				<div class="form-group">
 					<h4>
 						<label class="col-md-offset-1 col-md-2 control-label">
-							<span class="label label-default"> D.N.I. </span>
+							<span class="label label-default"><spring:message code="login.dni" text="" /> </span>
 						</label> 
 					</h4>
 					<div class="col-md-3">
@@ -43,7 +43,7 @@ welcome.springmvc : <spring:message code="bienvenida.springmvc" text="default te
 				<div class="form-group"> 
 					<h4>
 						<label class="col-md-offset-1 col-md-2 control-label">
-							<span class="label label-default"> Contrase&ntilde;a </span>
+							<span class="label label-default"> <spring:message code="login.password" text="" /> </span>
 						</label>
 					</h4>
 					<div class="col-md-3">
