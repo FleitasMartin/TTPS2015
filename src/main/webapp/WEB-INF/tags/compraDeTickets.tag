@@ -10,8 +10,11 @@
 
 		<div class="row col-md-11">
 			<div class="form-group col-md-3 col-md-offset-1">
-				<label>Cantidad de Semanas</label> <select class="form-control"
-					name="cantidadSemanas">
+				<h4>
+					<label><span class="label label-default"> Cantidad
+							de Semanas </span></label>
+				</h4>
+				<select class="form-control" name="cantidadSemanas">
 					<c:forEach var="i" begin="1" end="${cantidad }">
 						<option value="${i}"><c:out value="${i}" /></option>
 					</c:forEach>
@@ -19,27 +22,40 @@
 			</div>
 
 			<div class="form-group col-md-2">
-				<label>Precio</label> <input type="hidden"
-					value="${cartilla.precio }" name="precio" id="precioDeCartilla">
-				<p>
-					<span class="glyphicon glyphicon-usd" aria-hidden="true"></span> <strong
-						id="precio"> </strong>
-				</p>
+				<h4>
+					<label><span class="label label-default"> Precio </span></label>
+				</h4>
+				<input type="hidden" value="${cartilla.precio }" name="precio"
+					id="precioDeCartilla">
+				<h3 style="margin-top:1%">
+					<span class="label label-success"> <span
+						class="glyphicon glyphicon-usd" aria-hidden="true"></span> <strong
+						id="precio"> 0 </strong>
+					</span>
+				</h3>
 			</div>
 
 			<div class="form-group col-md-3">
 				<input type="hidden"
 					value="<fmt:formatDate value="${semana.fechaDesde }" pattern="MM/dd/yyyy"/>"
-					name="fechaDesde"> <label>Sede</label>
-				<p>
-					<strong><c:out value="${sede.nombre }" /></strong> <input
-						type="hidden" value="${sede.id }" name="sede">
-				</p>
+					name="fechaDesde">
+				<h4>
+					<label><span class="label label-default"> Sede </span></label>
+				</h4>
+				<h3 style="margin-top:1%">
+					<span class="label label-success"> <strong><c:out
+								value="${sede.nombre }" /></strong> <input type="hidden"
+						value="${sede.id }" name="sede">
+					</span>
+				</h3>
 			</div>
 
-			<div class="form-group col-md-3">
-				<input type="submit" value="Comprar"
-					class="form-control btn btn-primary">
+			<div class="form-group col-md-2">
+				<button type="submit" class="form-control btn btn-warning">
+					<strong>Comprar</strong> <span
+						class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
+					</span>
+				</button>
 			</div>
 
 		</div>
@@ -216,4 +232,9 @@
 	function reducirPrecio() {
 		precio -= Number($('#precioDeCartilla').val());
 	}
+
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-calendar"></span> Comprando tickets');
+	$('#tituloDePagina').show();
 </script>

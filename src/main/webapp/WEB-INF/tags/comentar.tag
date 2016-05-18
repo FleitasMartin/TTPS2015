@@ -20,7 +20,7 @@
 				</div>
 			</div>
 			<div class="col-md-2">
-				<button type="submit" class="form-control btn btn-success "
+				<button type="submit" class="form-control btn btn-warning "
 					style="margin-top: 10%;">
 					<strong>Enviar</strong> <span class="glyphicon glyphicon-send"
 						aria-hidden="true"></span>
@@ -50,3 +50,8 @@
 		</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina').append('<span class="glyphicon glyphicon-paperclip"></span> Realizar una sugerencia');
+	$('#tituloDePagina').show();
+</script>

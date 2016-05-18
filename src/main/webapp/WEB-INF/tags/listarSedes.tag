@@ -20,7 +20,7 @@
 			<div class="col-md-7">
 				<h3>
 					<span class="label label-default">
-					<span class="glyphicon glyphicon-globe"></span> 
+					<span class="glyphicon glyphicon-map-marker"></span> 
 					Ubicaciones </span>
 				</h3>
 			</div>
@@ -47,6 +47,11 @@
 		</c:forEach>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina').append('<span class="glyphicon glyphicon-globe"></span> Sedes en el mapa de la ciudad');
+	$('#tituloDePagina').show();
+</script>
 
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALdnqGLwYolrMF5GK9cLQVPBu8iBDV4Ck&callback=initMap">
