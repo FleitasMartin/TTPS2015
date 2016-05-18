@@ -10,7 +10,7 @@
 	<div class="container ">
 		<div class="page-header row col-md-12" style="border: none">
 			<div class="col-md-3 well text-center">
-			<h1>Bienvenido <small><c:out value="${nombreUsuario}"></c:out></small>
+			<h1>Bienvenid&#64; <small><c:out value="${nombreUsuario}"></c:out></small>
 				</h1>
 			</div>
 			<div class="col-md-7" id="divTituloDePagina" style="margin-top: 8%">

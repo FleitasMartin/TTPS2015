@@ -68,7 +68,7 @@ public class PagoService {
 		 */
 		Map<String, Map<String, Integer>> diasMenuesCantidades = calcularCantidades(seleccionesFiltradas);
 
-		return ModelAndViewResolverPago.listadoSemanal(diasMenuesCantidades);
+		return ModelAndViewResolverPago.listadoSemanal(diasMenuesCantidades, lunes);
 	}
 
 	private Map<String, Date> calcularInicioFinSemanaCompra(String fechaInicio)

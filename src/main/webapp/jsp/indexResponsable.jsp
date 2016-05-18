@@ -8,23 +8,32 @@
 	<jsp:attribute name="body">
 
 	<div class="container">
-		<div class="page-header well row col-md-12">
-			<div class="col-md-8">
-			<h1>Bienvenido <small><c:out value="${nombreUsuario }"></c:out></small>
+		<div class="page-header row col-md-12" style="border: none">
+			<div class="col-md-3 well text-center">
+			<h1>Bienvenid&#64; <small><c:out
+								value="${nombreUsuario}"></c:out></small>
 				</h1>
 			</div>
-			<div class="col-md-offset-2 col-md-2">
+			<div class="col-md-7" id="divTituloDePagina" style="margin-top: 8%">
+				<h1 class="text-center">
+						<span style="display: none" id="tituloDePagina"
+							class="label label-info">  </span>
+					</h1> 
+			</div>
+			<div class=" col-md-1">
 				<h1 class="pull-right">
 				<a href="${pageContext.request.contextPath}/salir"
-							class="btn btn-warning">Salir</a>
+							class="btn btn-warning"> <strong>Salir</strong> <span
+							class="glyphicon glyphicon-log-out"></span>
+						</a>
 				</h1>
 			</div>
 		</div>
 		<div class="row">
-		<div class="col-md-3 col-xs-6">
+		<div class="col-md-2">
 			<tags:menuResponsable />
 		</div>
-		<div class="col-md-9 col-xs-12">
+		<div class="col-md-10 ">
 			
         	<c:choose>
         	<c:when test="${contentPage == 'listarUsuariosHabilitados'}">

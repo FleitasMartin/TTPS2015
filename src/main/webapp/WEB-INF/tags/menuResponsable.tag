@@ -1,9 +1,9 @@
 <%@ tag%>
 <%@ attribute name="id" fragment="true"%>
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked navbar navbar-default text-center">
 	<li><a
 		href="${pageContext.request.contextPath}/sede/usuariosHabilitados">Usuarios
-			habilitados a comprar</a></li>
+			habilitados</a></li>
 	<li><a
 		href="${pageContext.request.contextPath}/sugerencia/buzonVirtualDeSede">Buz&oacute;n
 			virtual</a></li>
