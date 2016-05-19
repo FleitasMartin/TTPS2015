@@ -31,8 +31,12 @@
 <title>UNLP Comedor Universitario</title>
 
 <style>
-#map {
-	width: 600px;
-	height: 500px;
-}
+ .map { 
+ 	width: 400px; 
+ 	height: 400px; 
+ }
+ .mapUsuario { 
+ 	width: 500px; 
+ 	height: 500px; 
+ }
 </style>
