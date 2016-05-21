@@ -85,3 +85,10 @@
 
 	</form>
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-pencil"></span> Modificando cartilla');
+	$('#tituloDePagina').show();
+</script>

@@ -55,3 +55,10 @@
 	var dual4 = $("#platos").bootstrapDualListbox();
 	var dual5 = $("#postres").bootstrapDualListbox();
 </script>
+
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-cog"></span> Creando menu');
+	$('#tituloDePagina').show();
+</script>

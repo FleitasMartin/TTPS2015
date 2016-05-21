@@ -77,3 +77,10 @@
 
 	</form>
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-cog"></span> Creando cartilla');
+	$('#tituloDePagina').show();
+</script>

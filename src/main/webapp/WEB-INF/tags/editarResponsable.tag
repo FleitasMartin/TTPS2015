@@ -35,3 +35,10 @@
 			class="form-control btn btn-success">
 	</form>
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-pencil"></span> Modificando responsable');
+	$('#tituloDePagina').show();
+</script>

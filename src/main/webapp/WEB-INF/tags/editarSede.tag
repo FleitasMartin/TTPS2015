@@ -17,7 +17,7 @@
 		</div>
 		<div class="form-group">
 			<label>Indique en el mapa la ubicaci&oacute;n de la sede</label>
-			<div id="map"></div>
+			<div id="map" class="map"></div>
 			<input type="hidden" id="latitud" name="latitud"
 				value="${sede.latitud }"> <input type="hidden" id="longitud"
 				name="longitud" value="${sede.longitud }">
@@ -31,4 +31,11 @@
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALdnqGLwYolrMF5GK9cLQVPBu8iBDV4Ck&callback=initMap">
 	
+</script>
+
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-pencil"></span> Modificando sede');
+	$('#tituloDePagina').show();
 </script>

@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group">
 			<label>Indique en el mapa la ubicaci&oacute;n de la sede</label>
-			<div id="map"></div>
+			<div id="map" class="sede map"></div>
 			<input type="hidden" id="latitud" name="latitud"> <input
 				type="hidden" id="longitud" name="longitud">
 		</div>
@@ -24,6 +24,12 @@
 			class="form-control btn btn-success">
 	</form>
 </div>
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-cog"></span> Creando sede');
+	$('#tituloDePagina').show();
+</script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/confiGMapCrear.js"></script>
 <script async defer

@@ -42,3 +42,10 @@
 			class="form-control btn btn-success">
 	</form>
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-cog"></span> Creando responsable');
+	$('#tituloDePagina').show();
+</script>

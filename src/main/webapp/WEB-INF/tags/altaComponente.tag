@@ -15,3 +15,10 @@
 			class="form-control btn btn-success">
 	</form>
 </div>
+
+<script type="text/javascript">
+	$('#tituloDePagina')
+			.append(
+					'<span class="glyphicon glyphicon-cog"></span> Creando componente');
+	$('#tituloDePagina').show();
+</script>
