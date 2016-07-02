@@ -34,7 +34,8 @@ Current Locale : ${pageContext.response.locale}
 				<div class="form-group">
 					<h4>
 						<label class="col-md-offset-1 col-md-2 control-label">
-							<span class="label label-default"><spring:message code="login.dni" text="" /> </span>
+<%-- 						<spring:message code="login.dni" text="" /> --%>
+							<span class="label label-default">Usuario </span>
 						</label> 
 					</h4>
 					<div class="col-md-3">
@@ -45,7 +46,8 @@ Current Locale : ${pageContext.response.locale}
 				<div class="form-group"> 
 					<h4>
 						<label class="col-md-offset-1 col-md-2 control-label">
-							<span class="label label-default"> <spring:message code="login.password" text="" /> </span>
+<%-- 						<spring:message code="login.password" text="" /> --%>
+							<span class="label label-default"> Contrase&ntilde;a </span>
 						</label>
 					</h4>
 					<div class="col-md-3">
