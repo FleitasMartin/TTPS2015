@@ -9,6 +9,7 @@
 	<http auto-config="true" use-expressions="false"> 
 
 		<!-- Configuracion url - permiso de usuario -->
+<!-- 		<intercept-url pattern="/" access="ROLE_ADMIN, ROLE_RESPONSABLE, ROLE_USUARIO" /> -->
 		<intercept-url pattern="/login" access="ROLE_ADMIN, ROLE_RESPONSABLE, ROLE_USUARIO" />
 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/cartilla/**" access="ROLE_ADMIN" />		
@@ -21,7 +22,6 @@
 		<intercept-url pattern="/sede/eliminar" access="ROLE_ADMIN" />
 		<intercept-url pattern="/sugerencia/buzonVirtual" access="ROLE_ADMIN" />
 		<intercept-url pattern="/pago/listadoSemanal" access="ROLE_RESPONSABLE" />
-		<!--<intercept-url pattern="/responsable/registroTickets" access="ROLE_RESPONSABLE" />-->	
 		<intercept-url pattern="/sede/usuariosHabilitados" access="ROLE_RESPONSABLE" />		
 		<intercept-url pattern="/sugerencia/buzonVirtualDeSede" access="ROLE_RESPONSABLE" />
 		<intercept-url pattern="/sede/listar" access="ROLE_USUARIO" />
@@ -33,7 +33,8 @@
 		<access-denied-handler error-page="/403" />
 
 		<!-- Configuración de página de login y parámetros, url que lo procesa, url de error, y url por defecto -->
-		<form-login login-page='/index' username-parameter="dni"
+<!-- 		<form-login login-page='/index' username-parameter="dni" -->
+		<form-login login-page='/' username-parameter="dni"
 			login-processing-url="/login" password-parameter="contrasena"
 			default-target-url="/login" authentication-failure-url="/error" />
 			

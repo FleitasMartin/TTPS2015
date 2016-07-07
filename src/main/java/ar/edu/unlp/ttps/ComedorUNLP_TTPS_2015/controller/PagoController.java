@@ -21,7 +21,7 @@ public class PagoController {
 	PagoService pagoService;
 	
 	@RequestMapping(value = "/listadoSemanal", method = RequestMethod.GET)
-	public ModelAndView listadoSemanal(@RequestParam(value = "fechaInicio", required=false) String fechaInicio) throws ParseException {
+	public ModelAndView listadoSemanal(@RequestParam(name = "fechaInicio", required=false) String fechaInicio) throws ParseException {
 		User user = (User) SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
 		String dni = (String) user.getUsername();

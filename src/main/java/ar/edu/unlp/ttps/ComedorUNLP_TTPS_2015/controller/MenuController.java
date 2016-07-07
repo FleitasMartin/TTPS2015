@@ -3,6 +3,7 @@ package ar.edu.unlp.ttps.ComedorUNLP_TTPS_2015.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,12 +27,13 @@ public class MenuController {
 
 	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public ModelAndView crear(@RequestParam("nombre") String nombre,
-			@RequestParam("caracteristicas") ArrayList<Long> caracteristicas,
+			@RequestParam(name="caracteristicas", required=false) ArrayList<Long> caracteristicas,
 			@RequestParam("bebidas") ArrayList<Long> bebidas,
 			@RequestParam("entradas") ArrayList<Long> entradas,
 			@RequestParam("platos") ArrayList<Long> platos,
 			@RequestParam("postres") ArrayList<Long> postres) {
 
+		if (caracteristicas==null) caracteristicas = new ArrayList<Long>();
 		return menuService.crear(nombre, caracteristicas, bebidas, entradas,
 				platos, postres);
 
@@ -47,12 +49,13 @@ public class MenuController {
 	@RequestMapping(value = "/editar", method = RequestMethod.POST)
 	public ModelAndView editar(@RequestParam("id") Long id,
 			@RequestParam("nombre") String nombre,
-			@RequestParam("caracteristicas") ArrayList<Long> caracteristicas,
+			@RequestParam(name="caracteristicas", required=false) ArrayList<Long> caracteristicas,
 			@RequestParam("bebidas") ArrayList<Long> bebidas,
 			@RequestParam("entradas") ArrayList<Long> entradas,
 			@RequestParam("platos") ArrayList<Long> platos,
 			@RequestParam("postres") ArrayList<Long> postres) {
 
+		if (caracteristicas==null) caracteristicas = new ArrayList<Long>();
 		return menuService.editar(id, nombre, caracteristicas, bebidas,
 				entradas, platos, postres);
 

@@ -30,7 +30,7 @@ public class LoginController {
 	@Autowired
 	UsuarioDAO usuarioDAO;
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
@@ -46,6 +46,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginDone() {
 		ModelAndView model = new ModelAndView();
 

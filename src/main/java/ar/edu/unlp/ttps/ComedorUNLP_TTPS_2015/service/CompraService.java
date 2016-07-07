@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -140,13 +141,11 @@ public class CompraService {
 
 		ArrayList<SeleccionDiaMenu> seleccionesDeDiaMenu = new ArrayList<SeleccionDiaMenu>();
 		for (int i = 0; i < cantidadDeSemanas; i++) {
-
 			for (int j = 0; j < 5; j++) {
 				if (diasMenuIds.get(j) != -1) {
-					seleccionesDeDiaMenu
-							.add(this.agregarSeleccion(lunesMenuId,
-									dias.get(j), sede, seleccionViandas.get(j),
-									precio));
+					seleccionesDeDiaMenu.add(this.agregarSeleccion(diasMenuIds
+							.get(j), new DateTime(dias.get(j)).plusWeeks(i + 1)
+							.toDate(), sede, seleccionViandas.get(j), precio));
 					montoTotal += precio;
 				}
 			}
@@ -204,8 +203,9 @@ public class CompraService {
 		return diasConvertidos;
 	}
 
-	private ArrayList<Long> agruparDiaMenuIds(Long lunesMenuId, Long martesMenuId,
-			Long miercolesMenuId, Long juevesMenuId, Long viernesMenuId) {
+	private ArrayList<Long> agruparDiaMenuIds(Long lunesMenuId,
+			Long martesMenuId, Long miercolesMenuId, Long juevesMenuId,
+			Long viernesMenuId) {
 		ArrayList<Long> diasMenuIds = new ArrayList<Long>();
 		diasMenuIds.add((lunesMenuId == null) ? -1 : lunesMenuId);
 		diasMenuIds.add((martesMenuId == null) ? -1 : martesMenuId);
@@ -215,15 +215,21 @@ public class CompraService {
 		return diasMenuIds;
 	}
 
-	private ArrayList<Boolean> agruparSeleccionVianda(Boolean seleccionViandaLunes,
-			Boolean seleccionViandaMartes, Boolean seleccionViandaMiercoles,
-			Boolean seleccionViandaJueves, Boolean seleccionViandaViernes) {
+	private ArrayList<Boolean> agruparSeleccionVianda(
+			Boolean seleccionViandaLunes, Boolean seleccionViandaMartes,
+			Boolean seleccionViandaMiercoles, Boolean seleccionViandaJueves,
+			Boolean seleccionViandaViernes) {
 		ArrayList<Boolean> seleccionesVianda = new ArrayList<Boolean>();
-		seleccionesVianda.add((seleccionViandaLunes == null) ? false : seleccionViandaLunes);
-		seleccionesVianda.add((seleccionViandaMartes == null) ? false : seleccionViandaMartes);
-		seleccionesVianda.add((seleccionViandaMiercoles == null) ? false : seleccionViandaMiercoles);
-		seleccionesVianda.add((seleccionViandaJueves == null) ? false : seleccionViandaJueves);
-		seleccionesVianda.add((seleccionViandaViernes == null) ? false : seleccionViandaViernes);
+		seleccionesVianda.add((seleccionViandaLunes == null) ? false
+				: seleccionViandaLunes);
+		seleccionesVianda.add((seleccionViandaMartes == null) ? false
+				: seleccionViandaMartes);
+		seleccionesVianda.add((seleccionViandaMiercoles == null) ? false
+				: seleccionViandaMiercoles);
+		seleccionesVianda.add((seleccionViandaJueves == null) ? false
+				: seleccionViandaJueves);
+		seleccionesVianda.add((seleccionViandaViernes == null) ? false
+				: seleccionViandaViernes);
 		return seleccionesVianda;
 	}
 

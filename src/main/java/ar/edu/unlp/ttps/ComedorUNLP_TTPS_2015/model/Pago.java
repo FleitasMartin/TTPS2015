@@ -19,7 +19,7 @@ public class Pago {
 	private Long id;
 	private Date fechaPago;
 	
-    @ManyToOne(optional = false)//, cascade=CascadeType.ALL)   
+    @ManyToOne(optional = false)   
 	private Compra compra;
     
     @ManyToOne(optional = false) 
